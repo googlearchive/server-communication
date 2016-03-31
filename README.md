@@ -1,8 +1,8 @@
-.tmp
+server-communication
 ---------------
 
 Welcome to the example application used in angular.io/dart's
-[.tmp](//github.com/angular/angular.io/tree/master/public/docs/_examples/server-communication/dart) page.
+[server-communication](//github.com/angular/angular.io/tree/master/public/docs/_examples/server-communication/dart) page.
 
 To run your own copy:
 
