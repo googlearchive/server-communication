@@ -1,0 +1,45 @@
+{
+  "ngDeps": {
+    "1": "angular2.testing_internal",
+    "4": [
+      {
+        "1": "src/testing/testing_internal.dart"
+      },
+      {
+        "1": "src/testing/test_component_builder.dart"
+      },
+      {
+        "1": "src/testing/test_injector.dart"
+      },
+      {
+        "1": "src/testing/fake_async.dart"
+      },
+      {
+        "1": "src/testing/utils.dart"
+      }
+    ],
+    "6": "testing_internal.dart",
+    "10": [
+      {
+        "1": "src/testing/testing_internal.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "src/testing/test_component_builder.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "src/testing/test_injector.template.dart",
+        "4": "i2"
+      },
+      {
+        "1": "src/testing/fake_async.template.dart",
+        "4": "i3"
+      },
+      {
+        "1": "src/testing/utils.template.dart",
+        "4": "i4"
+      }
+    ]
+  }
+}

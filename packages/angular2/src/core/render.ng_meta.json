@@ -1,0 +1,22 @@
+{
+  "ngDeps": {
+    "1": "angular2.src.core.render",
+    "4": [
+      {
+        "1": "render/api.dart",
+        "2": [
+          "RootRenderer",
+          "Renderer",
+          "RenderComponentType"
+        ]
+      }
+    ],
+    "6": "render.dart",
+    "10": [
+      {
+        "1": "render/api.template.dart",
+        "4": "i0"
+      }
+    ]
+  }
+}

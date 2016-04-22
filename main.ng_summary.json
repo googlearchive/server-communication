@@ -1,0 +1,24 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/platform/browser.dart",
+        "5": false
+      },
+      {
+        "1": "package:server_communication/toh/toh_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:server_communication/wiki/wiki_component.dart",
+        "5": false
+      },
+      {
+        "1": "package:server_communication/wiki/wiki_smart_component.dart",
+        "5": false
+      }
+    ],
+    "6": "main.dart"
+  }
+}

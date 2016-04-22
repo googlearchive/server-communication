@@ -1,0 +1,132 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "package:http_in_memory_web_api/http_in_memory_web_api.dart",
+        "5": false
+      },
+      {
+        "1": "package:http/browser_client.dart",
+        "5": false
+      },
+      {
+        "1": "package:server_communication/hero_data.dart",
+        "5": false
+      },
+      {
+        "1": "hero_list_component.dart",
+        "5": false
+      },
+      {
+        "1": "hero_service.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "HttpClientInMemoryBackendServiceFactory",
+        "3": true,
+        "4": [
+          {
+            "1": "Injectable",
+            "4": false,
+            "5": false,
+            "6": false,
+            "7": true,
+            "8": false
+          }
+        ]
+      },
+      {
+        "1": "TohComponent",
+        "4": [
+          {
+            "1": "Component",
+            "3": [
+              {
+                "1": "selector",
+                "2": "'my-toh'"
+              },
+              {
+                "1": "template",
+                "2": "'''\n      <h1>Tour of Heroes</h1>\n      <hero-list></hero-list>\n    '''"
+              },
+              {
+                "1": "providers",
+                "2": "const [HeroService, const Provider(BrowserClient, useFactory: HttpClientInMemoryBackendServiceFactory)]"
+              },
+              {
+                "1": "directives",
+                "2": "const [HeroListComponent]"
+              }
+            ],
+            "4": false,
+            "5": true,
+            "6": true,
+            "7": true,
+            "8": false
+          }
+        ],
+        "8": [
+          {
+            "2": "HeroListComponent"
+          }
+        ]
+      }
+    ],
+    "6": "toh_component.dart",
+    "10": [
+      {
+        "1": "package:angular2/core.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "package:server_communication/hero_data.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "hero_list_component.template.dart",
+        "4": "i2"
+      },
+      {
+        "1": "hero_service.template.dart",
+        "4": "i3"
+      }
+    ]
+  },
+  "TohComponent": {
+    "kind": "type",
+    "value": {
+      "class": "Directive",
+      "isComponent": true,
+      "dynamicLoadable": true,
+      "selector": "my-toh",
+      "exportAs": null,
+      "type": {
+        "name": "TohComponent",
+        "moduleUrl": "asset:server_communication/lib/toh/toh_component.dart",
+        "isHost": false
+      },
+      "changeDetection": 5,
+      "inputs": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 2,
+        "template": "      <h1>Tour of Heroes</h1>\n      <hero-list></hero-list>\n    ",
+        "templateUrl": "asset:server_communication/lib/toh/toh_component.dart",
+        "styles": [],
+        "styleUrls": [],
+        "ngContentSelectors": []
+      }
+    }
+  }
+}

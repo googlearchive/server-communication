@@ -1,0 +1,95 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "wikipedia_service.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "WikiComponent",
+        "4": [
+          {
+            "1": "Component",
+            "3": [
+              {
+                "1": "selector",
+                "2": "'my-wiki'"
+              },
+              {
+                "1": "template",
+                "2": "'''\n      <h1>Wikipedia Demo</h1>\n      <p><i>Fetches after each keystroke</i></p>\n      <input #term (keyup)=\"search(term.value)\"/>\n      <ul>\n        <li *ngFor=\"#item of items\">{{item}}</li>\n      </ul>\n    '''"
+              },
+              {
+                "1": "providers",
+                "2": "const [WikipediaService]"
+              }
+            ],
+            "4": false,
+            "5": true,
+            "6": true,
+            "7": true,
+            "8": false
+          }
+        ],
+        "5": [
+          {
+            "1": "WikipediaService",
+            "4": "_wikipediaService"
+          }
+        ]
+      }
+    ],
+    "6": "wiki_component.dart",
+    "10": [
+      {
+        "1": "package:angular2/core.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "wikipedia_service.template.dart",
+        "4": "i1"
+      }
+    ]
+  },
+  "WikiComponent": {
+    "kind": "type",
+    "value": {
+      "class": "Directive",
+      "isComponent": true,
+      "dynamicLoadable": true,
+      "selector": "my-wiki",
+      "exportAs": null,
+      "type": {
+        "name": "WikiComponent",
+        "moduleUrl": "asset:server_communication/lib/wiki/wiki_component.dart",
+        "isHost": false
+      },
+      "changeDetection": 5,
+      "inputs": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 2,
+        "template": "      <h1>Wikipedia Demo</h1>\n      <p><i>Fetches after each keystroke</i></p>\n      <input #term (keyup)=\"search(term.value)\"/>\n      <ul>\n        <li *ngFor=\"#item of items\">{{item}}</li>\n      </ul>\n    ",
+        "templateUrl": "asset:server_communication/lib/wiki/wiki_component.dart",
+        "styles": [],
+        "styleUrls": [],
+        "ngContentSelectors": []
+      }
+    }
+  }
+}
