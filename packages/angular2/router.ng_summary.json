@@ -3,14 +3,14 @@
     "1": "angular2.router",
     "3": [
       {
-        "1": "src/router/router_outlet.dart",
+        "1": "src/router/directives/router_outlet.dart",
         "2": [
           "RouterOutlet"
         ],
         "5": false
       },
       {
-        "1": "src/router/router_link.dart",
+        "1": "src/router/directives/router_link.dart",
         "2": [
           "RouterLink"
         ],
@@ -25,13 +25,13 @@
         ]
       },
       {
-        "1": "src/router/router_outlet.dart",
+        "1": "src/router/directives/router_outlet.dart",
         "2": [
           "RouterOutlet"
         ]
       },
       {
-        "1": "src/router/router_link.dart",
+        "1": "src/router/directives/router_link.dart",
         "2": [
           "RouterLink"
         ]
@@ -44,12 +44,6 @@
         ]
       },
       {
-        "1": "src/router/platform_location.dart",
-        "2": [
-          "PlatformLocation"
-        ]
-      },
-      {
         "1": "src/router/route_registry.dart",
         "2": [
           "RouteRegistry",
@@ -57,32 +51,7 @@
         ]
       },
       {
-        "1": "src/router/location_strategy.dart",
-        "2": [
-          "LocationStrategy",
-          "APP_BASE_HREF"
-        ]
-      },
-      {
-        "1": "src/router/hash_location_strategy.dart",
-        "2": [
-          "HashLocationStrategy"
-        ]
-      },
-      {
-        "1": "src/router/path_location_strategy.dart",
-        "2": [
-          "PathLocationStrategy"
-        ]
-      },
-      {
-        "1": "src/router/location.dart",
-        "2": [
-          "Location"
-        ]
-      },
-      {
-        "1": "src/router/route_config_decorator.dart"
+        "1": "src/router/route_config/route_config_decorator.dart"
       },
       {
         "1": "src/router/route_definition.dart"
@@ -98,7 +67,7 @@
         ]
       },
       {
-        "1": "src/router/lifecycle_annotations.dart",
+        "1": "src/router/lifecycle/lifecycle_annotations.dart",
         "2": [
           "CanActivate"
         ]
@@ -132,9 +101,32 @@
     ],
     "6": "router.dart"
   },
-  "ROUTER_DIRECTIVES": {
-    "kind": "alias",
-    "value": [
+  "type": {
+    "ROUTER_DIRECTIVES": {
+      "class": "Identifier",
+      "name": "ROUTER_DIRECTIVES",
+      "moduleUrl": "asset:angular2/lib/router.dart",
+      "prefix": null,
+      "value": [
+        {
+          "class": "Identifier",
+          "name": "RouterOutlet",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "RouterLink",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ]
+    }
+  },
+  "alias": {
+    "ROUTER_DIRECTIVES": [
       "RouterOutlet",
       "RouterLink"
     ]

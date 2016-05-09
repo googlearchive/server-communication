@@ -38,19 +38,11 @@
                 "2": "false"
               }
             ],
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           },
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ],
         "6": [
@@ -59,24 +51,32 @@
       }
     ],
     "6": "json_pipe.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/src/facade/lang.ngfactory.dart",
         "4": "i0"
+      },
+      {
+        "1": "package:angular2/core.ngfactory.dart",
+        "4": "i1"
       }
     ]
   },
-  "JsonPipe": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "JsonPipe": {
       "class": "Pipe",
       "type": {
+        "class": "Type",
         "name": "JsonPipe",
         "moduleUrl": "asset:angular2/lib/src/common/pipes/json_pipe.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
       },
       "name": "json",
       "pure": false
     }
-  }
+  },
+  "alias": {}
 }

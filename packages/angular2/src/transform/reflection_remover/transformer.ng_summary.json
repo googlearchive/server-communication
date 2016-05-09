@@ -27,6 +27,10 @@
         "5": false
       },
       {
+        "1": "package:angular2/src/transform/common/options_reader.dart",
+        "5": false
+      },
+      {
         "1": "package:angular2/src/transform/common/zone.dart",
         "4": "zone",
         "5": false
@@ -37,5 +41,15 @@
       }
     ],
     "6": "transformer.dart"
-  }
+  },
+  "type": {
+    "ReflectionRemover": {
+      "class": "Identifier",
+      "name": "ReflectionRemover",
+      "moduleUrl": "asset:angular2/lib/src/transform/reflection_remover/transformer.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

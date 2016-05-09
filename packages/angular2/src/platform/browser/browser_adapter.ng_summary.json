@@ -39,5 +39,36 @@
       }
     ],
     "6": "browser_adapter.dart"
-  }
+  },
+  "type": {
+    "_IdentitySanitizer": {
+      "class": "Identifier",
+      "name": "_IdentitySanitizer",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser/browser_adapter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "BrowserDomAdapter": {
+      "class": "Identifier",
+      "name": "BrowserDomAdapter",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser/browser_adapter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "getBaseElementHref": {
+      "class": "Identifier",
+      "name": "getBaseElementHref",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser/browser_adapter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_relativePath": {
+      "class": "Identifier",
+      "name": "_relativePath",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser/browser_adapter.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

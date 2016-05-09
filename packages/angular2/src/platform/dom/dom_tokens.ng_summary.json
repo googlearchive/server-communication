@@ -11,5 +11,15 @@
       }
     ],
     "6": "dom_tokens.dart"
-  }
+  },
+  "type": {
+    "DOCUMENT": {
+      "class": "Identifier",
+      "name": "DOCUMENT",
+      "moduleUrl": "asset:angular2/lib/src/platform/dom/dom_tokens.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

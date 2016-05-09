@@ -41,5 +41,29 @@
       }
     ],
     "6": "transformer.dart"
-  }
+  },
+  "type": {
+    "DirectiveProcessor": {
+      "class": "Identifier",
+      "name": "DirectiveProcessor",
+      "moduleUrl": "asset:angular2/lib/src/transform/directive_processor/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_ngSummaryAssetId": {
+      "class": "Identifier",
+      "name": "_ngSummaryAssetId",
+      "moduleUrl": "asset:angular2/lib/src/transform/directive_processor/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_deferredAssetId": {
+      "class": "Identifier",
+      "name": "_deferredAssetId",
+      "moduleUrl": "asset:angular2/lib/src/transform/directive_processor/transformer.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

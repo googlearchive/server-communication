@@ -12,5 +12,15 @@
       }
     ],
     "6": "webworker_adapter.dart"
-  }
+  },
+  "type": {
+    "WebWorkerDomAdapter": {
+      "class": "Identifier",
+      "name": "WebWorkerDomAdapter",
+      "moduleUrl": "asset:angular2/lib/src/platform/server/webworker_adapter.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

@@ -11,10 +11,6 @@
         "5": false
       },
       {
-        "1": "package:angular2/src/transform/common/annotation_matcher.dart",
-        "5": false
-      },
-      {
         "1": "package:angular2/src/transform/common/model/annotation_model.pb.dart",
         "5": false
       },
@@ -34,5 +30,22 @@
       }
     ],
     "6": "annotation_code.dart"
-  }
+  },
+  "type": {
+    "AnnotationVisitor": {
+      "class": "Identifier",
+      "name": "AnnotationVisitor",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/annotation_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "AnnotationWriterMixin": {
+      "class": "Identifier",
+      "name": "AnnotationWriterMixin",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/annotation_code.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

@@ -40,19 +40,11 @@
                 "2": "\"uppercase\""
               }
             ],
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           },
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ],
         "6": [
@@ -62,17 +54,21 @@
     ],
     "6": "uppercase_pipe.dart"
   },
-  "UpperCasePipe": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "UpperCasePipe": {
       "class": "Pipe",
       "type": {
+        "class": "Type",
         "name": "UpperCasePipe",
         "moduleUrl": "asset:angular2/lib/src/common/pipes/uppercase_pipe.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
       },
       "name": "uppercase",
       "pure": false
     }
-  }
+  },
+  "alias": {}
 }

@@ -60,15 +60,23 @@
         "4": [
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ]
       }
     ],
     "6": "key_events.dart"
-  }
+  },
+  "type": {
+    "KeyEventsPlugin": {
+      "class": "Type",
+      "name": "KeyEventsPlugin",
+      "moduleUrl": "asset:angular2/lib/src/platform/dom/events/key_events.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": []
+    }
+  },
+  "alias": {}
 }

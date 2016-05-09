@@ -8,5 +8,15 @@
       }
     ],
     "6": "naive_eval.dart"
-  }
+  },
+  "type": {
+    "naiveEval": {
+      "class": "Identifier",
+      "name": "naiveEval",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/naive_eval.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

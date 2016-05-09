@@ -19,6 +19,26 @@
         "5": false
       }
     ],
-    "6": "platform_reflection_capabilities.dart"
-  }
+    "6": "platform_reflection_capabilities.dart",
+    "7": [
+      {
+        "1": "package:angular2/src/facade/lang.ngfactory.dart",
+        "4": "i0"
+      },
+      {
+        "1": "types.ngfactory.dart",
+        "4": "i1"
+      }
+    ]
+  },
+  "type": {
+    "PlatformReflectionCapabilities": {
+      "class": "Identifier",
+      "name": "PlatformReflectionCapabilities",
+      "moduleUrl": "asset:angular2/lib/src/core/reflection/platform_reflection_capabilities.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

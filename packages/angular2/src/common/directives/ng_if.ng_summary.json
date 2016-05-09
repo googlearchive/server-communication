@@ -22,26 +22,6 @@
     "5": [
       {
         "1": "NgIf",
-        "4": [
-          {
-            "1": "Directive",
-            "3": [
-              {
-                "1": "selector",
-                "2": "\"[ngIf]\""
-              },
-              {
-                "1": "inputs",
-                "2": "const [\"ngIf\"]"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": false,
-            "7": true,
-            "8": false
-          }
-        ],
         "5": [
           {
             "1": "ViewContainerRef",
@@ -56,18 +36,65 @@
     ],
     "6": "ng_if.dart"
   },
-  "NgIf": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "NgIf": {
       "class": "Directive",
       "isComponent": false,
-      "dynamicLoadable": true,
       "selector": "[ngIf]",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "NgIf",
         "moduleUrl": "asset:angular2/lib/src/common/directives/ng_if.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "ViewContainerRef",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "TemplateRef",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
       },
       "changeDetection": 5,
       "inputs": {
@@ -78,7 +105,12 @@
       "hostProperties": {},
       "hostAttributes": {},
       "lifecycleHooks": [],
-      "template": null
+      "template": null,
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
     }
-  }
+  },
+  "alias": {}
 }

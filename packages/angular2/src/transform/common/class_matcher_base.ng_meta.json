@@ -31,15 +31,46 @@
       }
     ],
     "6": "class_matcher_base.dart",
-    "10": [
+    "7": [
       {
-        "1": "logging.template.dart",
+        "1": "logging.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "url_resolver.template.dart",
+        "1": "url_resolver.ngfactory.dart",
         "4": "i1"
       }
     ]
-  }
+  },
+  "type": {
+    "ClassMatcherBase": {
+      "class": "Identifier",
+      "name": "ClassMatcherBase",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/class_matcher_base.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_getMatchingImport": {
+      "class": "Identifier",
+      "name": "_getMatchingImport",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/class_matcher_base.dart",
+      "prefix": null,
+      "value": null
+    },
+    "isMatch": {
+      "class": "Identifier",
+      "name": "isMatch",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/class_matcher_base.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ClassDescriptor": {
+      "class": "Identifier",
+      "name": "ClassDescriptor",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/class_matcher_base.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

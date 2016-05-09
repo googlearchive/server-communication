@@ -7,8 +7,6 @@
         "2": [
           "isPresent",
           "isString",
-          "StringWrapper",
-          "isBlank",
           "isArray"
         ],
         "5": false
@@ -20,11 +18,13 @@
           "OnDestroy",
           "Directive",
           "ElementRef",
-          "IterableDiffer",
           "IterableDiffers",
-          "KeyValueDiffer",
           "KeyValueDiffers",
-          "Renderer"
+          "Renderer",
+          "IterableDiffer",
+          "KeyValueDiffer",
+          "CollectionChangeRecord",
+          "KeyValueChangeRecord"
         ],
         "5": false
       },
@@ -40,26 +40,6 @@
     "5": [
       {
         "1": "NgClass",
-        "4": [
-          {
-            "1": "Directive",
-            "3": [
-              {
-                "1": "selector",
-                "2": "\"[ngClass]\""
-              },
-              {
-                "1": "inputs",
-                "2": "const [\"rawClass: ngClass\", \"initialClasses: class\"]"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": false,
-            "7": true,
-            "8": false
-          }
-        ],
         "5": [
           {
             "1": "IterableDiffers",
@@ -86,18 +66,109 @@
     ],
     "6": "ng_class.dart"
   },
-  "NgClass": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "NgClass": {
       "class": "Directive",
       "isComponent": false,
-      "dynamicLoadable": true,
       "selector": "[ngClass]",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "NgClass",
         "moduleUrl": "asset:angular2/lib/src/common/directives/ng_class.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "IterableDiffers",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "KeyValueDiffers",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "ElementRef",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Renderer",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
       },
       "changeDetection": 5,
       "inputs": {
@@ -112,7 +183,12 @@
         2,
         1
       ],
-      "template": null
+      "template": null,
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
     }
-  }
+  },
+  "alias": {}
 }

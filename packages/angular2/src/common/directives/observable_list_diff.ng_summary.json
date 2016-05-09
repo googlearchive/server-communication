@@ -23,5 +23,22 @@
       }
     ],
     "6": "observable_list_diff.dart"
-  }
+  },
+  "type": {
+    "ObservableListDiff": {
+      "class": "Identifier",
+      "name": "ObservableListDiff",
+      "moduleUrl": "asset:angular2/lib/src/common/directives/observable_list_diff.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ObservableListDiffFactory": {
+      "class": "Identifier",
+      "name": "ObservableListDiffFactory",
+      "moduleUrl": "asset:angular2/lib/src/common/directives/observable_list_diff.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

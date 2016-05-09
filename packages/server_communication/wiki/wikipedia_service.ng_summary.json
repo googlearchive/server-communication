@@ -21,15 +21,23 @@
         "4": [
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ]
       }
     ],
     "6": "wikipedia_service.dart"
-  }
+  },
+  "type": {
+    "WikipediaService": {
+      "class": "Type",
+      "name": "WikipediaService",
+      "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": []
+    }
+  },
+  "alias": {}
 }

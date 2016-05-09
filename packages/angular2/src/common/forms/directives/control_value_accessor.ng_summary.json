@@ -11,5 +11,22 @@
       }
     ],
     "6": "control_value_accessor.dart"
-  }
+  },
+  "type": {
+    "NG_VALUE_ACCESSOR": {
+      "class": "Identifier",
+      "name": "NG_VALUE_ACCESSOR",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/control_value_accessor.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ControlValueAccessor": {
+      "class": "Identifier",
+      "name": "ControlValueAccessor",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/control_value_accessor.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

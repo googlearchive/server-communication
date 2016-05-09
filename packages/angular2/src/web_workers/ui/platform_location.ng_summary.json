@@ -3,9 +3,20 @@
     "1": "angular2.src.web_workers.ui.platform_location",
     "3": [
       {
-        "1": "package:angular2/src/router/browser_platform_location.dart",
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "package:angular2/src/platform/browser/location/browser_platform_location.dart",
         "2": [
           "BrowserPlatformLocation"
+        ],
+        "5": false
+      },
+      {
+        "1": "package:angular2/platform/common.dart",
+        "2": [
+          "UrlChangeListener"
         ],
         "5": false
       },
@@ -63,17 +74,9 @@
       {
         "1": "package:angular2/src/facade/async.dart",
         "2": [
-          "Future",
           "EventEmitter",
           "ObservableWrapper",
           "PromiseWrapper"
-        ],
-        "5": false
-      },
-      {
-        "1": "package:angular2/src/router/platform_location.dart",
-        "2": [
-          "UrlChangeListener"
         ],
         "5": false
       }
@@ -84,11 +87,7 @@
         "4": [
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ],
         "5": [
@@ -112,5 +111,106 @@
       }
     ],
     "6": "platform_location.dart"
-  }
+  },
+  "type": {
+    "MessageBasedPlatformLocation": {
+      "class": "Type",
+      "name": "MessageBasedPlatformLocation",
+      "moduleUrl": "asset:angular2/lib/src/web_workers/ui/platform_location.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": [
+        {
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "ServiceMessageBrokerFactory",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "query": null,
+          "viewQuery": null,
+          "value": null,
+          "isAttribute": false,
+          "isSelf": false,
+          "isHost": false,
+          "isSkipSelf": false,
+          "isOptional": false,
+          "isValue": false
+        },
+        {
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "BrowserPlatformLocation",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "query": null,
+          "viewQuery": null,
+          "value": null,
+          "isAttribute": false,
+          "isSelf": false,
+          "isHost": false,
+          "isSkipSelf": false,
+          "isOptional": false,
+          "isValue": false
+        },
+        {
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "MessageBus",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "query": null,
+          "viewQuery": null,
+          "value": null,
+          "isAttribute": false,
+          "isSelf": false,
+          "isHost": false,
+          "isSkipSelf": false,
+          "isOptional": false,
+          "isValue": false
+        },
+        {
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "Serializer",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "query": null,
+          "viewQuery": null,
+          "value": null,
+          "isAttribute": false,
+          "isSelf": false,
+          "isHost": false,
+          "isSkipSelf": false,
+          "isOptional": false,
+          "isValue": false
+        }
+      ]
+    }
+  },
+  "alias": {}
 }

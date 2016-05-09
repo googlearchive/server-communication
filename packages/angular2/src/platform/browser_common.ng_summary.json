@@ -20,13 +20,19 @@
         "5": false
       },
       {
+        "1": "package:angular2/src/compiler/xhr.dart",
+        "2": [
+          "XHR"
+        ],
+        "5": false
+      },
+      {
         "1": "package:angular2/core.dart",
         "2": [
           "PLATFORM_INITIALIZER",
           "PLATFORM_DIRECTIVES",
           "PLATFORM_PIPES",
           "ComponentRef",
-          "platform",
           "ExceptionHandler",
           "Reflector",
           "RootRenderer",
@@ -74,13 +80,6 @@
         "5": false
       },
       {
-        "1": "package:angular2/src/platform/dom/events/hammer_gestures.dart",
-        "2": [
-          "HammerGesturesPlugin"
-        ],
-        "5": false
-      },
-      {
         "1": "package:angular2/src/platform/dom/dom_tokens.dart",
         "2": [
           "DOCUMENT"
@@ -98,13 +97,7 @@
       {
         "1": "package:angular2/src/platform/dom/shared_styles_host.dart",
         "2": [
-          "DomSharedStylesHost"
-        ],
-        "5": false
-      },
-      {
-        "1": "package:angular2/src/platform/dom/shared_styles_host.dart",
-        "2": [
+          "DomSharedStylesHost",
           "SharedStylesHost"
         ],
         "5": false
@@ -138,6 +131,13 @@
         "5": false
       },
       {
+        "1": "package:angular2/src/platform/browser/xhr_cache.dart",
+        "2": [
+          "CachedXHR"
+        ],
+        "5": false
+      },
+      {
         "1": "package:angular2/src/core/profile/wtf_init.dart",
         "2": [
           "wtfInit"
@@ -149,6 +149,15 @@
         "2": [
           "EventManager",
           "EVENT_MANAGER_PLUGINS"
+        ],
+        "5": false
+      },
+      {
+        "1": "package:angular2/src/platform/dom/events/hammer_gestures.dart",
+        "2": [
+          "HAMMER_GESTURE_CONFIG",
+          "HammerGestureConfig",
+          "HammerGesturesPlugin"
         ],
         "5": false
       },
@@ -194,8 +203,513 @@
           "enableDebugTools",
           "disableDebugTools"
         ]
+      },
+      {
+        "1": "dom/events/hammer_gestures.dart",
+        "2": [
+          "HAMMER_GESTURE_CONFIG",
+          "HammerGestureConfig"
+        ]
       }
     ],
     "6": "browser_common.dart"
-  }
+  },
+  "type": {
+    "BROWSER_PLATFORM_MARKER": {
+      "class": "Identifier",
+      "name": "BROWSER_PLATFORM_MARKER",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser_common.dart",
+      "prefix": null,
+      "value": null
+    },
+    "BROWSER_PROVIDERS": {
+      "class": "Identifier",
+      "name": "BROWSER_PROVIDERS",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser_common.dart",
+      "prefix": null,
+      "value": [
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "BROWSER_PLATFORM_MARKER",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": true,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Identifier",
+          "name": "PLATFORM_COMMON_PROVIDERS",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "PLATFORM_INITIALIZER",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": {
+            "class": "Identifier",
+            "name": "initDomAdapter",
+            "moduleUrl": null,
+            "prefix": null,
+            "value": null
+          },
+          "useFactory": null,
+          "multi": true,
+          "deps": null
+        }
+      ]
+    },
+    "BROWSER_APP_COMMON_PROVIDERS": {
+      "class": "Identifier",
+      "name": "BROWSER_APP_COMMON_PROVIDERS",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser_common.dart",
+      "prefix": null,
+      "value": [
+        {
+          "class": "Identifier",
+          "name": "APPLICATION_COMMON_PROVIDERS",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "FORM_PROVIDERS",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "PLATFORM_PIPES",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": {
+            "class": "Identifier",
+            "name": "COMMON_PIPES",
+            "moduleUrl": null,
+            "prefix": null,
+            "value": null
+          },
+          "useFactory": null,
+          "multi": true,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "PLATFORM_DIRECTIVES",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": {
+            "class": "Identifier",
+            "name": "COMMON_DIRECTIVES",
+            "moduleUrl": null,
+            "prefix": null,
+            "value": null
+          },
+          "useFactory": null,
+          "multi": true,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "ExceptionHandler",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": {
+            "class": "Factory",
+            "name": "_exceptionHandler",
+            "prefix": null,
+            "moduleUrl": null,
+            "value": null,
+            "diDeps": []
+          },
+          "multi": false,
+          "deps": []
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "DOCUMENT",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": {
+            "class": "Factory",
+            "name": "_document",
+            "prefix": null,
+            "moduleUrl": null,
+            "value": null,
+            "diDeps": []
+          },
+          "multi": false,
+          "deps": []
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "EVENT_MANAGER_PLUGINS",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "DomEventsPlugin",
+            "moduleUrl": null,
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": []
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": true,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "EVENT_MANAGER_PLUGINS",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "KeyEventsPlugin",
+            "moduleUrl": null,
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": []
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": true,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "EVENT_MANAGER_PLUGINS",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "HammerGesturesPlugin",
+            "moduleUrl": null,
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": []
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": true,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "HAMMER_GESTURE_CONFIG",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "HammerGestureConfig",
+            "moduleUrl": null,
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": []
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "DomRootRenderer",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "DomRootRenderer_",
+            "moduleUrl": null,
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": []
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "RootRenderer",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "DomRootRenderer",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "SharedStylesHost",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "DomSharedStylesHost",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Identifier",
+          "name": "DomSharedStylesHost",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "Testability",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "BrowserDetails",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "AnimationBuilder",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "EventManager",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "ELEMENT_PROBE_PROVIDERS",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ]
+    },
+    "CACHED_TEMPLATE_PROVIDER": {
+      "class": "Identifier",
+      "name": "CACHED_TEMPLATE_PROVIDER",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser_common.dart",
+      "prefix": null,
+      "value": [
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "XHR",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "CachedXHR",
+            "moduleUrl": null,
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": []
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        }
+      ]
+    },
+    "_exceptionHandler": {
+      "class": "Identifier",
+      "name": "_exceptionHandler",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser_common.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_document": {
+      "class": "Identifier",
+      "name": "_document",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser_common.dart",
+      "prefix": null,
+      "value": null
+    },
+    "initDomAdapter": {
+      "class": "Identifier",
+      "name": "initDomAdapter",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser_common.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

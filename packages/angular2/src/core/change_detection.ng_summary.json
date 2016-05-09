@@ -6,8 +6,6 @@
         "1": "change_detection/change_detection.dart",
         "2": [
           "ChangeDetectionStrategy",
-          "ExpressionChangedAfterItHasBeenCheckedException",
-          "ChangeDetectionError",
           "ChangeDetectorRef",
           "WrappedValue",
           "SimpleChange",
@@ -18,10 +16,14 @@
           "KeyValueDiffers",
           "KeyValueDiffer",
           "KeyValueDifferFactory",
+          "CollectionChangeRecord",
+          "KeyValueChangeRecord",
           "TrackByFn"
         ]
       }
     ],
     "6": "change_detection.dart"
-  }
+  },
+  "type": {},
+  "alias": {}
 }

@@ -62,5 +62,15 @@
       }
     ],
     "6": "transformer.dart"
-  }
+  },
+  "type": {
+    "AngularTransformerGroup": {
+      "class": "Identifier",
+      "name": "AngularTransformerGroup",
+      "moduleUrl": "asset:angular2/lib/src/transform/transformer.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

@@ -27,5 +27,57 @@
       }
     ],
     "6": "annotation_matcher.dart"
-  }
+  },
+  "type": {
+    "_INJECTABLES": {
+      "class": "Identifier",
+      "name": "_INJECTABLES",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/annotation_matcher.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_DIRECTIVES": {
+      "class": "Identifier",
+      "name": "_DIRECTIVES",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/annotation_matcher.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_COMPONENTS": {
+      "class": "Identifier",
+      "name": "_COMPONENTS",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/annotation_matcher.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_PIPES": {
+      "class": "Identifier",
+      "name": "_PIPES",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/annotation_matcher.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_VIEWS": {
+      "class": "Identifier",
+      "name": "_VIEWS",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/annotation_matcher.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_ENTRYPOINTS": {
+      "class": "Identifier",
+      "name": "_ENTRYPOINTS",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/annotation_matcher.dart",
+      "prefix": null,
+      "value": null
+    },
+    "AnnotationMatcher": {
+      "class": "Identifier",
+      "name": "AnnotationMatcher",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/annotation_matcher.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

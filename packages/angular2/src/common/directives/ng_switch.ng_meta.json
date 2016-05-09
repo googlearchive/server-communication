@@ -31,50 +31,10 @@
     ],
     "5": [
       {
-        "1": "NgSwitch",
-        "4": [
-          {
-            "1": "Directive",
-            "3": [
-              {
-                "1": "selector",
-                "2": "\"[ngSwitch]\""
-              },
-              {
-                "1": "inputs",
-                "2": "const [\"ngSwitch\"]"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": false,
-            "7": true,
-            "8": false
-          }
-        ]
+        "1": "NgSwitch"
       },
       {
         "1": "NgSwitchWhen",
-        "4": [
-          {
-            "1": "Directive",
-            "3": [
-              {
-                "1": "selector",
-                "2": "\"[ngSwitchWhen]\""
-              },
-              {
-                "1": "inputs",
-                "2": "const [\"ngSwitchWhen\"]"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": false,
-            "7": true,
-            "8": false
-          }
-        ],
         "5": [
           {
             "1": "ViewContainerRef",
@@ -95,22 +55,6 @@
       },
       {
         "1": "NgSwitchDefault",
-        "4": [
-          {
-            "1": "Directive",
-            "3": [
-              {
-                "1": "selector",
-                "2": "\"[ngSwitchDefault]\""
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": false,
-            "7": true,
-            "8": false
-          }
-        ],
         "5": [
           {
             "1": "ViewContainerRef",
@@ -131,25 +75,49 @@
       }
     ],
     "6": "ng_switch.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/core.ngfactory.dart",
         "4": "i0"
+      },
+      {
+        "1": "package:angular2/src/facade/lang.ngfactory.dart",
+        "4": "i1"
+      },
+      {
+        "1": "package:angular2/src/facade/collection.ngfactory.dart",
+        "4": "i2"
       }
     ]
   },
-  "NgSwitch": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "_WHEN_DEFAULT": {
+      "class": "Identifier",
+      "name": "_WHEN_DEFAULT",
+      "moduleUrl": "asset:angular2/lib/src/common/directives/ng_switch.dart",
+      "prefix": null,
+      "value": null
+    },
+    "SwitchView": {
+      "class": "Identifier",
+      "name": "SwitchView",
+      "moduleUrl": "asset:angular2/lib/src/common/directives/ng_switch.dart",
+      "prefix": null,
+      "value": null
+    },
+    "NgSwitch": {
       "class": "Directive",
       "isComponent": false,
-      "dynamicLoadable": true,
       "selector": "[ngSwitch]",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "NgSwitch",
         "moduleUrl": "asset:angular2/lib/src/common/directives/ng_switch.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
       },
       "changeDetection": 5,
       "inputs": {
@@ -160,21 +128,92 @@
       "hostProperties": {},
       "hostAttributes": {},
       "lifecycleHooks": [],
-      "template": null
-    }
-  },
-  "NgSwitchWhen": {
-    "kind": "type",
-    "value": {
+      "template": null,
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    },
+    "NgSwitchWhen": {
       "class": "Directive",
       "isComponent": false,
-      "dynamicLoadable": true,
       "selector": "[ngSwitchWhen]",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "NgSwitchWhen",
         "moduleUrl": "asset:angular2/lib/src/common/directives/ng_switch.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "ViewContainerRef",
+                "moduleUrl": "asset:angular2/lib/src/core/linker/view_container_ref.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "TemplateRef",
+                "moduleUrl": "asset:angular2/lib/src/core/linker/template_ref.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "NgSwitch",
+                "moduleUrl": "asset:angular2/lib/src/common/directives/ng_switch.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": true,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
       },
       "changeDetection": 5,
       "inputs": {
@@ -185,21 +224,92 @@
       "hostProperties": {},
       "hostAttributes": {},
       "lifecycleHooks": [],
-      "template": null
-    }
-  },
-  "NgSwitchDefault": {
-    "kind": "type",
-    "value": {
+      "template": null,
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    },
+    "NgSwitchDefault": {
       "class": "Directive",
       "isComponent": false,
-      "dynamicLoadable": true,
       "selector": "[ngSwitchDefault]",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "NgSwitchDefault",
         "moduleUrl": "asset:angular2/lib/src/common/directives/ng_switch.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "ViewContainerRef",
+                "moduleUrl": "asset:angular2/lib/src/core/linker/view_container_ref.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "TemplateRef",
+                "moduleUrl": "asset:angular2/lib/src/core/linker/template_ref.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "NgSwitch",
+                "moduleUrl": "asset:angular2/lib/src/common/directives/ng_switch.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": true,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
       },
       "changeDetection": 5,
       "inputs": {},
@@ -208,7 +318,12 @@
       "hostProperties": {},
       "hostAttributes": {},
       "lifecycleHooks": [],
-      "template": null
+      "template": null,
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
     }
-  }
+  },
+  "alias": {}
 }

@@ -31,6 +31,13 @@
         "5": false
       },
       {
+        "1": "ng_template_outlet.dart",
+        "2": [
+          "NgTemplateOutlet"
+        ],
+        "5": false
+      },
+      {
         "1": "ng_style.dart",
         "2": [
           "NgStyle"
@@ -45,20 +52,110 @@
           "NgSwitchDefault"
         ],
         "5": false
+      },
+      {
+        "1": "ng_plural.dart",
+        "2": [
+          "NgPlural",
+          "NgPluralCase"
+        ],
+        "5": false
       }
     ],
     "6": "core_directives.dart"
   },
-  "CORE_DIRECTIVES": {
-    "kind": "alias",
-    "value": [
+  "type": {
+    "CORE_DIRECTIVES": {
+      "class": "Identifier",
+      "name": "CORE_DIRECTIVES",
+      "moduleUrl": "asset:angular2/lib/src/common/directives/core_directives.dart",
+      "prefix": null,
+      "value": [
+        {
+          "class": "Identifier",
+          "name": "NgClass",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgFor",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgIf",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgTemplateOutlet",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgStyle",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgSwitch",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgSwitchWhen",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgSwitchDefault",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgPlural",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "NgPluralCase",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ]
+    }
+  },
+  "alias": {
+    "CORE_DIRECTIVES": [
       "NgClass",
       "NgFor",
       "NgIf",
+      "NgTemplateOutlet",
       "NgStyle",
       "NgSwitch",
       "NgSwitchWhen",
-      "NgSwitchDefault"
+      "NgSwitchDefault",
+      "NgPlural",
+      "NgPluralCase"
     ]
   }
 }

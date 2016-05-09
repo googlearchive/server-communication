@@ -34,5 +34,15 @@
       }
     ],
     "6": "by.dart"
-  }
+  },
+  "type": {
+    "By": {
+      "class": "Identifier",
+      "name": "By",
+      "moduleUrl": "asset:angular2/lib/src/platform/dom/debug/by.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

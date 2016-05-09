@@ -22,31 +22,18 @@
           "print"
         ],
         "5": false
+      },
+      {
+        "1": "../../core/change_detection/differs/default_keyvalue_differ.dart",
+        "2": [
+          "KeyValueChangeRecord"
+        ],
+        "5": false
       }
     ],
     "5": [
       {
         "1": "NgStyle",
-        "4": [
-          {
-            "1": "Directive",
-            "3": [
-              {
-                "1": "selector",
-                "2": "\"[ngStyle]\""
-              },
-              {
-                "1": "inputs",
-                "2": "const [\"rawStyle: ngStyle\"]"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": false,
-            "7": true,
-            "8": false
-          }
-        ],
         "5": [
           {
             "1": "KeyValueDiffers",
@@ -68,18 +55,87 @@
     ],
     "6": "ng_style.dart"
   },
-  "NgStyle": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "NgStyle": {
       "class": "Directive",
       "isComponent": false,
-      "dynamicLoadable": true,
       "selector": "[ngStyle]",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "NgStyle",
         "moduleUrl": "asset:angular2/lib/src/common/directives/ng_style.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "KeyValueDiffers",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "ElementRef",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "Renderer",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
       },
       "changeDetection": 5,
       "inputs": {
@@ -92,7 +148,12 @@
       "lifecycleHooks": [
         2
       ],
-      "template": null
+      "template": null,
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
     }
-  }
+  },
+  "alias": {}
 }

@@ -42,13 +42,6 @@
         "5": false
       },
       {
-        "1": "package:angular2/src/facade/collection.dart",
-        "2": [
-          "ListWrapper"
-        ],
-        "5": false
-      },
-      {
         "1": "invalid_pipe_argument_exception.dart",
         "2": [
           "InvalidPipeArgumentException"
@@ -62,11 +55,7 @@
         "4": [
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ]
       },
@@ -81,19 +70,11 @@
                 "2": "\"number\""
               }
             ],
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           },
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ],
         "6": [
@@ -111,19 +92,11 @@
                 "2": "\"percent\""
               }
             ],
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           },
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ],
         "6": [
@@ -141,19 +114,11 @@
                 "2": "\"currency\""
               }
             ],
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           },
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ],
         "6": [
@@ -162,62 +127,81 @@
       }
     ],
     "6": "number_pipe.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/src/facade/exceptions.template.dart",
+        "1": "package:angular2/src/facade/lang.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2/src/facade/intl.template.dart",
+        "1": "package:angular2/src/facade/exceptions.ngfactory.dart",
         "4": "i1"
       },
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/src/facade/intl.ngfactory.dart",
         "4": "i2"
       },
       {
-        "1": "invalid_pipe_argument_exception.template.dart",
+        "1": "package:angular2/core.ngfactory.dart",
         "4": "i3"
+      },
+      {
+        "1": "invalid_pipe_argument_exception.ngfactory.dart",
+        "4": "i4"
       }
     ]
   },
-  "DecimalPipe": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "NumberPipe": {
+      "class": "Type",
+      "name": "NumberPipe",
+      "moduleUrl": "asset:angular2/lib/src/common/pipes/number_pipe.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": []
+    },
+    "DecimalPipe": {
       "class": "Pipe",
       "type": {
+        "class": "Type",
         "name": "DecimalPipe",
         "moduleUrl": "asset:angular2/lib/src/common/pipes/number_pipe.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
       },
       "name": "number",
       "pure": false
-    }
-  },
-  "PercentPipe": {
-    "kind": "type",
-    "value": {
+    },
+    "PercentPipe": {
       "class": "Pipe",
       "type": {
+        "class": "Type",
         "name": "PercentPipe",
         "moduleUrl": "asset:angular2/lib/src/common/pipes/number_pipe.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
       },
       "name": "percent",
       "pure": false
-    }
-  },
-  "CurrencyPipe": {
-    "kind": "type",
-    "value": {
+    },
+    "CurrencyPipe": {
       "class": "Pipe",
       "type": {
+        "class": "Type",
         "name": "CurrencyPipe",
         "moduleUrl": "asset:angular2/lib/src/common/pipes/number_pipe.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
       },
       "name": "currency",
       "pure": false
     }
-  }
+  },
+  "alias": {}
 }

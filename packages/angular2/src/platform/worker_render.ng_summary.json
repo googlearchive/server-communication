@@ -29,10 +29,6 @@
         "5": false
       },
       {
-        "1": "package:angular2/src/core/zone/ng_zone.dart",
-        "5": false
-      },
-      {
         "1": "dart:isolate",
         "5": false
       },
@@ -41,31 +37,44 @@
         "5": false
       }
     ],
-    "5": [
-      {
-        "1": "WebWorkerInstance",
-        "4": [
-          {
-            "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
-          }
-        ],
-        "5": [
-          {
-            "1": "Isolate",
-            "4": "worker"
-          },
-          {
-            "1": "MessageBus",
-            "4": "bus"
-          }
-        ]
-      }
-    ],
     "6": "worker_render.dart"
-  }
+  },
+  "type": {
+    "WORKER_RENDER_APP": {
+      "class": "Identifier",
+      "name": "WORKER_RENDER_APP",
+      "moduleUrl": "asset:angular2/lib/src/platform/worker_render.dart",
+      "prefix": null,
+      "value": null
+    },
+    "initIsolate": {
+      "class": "Identifier",
+      "name": "initIsolate",
+      "moduleUrl": "asset:angular2/lib/src/platform/worker_render.dart",
+      "prefix": null,
+      "value": null
+    },
+    "spawnIsolate": {
+      "class": "Identifier",
+      "name": "spawnIsolate",
+      "moduleUrl": "asset:angular2/lib/src/platform/worker_render.dart",
+      "prefix": null,
+      "value": null
+    },
+    "UIMessageBusSource": {
+      "class": "Identifier",
+      "name": "UIMessageBusSource",
+      "moduleUrl": "asset:angular2/lib/src/platform/worker_render.dart",
+      "prefix": null,
+      "value": null
+    },
+    "WebWorkerInstance": {
+      "class": "Identifier",
+      "name": "WebWorkerInstance",
+      "moduleUrl": "asset:angular2/lib/src/platform/worker_render.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

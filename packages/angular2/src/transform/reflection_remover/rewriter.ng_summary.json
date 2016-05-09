@@ -37,5 +37,36 @@
       }
     ],
     "6": "rewriter.dart"
-  }
+  },
+  "type": {
+    "Rewriter": {
+      "class": "Identifier",
+      "name": "Rewriter",
+      "moduleUrl": "asset:angular2/lib/src/transform/reflection_remover/rewriter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_RewriterVisitor": {
+      "class": "Identifier",
+      "name": "_RewriterVisitor",
+      "moduleUrl": "asset:angular2/lib/src/transform/reflection_remover/rewriter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_importDebugReflectionCapabilities": {
+      "class": "Identifier",
+      "name": "_importDebugReflectionCapabilities",
+      "moduleUrl": "asset:angular2/lib/src/transform/reflection_remover/rewriter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_instantiateVerboseReflectionCapabilities": {
+      "class": "Identifier",
+      "name": "_instantiateVerboseReflectionCapabilities",
+      "moduleUrl": "asset:angular2/lib/src/transform/reflection_remover/rewriter.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

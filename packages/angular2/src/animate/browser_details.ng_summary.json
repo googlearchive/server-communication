@@ -30,15 +30,30 @@
         "4": [
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ]
       }
     ],
     "6": "browser_details.dart"
-  }
+  },
+  "type": {
+    "BrowserDetails": {
+      "class": "Type",
+      "name": "BrowserDetails",
+      "moduleUrl": "asset:angular2/lib/src/animate/browser_details.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": []
+    },
+    "RafQueue": {
+      "class": "Identifier",
+      "name": "RafQueue",
+      "moduleUrl": "asset:angular2/lib/src/animate/browser_details.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

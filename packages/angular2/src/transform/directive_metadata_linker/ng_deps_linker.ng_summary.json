@@ -43,5 +43,29 @@
       }
     ],
     "6": "ng_deps_linker.dart"
-  }
+  },
+  "type": {
+    "linkNgDeps": {
+      "class": "Identifier",
+      "name": "linkNgDeps",
+      "moduleUrl": "asset:angular2/lib/src/transform/directive_metadata_linker/ng_deps_linker.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_isNotDartDirective": {
+      "class": "Identifier",
+      "name": "_isNotDartDirective",
+      "moduleUrl": "asset:angular2/lib/src/transform/directive_metadata_linker/ng_deps_linker.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_processNgImports": {
+      "class": "Identifier",
+      "name": "_processNgImports",
+      "moduleUrl": "asset:angular2/lib/src/transform/directive_metadata_linker/ng_deps_linker.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

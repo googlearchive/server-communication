@@ -22,30 +22,6 @@
     "5": [
       {
         "1": "HeroListComponent",
-        "4": [
-          {
-            "1": "Component",
-            "3": [
-              {
-                "1": "selector",
-                "2": "'hero-list'"
-              },
-              {
-                "1": "template",
-                "2": "'''\n      <h3>Heroes:</h3>\n      <ul>\n        <li *ngFor=\"#hero of heroes\">\n          {{hero.name}}\n        </li>\n      </ul>\n      New Hero:\n      <input #newHero />\n      <button (click)=\"addHero(newHero.value); newHero.value=''\">\n        Add Hero\n      </button>\n      <div class=\"error\" *ngIf=\"hasErrorMessage\">{{errorMessage}}</div>\n    '''"
-              },
-              {
-                "1": "styles",
-                "2": "const ['.error {color:red;}']"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": true,
-            "7": true,
-            "8": false
-          }
-        ],
         "5": [
           {
             "1": "HeroService",
@@ -58,29 +34,58 @@
       }
     ],
     "6": "hero_list_component.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/core.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "hero_service.template.dart",
+        "1": "hero.ngfactory.dart",
         "4": "i1"
+      },
+      {
+        "1": "hero_service.ngfactory.dart",
+        "4": "i2"
       }
     ]
   },
-  "HeroListComponent": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "HeroListComponent": {
       "class": "Directive",
       "isComponent": true,
-      "dynamicLoadable": true,
       "selector": "hero-list",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "HeroListComponent",
         "moduleUrl": "asset:server_communication/lib/toh/hero_list_component.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "HeroService",
+                "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
       },
       "changeDetection": 5,
       "inputs": {},
@@ -93,14 +98,19 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "      <h3>Heroes:</h3>\n      <ul>\n        <li *ngFor=\"#hero of heroes\">\n          {{hero.name}}\n        </li>\n      </ul>\n      New Hero:\n      <input #newHero />\n      <button (click)=\"addHero(newHero.value); newHero.value=''\">\n        Add Hero\n      </button>\n      <div class=\"error\" *ngIf=\"hasErrorMessage\">{{errorMessage}}</div>\n    ",
+        "template": "      <h3>Heroes:</h3>\n      <ul>\n        <li *ngFor=\"let hero of heroes\">\n          {{hero.name}}\n        </li>\n      </ul>\n      New Hero:\n      <input #newHero />\n      <button (click)=\"addHero(newHero.value); newHero.value=''\">\n        Add Hero\n      </button>\n      <div class=\"error\" *ngIf=\"hasErrorMessage\">{{errorMessage}}</div>\n    ",
         "templateUrl": "asset:server_communication/lib/toh/hero_list_component.dart",
         "styles": [
           ".error {color:red;}"
         ],
         "styleUrls": [],
         "ngContentSelectors": []
-      }
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
     }
-  }
+  },
+  "alias": {}
 }

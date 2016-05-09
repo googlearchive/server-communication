@@ -21,6 +21,12 @@
         ]
       },
       {
+        "1": "directives/ng_template_outlet.dart",
+        "2": [
+          "NgTemplateOutlet"
+        ]
+      },
+      {
         "1": "directives/ng_style.dart",
         "2": [
           "NgStyle"
@@ -35,6 +41,14 @@
         ]
       },
       {
+        "1": "directives/ng_plural.dart",
+        "2": [
+          "NgPlural",
+          "NgPluralCase",
+          "NgLocalization"
+        ]
+      },
+      {
         "1": "directives/observable_list_diff.dart"
       },
       {
@@ -45,5 +59,7 @@
       }
     ],
     "6": "directives.dart"
-  }
+  },
+  "type": {},
+  "alias": {}
 }

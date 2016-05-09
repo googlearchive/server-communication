@@ -116,11 +116,79 @@
       {
         "1": "normalize_validator.dart",
         "2": [
-          "normalizeValidator"
+          "normalizeValidator",
+          "normalizeAsyncValidator"
+        ],
+        "5": false
+      },
+      {
+        "1": "validators.dart",
+        "2": [
+          "ValidatorFn",
+          "AsyncValidatorFn"
         ],
         "5": false
       }
     ],
     "6": "shared.dart"
-  }
+  },
+  "type": {
+    "controlPath": {
+      "class": "Identifier",
+      "name": "controlPath",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    },
+    "setUpControl": {
+      "class": "Identifier",
+      "name": "setUpControl",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    },
+    "setUpControlGroup": {
+      "class": "Identifier",
+      "name": "setUpControlGroup",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_throwError": {
+      "class": "Identifier",
+      "name": "_throwError",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    },
+    "composeValidators": {
+      "class": "Identifier",
+      "name": "composeValidators",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    },
+    "composeAsyncValidators": {
+      "class": "Identifier",
+      "name": "composeAsyncValidators",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    },
+    "isPropertyUpdated": {
+      "class": "Identifier",
+      "name": "isPropertyUpdated",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    },
+    "selectValueAccessor": {
+      "class": "Identifier",
+      "name": "selectValueAccessor",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/shared.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

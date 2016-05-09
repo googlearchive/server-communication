@@ -7,7 +7,7 @@
         "5": false
       },
       {
-        "1": "package:guinness/guinness.dart",
+        "1": "package:guinness2/guinness2.dart",
         "4": "gns",
         "5": false
       },
@@ -27,5 +27,64 @@
       }
     ],
     "6": "matchers.dart"
-  }
+  },
+  "type": {
+    "_u": {
+      "class": "Identifier",
+      "name": "_u",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    },
+    "expect": {
+      "class": "Identifier",
+      "name": "expect",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    },
+    "elementContainsStyle": {
+      "class": "Identifier",
+      "name": "elementContainsStyle",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    },
+    "expectErrorMessage": {
+      "class": "Identifier",
+      "name": "expectErrorMessage",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    },
+    "expectException": {
+      "class": "Identifier",
+      "name": "expectException",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    },
+    "Expect": {
+      "class": "Identifier",
+      "name": "Expect",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    },
+    "NotExpect": {
+      "class": "Identifier",
+      "name": "NotExpect",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    },
+    "elementText": {
+      "class": "Identifier",
+      "name": "elementText",
+      "moduleUrl": "asset:angular2/lib/src/testing/matchers.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

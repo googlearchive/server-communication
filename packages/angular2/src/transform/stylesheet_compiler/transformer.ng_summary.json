@@ -33,5 +33,15 @@
       }
     ],
     "6": "transformer.dart"
-  }
+  },
+  "type": {
+    "StylesheetCompiler": {
+      "class": "Identifier",
+      "name": "StylesheetCompiler",
+      "moduleUrl": "asset:angular2/lib/src/transform/stylesheet_compiler/transformer.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

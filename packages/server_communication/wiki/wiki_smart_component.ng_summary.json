@@ -18,30 +18,6 @@
     "5": [
       {
         "1": "WikiSmartComponent",
-        "4": [
-          {
-            "1": "Component",
-            "3": [
-              {
-                "1": "selector",
-                "2": "'my-wiki-smart'"
-              },
-              {
-                "1": "template",
-                "2": "'''\n      <h1>Smarter Wikipedia Demo</h1>\n      <p><i>Fetches when typing stops</i></p>\n\n      <input #term (keyup)=\"search(term.value)\"/>\n      <ul>\n        <li *ngFor=\"#item of items\">{{item}}</li>\n      </ul>\n    '''"
-              },
-              {
-                "1": "providers",
-                "2": "const [WikipediaService]"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": true,
-            "7": true,
-            "8": false
-          }
-        ],
         "5": [
           {
             "1": "WikipediaService",
@@ -52,18 +28,43 @@
     ],
     "6": "wiki_smart_component.dart"
   },
-  "WikiSmartComponent": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "WikiSmartComponent": {
       "class": "Directive",
       "isComponent": true,
-      "dynamicLoadable": true,
       "selector": "my-wiki-smart",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "WikiSmartComponent",
         "moduleUrl": "asset:server_communication/lib/wiki/wiki_smart_component.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "WikipediaService",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "query": null,
+            "viewQuery": null,
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
       },
       "changeDetection": 5,
       "inputs": {},
@@ -74,12 +75,25 @@
       "lifecycleHooks": [],
       "template": {
         "encapsulation": 2,
-        "template": "      <h1>Smarter Wikipedia Demo</h1>\n      <p><i>Fetches when typing stops</i></p>\n\n      <input #term (keyup)=\"search(term.value)\"/>\n      <ul>\n        <li *ngFor=\"#item of items\">{{item}}</li>\n      </ul>\n    ",
+        "template": "      <h1>Smarter Wikipedia Demo</h1>\n      <p><i>Fetches when typing stops</i></p>\n\n      <input #term (keyup)=\"search(term.value)\"/>\n      <ul>\n        <li *ngFor=\"let item of items\">{{item}}</li>\n      </ul>\n    ",
         "templateUrl": "asset:server_communication/lib/wiki/wiki_smart_component.dart",
         "styles": [],
         "styleUrls": [],
         "ngContentSelectors": []
-      }
+      },
+      "providers": [
+        {
+          "class": "Identifier",
+          "name": "WikipediaService",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
     }
-  }
+  },
+  "alias": {}
 }

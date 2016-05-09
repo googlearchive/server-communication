@@ -6,8 +6,7 @@
         "1": "differs/iterable_differs.dart",
         "2": [
           "IterableDiffers",
-          "IterableDifferFactory",
-          "TrackByFn"
+          "IterableDifferFactory"
         ],
         "5": false
       },
@@ -29,104 +28,35 @@
       {
         "1": "differs/default_keyvalue_differ.dart",
         "2": [
-          "DefaultKeyValueDifferFactory"
-        ],
-        "5": false
-      },
-      {
-        "1": "package:angular2/src/facade/lang.dart",
-        "2": [
-          "isPresent"
+          "DefaultKeyValueDifferFactory",
+          "KeyValueChangeRecord"
         ],
         "5": false
       }
     ],
     "4": [
       {
-        "1": "parser/ast.dart",
+        "1": "differs/default_keyvalue_differ.dart",
         "2": [
-          "ASTWithSource",
-          "AST",
-          "AstTransformer",
-          "PropertyRead",
-          "LiteralArray",
-          "ImplicitReceiver"
+          "DefaultKeyValueDifferFactory",
+          "KeyValueChangeRecord"
         ]
       },
       {
-        "1": "parser/lexer.dart",
+        "1": "differs/default_iterable_differ.dart",
         "2": [
-          "Lexer"
-        ]
-      },
-      {
-        "1": "parser/parser.dart",
-        "2": [
-          "Parser"
-        ]
-      },
-      {
-        "1": "parser/locals.dart",
-        "2": [
-          "Locals"
-        ]
-      },
-      {
-        "1": "exceptions.dart",
-        "2": [
-          "DehydratedException",
-          "ExpressionChangedAfterItHasBeenCheckedException",
-          "ChangeDetectionError"
-        ]
-      },
-      {
-        "1": "interfaces.dart",
-        "2": [
-          "ProtoChangeDetector",
-          "ChangeDetector",
-          "ChangeDispatcher",
-          "ChangeDetectorDefinition",
-          "DebugContext",
-          "ChangeDetectorGenConfig"
+          "DefaultIterableDifferFactory",
+          "CollectionChangeRecord"
         ]
       },
       {
         "1": "constants.dart",
         "2": [
           "ChangeDetectionStrategy",
-          "CHANGE_DETECTION_STRATEGY_VALUES"
-        ]
-      },
-      {
-        "1": "proto_change_detector.dart",
-        "2": [
-          "DynamicProtoChangeDetector"
-        ]
-      },
-      {
-        "1": "jit_proto_change_detector.dart",
-        "2": [
-          "JitProtoChangeDetector"
-        ]
-      },
-      {
-        "1": "binding_record.dart",
-        "2": [
-          "BindingRecord",
-          "BindingTarget"
-        ]
-      },
-      {
-        "1": "directive_record.dart",
-        "2": [
-          "DirectiveIndex",
-          "DirectiveRecord"
-        ]
-      },
-      {
-        "1": "dynamic_change_detector.dart",
-        "2": [
-          "DynamicChangeDetector"
+          "CHANGE_DETECTION_STRATEGY_VALUES",
+          "ChangeDetectorState",
+          "CHANGE_DETECTOR_STATE_VALUES",
+          "isDefaultChangeDetectionStrategy"
         ]
       },
       {
@@ -162,10 +92,45 @@
         "1": "change_detection_util.dart",
         "2": [
           "WrappedValue",
-          "SimpleChange"
+          "ValueUnwrapper",
+          "SimpleChange",
+          "devModeEqual",
+          "looseIdentical",
+          "uninitialized"
         ]
       }
     ],
     "6": "change_detection.dart"
-  }
+  },
+  "type": {
+    "keyValDiff": {
+      "class": "Identifier",
+      "name": "keyValDiff",
+      "moduleUrl": "asset:angular2/lib/src/core/change_detection/change_detection.dart",
+      "prefix": null,
+      "value": null
+    },
+    "iterableDiff": {
+      "class": "Identifier",
+      "name": "iterableDiff",
+      "moduleUrl": "asset:angular2/lib/src/core/change_detection/change_detection.dart",
+      "prefix": null,
+      "value": null
+    },
+    "defaultIterableDiffers": {
+      "class": "Identifier",
+      "name": "defaultIterableDiffers",
+      "moduleUrl": "asset:angular2/lib/src/core/change_detection/change_detection.dart",
+      "prefix": null,
+      "value": null
+    },
+    "defaultKeyValueDiffers": {
+      "class": "Identifier",
+      "name": "defaultKeyValueDiffers",
+      "moduleUrl": "asset:angular2/lib/src/core/change_detection/change_detection.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

@@ -20,5 +20,64 @@
       }
     ],
     "6": "import_export_code.dart"
-  }
+  },
+  "type": {
+    "_mirrorMatcher": {
+      "class": "Identifier",
+      "name": "_mirrorMatcher",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ImportVisitor": {
+      "class": "Identifier",
+      "name": "ImportVisitor",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ExportVisitor": {
+      "class": "Identifier",
+      "name": "ExportVisitor",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_updateIfBootstrap": {
+      "class": "Identifier",
+      "name": "_updateIfBootstrap",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_populateCombinators": {
+      "class": "Identifier",
+      "name": "_populateCombinators",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ImportWriterMixin": {
+      "class": "Identifier",
+      "name": "ImportWriterMixin",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ExportWriterMixin": {
+      "class": "Identifier",
+      "name": "ExportWriterMixin",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_writeCombinators": {
+      "class": "Identifier",
+      "name": "_writeCombinators",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/import_export_code.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

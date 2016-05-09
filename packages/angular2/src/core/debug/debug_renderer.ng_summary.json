@@ -33,5 +33,22 @@
       }
     ],
     "6": "debug_renderer.dart"
-  }
+  },
+  "type": {
+    "DebugDomRootRenderer": {
+      "class": "Identifier",
+      "name": "DebugDomRootRenderer",
+      "moduleUrl": "asset:angular2/lib/src/core/debug/debug_renderer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "DebugDomRenderer": {
+      "class": "Identifier",
+      "name": "DebugDomRenderer",
+      "moduleUrl": "asset:angular2/lib/src/core/debug/debug_renderer.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

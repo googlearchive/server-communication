@@ -12,5 +12,29 @@
       }
     ],
     "6": "isolate_message_bus.dart"
-  }
+  },
+  "type": {
+    "IsolateMessageBus": {
+      "class": "Identifier",
+      "name": "IsolateMessageBus",
+      "moduleUrl": "asset:angular2/lib/src/web_workers/shared/isolate_message_bus.dart",
+      "prefix": null,
+      "value": null
+    },
+    "IsolateMessageBusSink": {
+      "class": "Identifier",
+      "name": "IsolateMessageBusSink",
+      "moduleUrl": "asset:angular2/lib/src/web_workers/shared/isolate_message_bus.dart",
+      "prefix": null,
+      "value": null
+    },
+    "IsolateMessageBusSource": {
+      "class": "Identifier",
+      "name": "IsolateMessageBusSource",
+      "moduleUrl": "asset:angular2/lib/src/web_workers/shared/isolate_message_bus.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

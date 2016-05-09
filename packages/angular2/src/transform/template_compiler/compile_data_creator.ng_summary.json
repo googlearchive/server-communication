@@ -11,11 +11,11 @@
         "5": false
       },
       {
-        "1": "package:angular2/src/compiler/directive_metadata.dart",
+        "1": "package:angular2/src/compiler/compile_metadata.dart",
         "5": false
       },
       {
-        "1": "package:angular2/src/compiler/template_compiler.dart",
+        "1": "package:angular2/src/compiler/offline_compiler.dart",
         "5": false
       },
       {
@@ -52,5 +52,29 @@
       }
     ],
     "6": "compile_data_creator.dart"
-  }
+  },
+  "type": {
+    "createCompileData": {
+      "class": "Identifier",
+      "name": "createCompileData",
+      "moduleUrl": "asset:angular2/lib/src/transform/template_compiler/compile_data_creator.dart",
+      "prefix": null,
+      "value": null
+    },
+    "CompileDataResults": {
+      "class": "Identifier",
+      "name": "CompileDataResults",
+      "moduleUrl": "asset:angular2/lib/src/transform/template_compiler/compile_data_creator.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_CompileDataCreator": {
+      "class": "Identifier",
+      "name": "_CompileDataCreator",
+      "moduleUrl": "asset:angular2/lib/src/transform/template_compiler/compile_data_creator.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

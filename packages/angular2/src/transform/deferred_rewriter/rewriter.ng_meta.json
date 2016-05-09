@@ -36,19 +36,54 @@
       }
     ],
     "6": "rewriter.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/src/transform/common/asset_reader.template.dart",
+        "1": "package:angular2/src/transform/common/asset_reader.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2/src/transform/common/logging.template.dart",
+        "1": "package:angular2/src/transform/common/logging.ngfactory.dart",
         "4": "i1"
       },
       {
-        "1": "package:angular2/src/transform/common/url_resolver.template.dart",
+        "1": "package:angular2/src/transform/common/names.ngfactory.dart",
         "4": "i2"
+      },
+      {
+        "1": "package:angular2/src/transform/common/url_resolver.ngfactory.dart",
+        "4": "i3"
       }
     ]
-  }
+  },
+  "type": {
+    "rewriteLibrary": {
+      "class": "Identifier",
+      "name": "rewriteLibrary",
+      "moduleUrl": "asset:angular2/lib/src/transform/deferred_rewriter/rewriter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_rewriteLibrary": {
+      "class": "Identifier",
+      "name": "_rewriteLibrary",
+      "moduleUrl": "asset:angular2/lib/src/transform/deferred_rewriter/rewriter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_FindDeferredLibraries": {
+      "class": "Identifier",
+      "name": "_FindDeferredLibraries",
+      "moduleUrl": "asset:angular2/lib/src/transform/deferred_rewriter/rewriter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_FindLoadLibraryCalls": {
+      "class": "Identifier",
+      "name": "_FindLoadLibraryCalls",
+      "moduleUrl": "asset:angular2/lib/src/transform/deferred_rewriter/rewriter.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

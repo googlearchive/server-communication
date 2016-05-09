@@ -34,45 +34,13 @@
         "4": [
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ]
       },
       {
         "1": "TohComponent",
-        "4": [
-          {
-            "1": "Component",
-            "3": [
-              {
-                "1": "selector",
-                "2": "'my-toh'"
-              },
-              {
-                "1": "template",
-                "2": "'''\n      <h1>Tour of Heroes</h1>\n      <hero-list></hero-list>\n    '''"
-              },
-              {
-                "1": "providers",
-                "2": "const [HeroService, const Provider(BrowserClient, useFactory: HttpClientInMemoryBackendServiceFactory)]"
-              },
-              {
-                "1": "directives",
-                "2": "const [HeroListComponent]"
-              }
-            ],
-            "4": false,
-            "5": true,
-            "6": true,
-            "7": true,
-            "8": false
-          }
-        ],
-        "8": [
+        "7": [
           {
             "2": "HeroListComponent"
           }
@@ -80,37 +48,47 @@
       }
     ],
     "6": "toh_component.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/core.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:server_communication/hero_data.template.dart",
+        "1": "package:server_communication/hero_data.ngfactory.dart",
         "4": "i1"
       },
       {
-        "1": "hero_list_component.template.dart",
+        "1": "hero_list_component.ngfactory.dart",
         "4": "i2"
       },
       {
-        "1": "hero_service.template.dart",
+        "1": "hero_service.ngfactory.dart",
         "4": "i3"
       }
     ]
   },
-  "TohComponent": {
-    "kind": "type",
-    "value": {
+  "type": {
+    "HttpClientInMemoryBackendServiceFactory": {
+      "class": "Factory",
+      "name": "HttpClientInMemoryBackendServiceFactory",
+      "prefix": null,
+      "moduleUrl": "asset:server_communication/lib/toh/toh_component.dart",
+      "value": null,
+      "diDeps": []
+    },
+    "TohComponent": {
       "class": "Directive",
       "isComponent": true,
-      "dynamicLoadable": true,
       "selector": "my-toh",
       "exportAs": null,
       "type": {
+        "class": "Type",
         "name": "TohComponent",
         "moduleUrl": "asset:server_communication/lib/toh/toh_component.dart",
-        "isHost": false
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
       },
       "changeDetection": 5,
       "inputs": {},
@@ -126,7 +104,116 @@
         "styles": [],
         "styleUrls": [],
         "ngContentSelectors": []
-      }
+      },
+      "providers": [
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Type",
+              "name": "HeroService",
+              "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+              "prefix": null,
+              "isHost": false,
+              "value": null,
+              "diDeps": [
+                {
+                  "token": {
+                    "value": null,
+                    "identifier": {
+                      "class": "Identifier",
+                      "name": "BrowserClient",
+                      "moduleUrl": "package:http/browser_client.dart",
+                      "prefix": null,
+                      "value": null
+                    },
+                    "identifierIsInstance": false
+                  },
+                  "query": null,
+                  "viewQuery": null,
+                  "value": null,
+                  "isAttribute": false,
+                  "isSelf": false,
+                  "isHost": false,
+                  "isSkipSelf": false,
+                  "isOptional": false,
+                  "isValue": false
+                }
+              ]
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "HeroService",
+            "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": [
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "BrowserClient",
+                    "moduleUrl": "package:http/browser_client.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "query": null,
+                "viewQuery": null,
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": false,
+                "isOptional": false,
+                "isValue": false
+              }
+            ]
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "BrowserClient",
+              "moduleUrl": "package:http/browser_client.dart",
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": null,
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": {
+            "class": "Factory",
+            "name": "HttpClientInMemoryBackendServiceFactory",
+            "prefix": null,
+            "moduleUrl": "asset:server_communication/lib/toh/toh_component.dart",
+            "value": null,
+            "diDeps": []
+          },
+          "multi": false,
+          "deps": null
+        }
+      ],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
     }
-  }
+  },
+  "alias": {}
 }

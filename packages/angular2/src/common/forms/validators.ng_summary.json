@@ -44,8 +44,68 @@
         "1": "model.dart",
         "4": "modelModule",
         "5": false
+      },
+      {
+        "1": "directives/validators.dart",
+        "2": [
+          "ValidatorFn",
+          "AsyncValidatorFn"
+        ],
+        "5": false
       }
     ],
     "6": "validators.dart"
-  }
+  },
+  "type": {
+    "NG_VALIDATORS": {
+      "class": "Identifier",
+      "name": "NG_VALIDATORS",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/validators.dart",
+      "prefix": null,
+      "value": null
+    },
+    "NG_ASYNC_VALIDATORS": {
+      "class": "Identifier",
+      "name": "NG_ASYNC_VALIDATORS",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/validators.dart",
+      "prefix": null,
+      "value": null
+    },
+    "Validators": {
+      "class": "Identifier",
+      "name": "Validators",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/validators.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_convertToPromise": {
+      "class": "Identifier",
+      "name": "_convertToPromise",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/validators.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_executeValidators": {
+      "class": "Identifier",
+      "name": "_executeValidators",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/validators.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_executeAsyncValidators": {
+      "class": "Identifier",
+      "name": "_executeAsyncValidators",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/validators.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_mergeErrors": {
+      "class": "Identifier",
+      "name": "_mergeErrors",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/validators.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

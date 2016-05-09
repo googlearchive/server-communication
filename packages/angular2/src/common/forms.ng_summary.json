@@ -147,6 +147,7 @@
           "RequiredValidator",
           "MinLengthValidator",
           "MaxLengthValidator",
+          "PatternValidator",
           "Validator"
         ]
       },
@@ -159,9 +160,39 @@
     ],
     "6": "forms.dart"
   },
-  "FORM_PROVIDERS": {
-    "kind": "alias",
-    "value": [
+  "type": {
+    "FORM_PROVIDERS": {
+      "class": "Identifier",
+      "name": "FORM_PROVIDERS",
+      "moduleUrl": "asset:angular2/lib/src/common/forms.dart",
+      "prefix": null,
+      "value": [
+        {
+          "class": "Identifier",
+          "name": "FormBuilder",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "RadioControlRegistry",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ]
+    },
+    "FORM_BINDINGS": {
+      "class": "Identifier",
+      "name": "FORM_BINDINGS",
+      "moduleUrl": "asset:angular2/lib/src/common/forms.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {
+    "FORM_PROVIDERS": [
       "FormBuilder",
       "RadioControlRegistry"
     ]

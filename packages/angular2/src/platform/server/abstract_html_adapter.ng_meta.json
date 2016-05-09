@@ -29,15 +29,36 @@
       }
     ],
     "6": "abstract_html_adapter.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/platform/common_dom.template.dart",
+        "1": "package:angular2/platform/common_dom.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2/src/compiler/xhr.template.dart",
+        "1": "package:angular2/src/compiler/xhr.ngfactory.dart",
         "4": "i1"
+      },
+      {
+        "1": "package:angular2/src/facade/lang.ngfactory.dart",
+        "4": "i2"
       }
     ]
-  }
+  },
+  "type": {
+    "_attrToPropMap": {
+      "class": "Identifier",
+      "name": "_attrToPropMap",
+      "moduleUrl": "asset:angular2/lib/src/platform/server/abstract_html_adapter.dart",
+      "prefix": null,
+      "value": null
+    },
+    "AbstractHtml5LibAdapter": {
+      "class": "Identifier",
+      "name": "AbstractHtml5LibAdapter",
+      "moduleUrl": "asset:angular2/lib/src/platform/server/abstract_html_adapter.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

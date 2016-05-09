@@ -3,9 +3,12 @@
     "1": "angular2.src.platform.browser.ruler",
     "3": [
       {
+        "1": "dart:async",
+        "5": false
+      },
+      {
         "1": "package:angular2/src/facade/async.dart",
         "2": [
-          "Future",
           "PromiseWrapper"
         ],
         "5": false
@@ -26,19 +29,36 @@
       }
     ],
     "6": "ruler.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/src/facade/async.template.dart",
+        "1": "package:angular2/src/facade/async.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2/src/platform/dom/dom_adapter.template.dart",
+        "1": "package:angular2/src/platform/dom/dom_adapter.ngfactory.dart",
         "4": "i1"
       },
       {
-        "1": "package:angular2/src/core/linker/element_ref.template.dart",
+        "1": "package:angular2/src/core/linker/element_ref.ngfactory.dart",
         "4": "i2"
       }
     ]
-  }
+  },
+  "type": {
+    "Rectangle": {
+      "class": "Identifier",
+      "name": "Rectangle",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser/ruler.dart",
+      "prefix": null,
+      "value": null
+    },
+    "Ruler": {
+      "class": "Identifier",
+      "name": "Ruler",
+      "moduleUrl": "asset:angular2/lib/src/platform/browser/ruler.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

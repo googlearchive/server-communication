@@ -22,8 +22,26 @@
           "unimplemented"
         ],
         "5": false
+      },
+      {
+        "1": "validators.dart",
+        "2": [
+          "AsyncValidatorFn",
+          "ValidatorFn"
+        ],
+        "5": false
       }
     ],
     "6": "ng_control.dart"
-  }
+  },
+  "type": {
+    "NgControl": {
+      "class": "Identifier",
+      "name": "NgControl",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/ng_control.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

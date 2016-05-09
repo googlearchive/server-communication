@@ -24,5 +24,50 @@
       }
     ],
     "6": "fake_async.dart"
-  }
+  },
+  "type": {
+    "_u": {
+      "class": "Identifier",
+      "name": "_u",
+      "moduleUrl": "asset:angular2/lib/src/testing/fake_async.dart",
+      "prefix": null,
+      "value": null
+    },
+    "fakeAsync": {
+      "class": "Identifier",
+      "name": "fakeAsync",
+      "moduleUrl": "asset:angular2/lib/src/testing/fake_async.dart",
+      "prefix": null,
+      "value": null
+    },
+    "tick": {
+      "class": "Identifier",
+      "name": "tick",
+      "moduleUrl": "asset:angular2/lib/src/testing/fake_async.dart",
+      "prefix": null,
+      "value": null
+    },
+    "clearPendingTimers": {
+      "class": "Identifier",
+      "name": "clearPendingTimers",
+      "moduleUrl": "asset:angular2/lib/src/testing/fake_async.dart",
+      "prefix": null,
+      "value": null
+    },
+    "flushMicrotasks": {
+      "class": "Identifier",
+      "name": "flushMicrotasks",
+      "moduleUrl": "asset:angular2/lib/src/testing/fake_async.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_assertInFakeAsyncZone": {
+      "class": "Identifier",
+      "name": "_assertInFakeAsyncZone",
+      "moduleUrl": "asset:angular2/lib/src/testing/fake_async.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

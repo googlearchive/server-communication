@@ -42,25 +42,83 @@
         "4": [
           {
             "1": "Injectable",
-            "4": false,
-            "5": false,
-            "6": false,
-            "7": true,
-            "8": false
+            "4": false
           }
         ]
       }
     ],
     "6": "utils.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/core.template.dart",
+        "1": "package:angular2/core.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2/src/platform/dom/dom_adapter.template.dart",
+        "1": "package:angular2/src/facade/collection.ngfactory.dart",
         "4": "i1"
+      },
+      {
+        "1": "package:angular2/src/platform/dom/dom_adapter.ngfactory.dart",
+        "4": "i2"
+      },
+      {
+        "1": "package:angular2/src/facade/lang.ngfactory.dart",
+        "4": "i3"
       }
     ]
-  }
+  },
+  "type": {
+    "Log": {
+      "class": "Type",
+      "name": "Log",
+      "moduleUrl": "asset:angular2/lib/src/testing/utils.dart",
+      "prefix": null,
+      "isHost": false,
+      "value": null,
+      "diDeps": []
+    },
+    "BrowserDetection": {
+      "class": "Identifier",
+      "name": "BrowserDetection",
+      "moduleUrl": "asset:angular2/lib/src/testing/utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "dispatchEvent": {
+      "class": "Identifier",
+      "name": "dispatchEvent",
+      "moduleUrl": "asset:angular2/lib/src/testing/utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "el": {
+      "class": "Identifier",
+      "name": "el",
+      "moduleUrl": "asset:angular2/lib/src/testing/utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "containsRegexp": {
+      "class": "Identifier",
+      "name": "containsRegexp",
+      "moduleUrl": "asset:angular2/lib/src/testing/utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "normalizeCSS": {
+      "class": "Identifier",
+      "name": "normalizeCSS",
+      "moduleUrl": "asset:angular2/lib/src/testing/utils.dart",
+      "prefix": null,
+      "value": null
+    },
+    "stringifyElement": {
+      "class": "Identifier",
+      "name": "stringifyElement",
+      "moduleUrl": "asset:angular2/lib/src/testing/utils.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

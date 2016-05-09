@@ -26,9 +26,32 @@
     ],
     "6": "common_directives.dart"
   },
-  "COMMON_DIRECTIVES": {
-    "kind": "alias",
-    "value": [
+  "type": {
+    "COMMON_DIRECTIVES": {
+      "class": "Identifier",
+      "name": "COMMON_DIRECTIVES",
+      "moduleUrl": "asset:angular2/lib/src/common/common_directives.dart",
+      "prefix": null,
+      "value": [
+        {
+          "class": "Identifier",
+          "name": "CORE_DIRECTIVES",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Identifier",
+          "name": "FORM_DIRECTIVES",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        }
+      ]
+    }
+  },
+  "alias": {
+    "COMMON_DIRECTIVES": [
       "CORE_DIRECTIVES",
       "FORM_DIRECTIVES"
     ]

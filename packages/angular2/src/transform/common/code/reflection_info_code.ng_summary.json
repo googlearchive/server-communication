@@ -23,10 +23,6 @@
         "5": false
       },
       {
-        "1": "package:angular2/src/transform/common/property_utils.dart",
-        "5": false
-      },
-      {
         "1": "package:barback/barback.dart",
         "2": [
           "AssetId"
@@ -43,5 +39,22 @@
       }
     ],
     "6": "reflection_info_code.dart"
-  }
+  },
+  "type": {
+    "ReflectionInfoVisitor": {
+      "class": "Identifier",
+      "name": "ReflectionInfoVisitor",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/reflection_info_code.dart",
+      "prefix": null,
+      "value": null
+    },
+    "ReflectionWriterMixin": {
+      "class": "Identifier",
+      "name": "ReflectionWriterMixin",
+      "moduleUrl": "asset:angular2/lib/src/transform/common/code/reflection_info_code.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

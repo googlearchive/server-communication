@@ -75,5 +75,36 @@
       }
     ],
     "6": "transformer.dart"
-  }
+  },
+  "type": {
+    "InlinerForTest": {
+      "class": "Identifier",
+      "name": "InlinerForTest",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "inline": {
+      "class": "Identifier",
+      "name": "inline",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_ViewPropInliner": {
+      "class": "Identifier",
+      "name": "_ViewPropInliner",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_InlinedValue": {
+      "class": "Identifier",
+      "name": "_InlinedValue",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

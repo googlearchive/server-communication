@@ -41,6 +41,13 @@
         "5": false
       },
       {
+        "1": "reflector_reader.dart",
+        "2": [
+          "ReflectorReader"
+        ],
+        "5": false
+      },
+      {
         "1": "platform_reflection_capabilities.dart",
         "2": [
           "PlatformReflectionCapabilities"
@@ -65,5 +72,29 @@
       }
     ],
     "6": "reflector.dart"
-  }
+  },
+  "type": {
+    "ReflectionInfo": {
+      "class": "Identifier",
+      "name": "ReflectionInfo",
+      "moduleUrl": "asset:angular2/lib/src/core/reflection/reflector.dart",
+      "prefix": null,
+      "value": null
+    },
+    "Reflector": {
+      "class": "Identifier",
+      "name": "Reflector",
+      "moduleUrl": "asset:angular2/lib/src/core/reflection/reflector.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_mergeMaps": {
+      "class": "Identifier",
+      "name": "_mergeMaps",
+      "moduleUrl": "asset:angular2/lib/src/core/reflection/reflector.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

@@ -26,5 +26,15 @@
       }
     ],
     "6": "form_interface.dart"
-  }
+  },
+  "type": {
+    "Form": {
+      "class": "Identifier",
+      "name": "Form",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/form_interface.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

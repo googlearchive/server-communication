@@ -18,5 +18,15 @@
       }
     ],
     "6": "control_container.dart"
-  }
+  },
+  "type": {
+    "ControlContainer": {
+      "class": "Identifier",
+      "name": "ControlContainer",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/control_container.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

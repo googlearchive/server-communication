@@ -11,5 +11,22 @@
       }
     ],
     "6": "util.dart"
-  }
+  },
+  "type": {
+    "camelCaseToDashCase": {
+      "class": "Identifier",
+      "name": "camelCaseToDashCase",
+      "moduleUrl": "asset:angular2/lib/src/platform/dom/util.dart",
+      "prefix": null,
+      "value": null
+    },
+    "dashCaseToCamelCase": {
+      "class": "Identifier",
+      "name": "dashCaseToCamelCase",
+      "moduleUrl": "asset:angular2/lib/src/platform/dom/util.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

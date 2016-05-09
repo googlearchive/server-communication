@@ -1,0 +1,13 @@
+{
+  "ngDeps": null,
+  "type": {
+    "Hero": {
+      "class": "Identifier",
+      "name": "Hero",
+      "moduleUrl": "asset:server_communication/lib/toh/hero.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

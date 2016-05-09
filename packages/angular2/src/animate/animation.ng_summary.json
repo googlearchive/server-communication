@@ -57,5 +57,15 @@
       }
     ],
     "6": "animation.dart"
-  }
+  },
+  "type": {
+    "Animation": {
+      "class": "Identifier",
+      "name": "Animation",
+      "moduleUrl": "asset:angular2/lib/src/animate/animation.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

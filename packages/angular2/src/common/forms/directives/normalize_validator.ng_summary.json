@@ -11,5 +11,22 @@
       }
     ],
     "6": "normalize_validator.dart"
-  }
+  },
+  "type": {
+    "normalizeValidator": {
+      "class": "Identifier",
+      "name": "normalizeValidator",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/normalize_validator.dart",
+      "prefix": null,
+      "value": null
+    },
+    "normalizeAsyncValidator": {
+      "class": "Identifier",
+      "name": "normalizeAsyncValidator",
+      "moduleUrl": "asset:angular2/lib/src/common/forms/directives/normalize_validator.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

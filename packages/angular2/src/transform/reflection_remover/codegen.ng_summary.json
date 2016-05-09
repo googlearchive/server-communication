@@ -17,5 +17,15 @@
       }
     ],
     "6": "codegen.dart"
-  }
+  },
+  "type": {
+    "Codegen": {
+      "class": "Identifier",
+      "name": "Codegen",
+      "moduleUrl": "asset:angular2/lib/src/transform/reflection_remover/codegen.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }

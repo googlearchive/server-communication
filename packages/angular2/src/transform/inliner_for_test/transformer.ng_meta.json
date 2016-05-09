@@ -75,47 +75,78 @@
       }
     ],
     "6": "transformer.dart",
-    "10": [
+    "7": [
       {
-        "1": "package:angular2/src/compiler/xhr.template.dart",
+        "1": "package:angular2/src/compiler/xhr.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2/src/transform/common/annotation_matcher.template.dart",
+        "1": "package:angular2/src/transform/common/annotation_matcher.ngfactory.dart",
         "4": "i1"
       },
       {
-        "1": "package:angular2/src/transform/common/asset_reader.template.dart",
+        "1": "package:angular2/src/transform/common/asset_reader.ngfactory.dart",
         "4": "i2"
       },
       {
-        "1": "package:angular2/src/transform/common/naive_eval.template.dart",
+        "1": "package:angular2/src/transform/common/naive_eval.ngfactory.dart",
         "4": "i3"
       },
       {
-        "1": "package:angular2/src/transform/common/async_string_writer.template.dart",
+        "1": "package:angular2/src/transform/common/async_string_writer.ngfactory.dart",
         "4": "i4"
       },
       {
-        "1": "package:angular2/src/transform/common/options.template.dart",
+        "1": "package:angular2/src/transform/common/options.ngfactory.dart",
         "4": "i5"
       },
       {
-        "1": "package:angular2/src/transform/common/url_resolver.template.dart",
+        "1": "package:angular2/src/transform/common/url_resolver.ngfactory.dart",
         "4": "i6"
       },
       {
-        "1": "package:angular2/src/transform/common/xhr_impl.template.dart",
+        "1": "package:angular2/src/transform/common/xhr_impl.ngfactory.dart",
         "4": "i7"
       },
       {
-        "1": "package:angular2/src/transform/common/zone.template.dart",
+        "1": "package:angular2/src/transform/common/zone.ngfactory.dart",
         "4": "i8"
       },
       {
-        "1": "package:angular2/src/transform/directive_processor/inliner.template.dart",
+        "1": "package:angular2/src/transform/directive_processor/inliner.ngfactory.dart",
         "4": "i9"
       }
     ]
-  }
+  },
+  "type": {
+    "InlinerForTest": {
+      "class": "Identifier",
+      "name": "InlinerForTest",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "inline": {
+      "class": "Identifier",
+      "name": "inline",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_ViewPropInliner": {
+      "class": "Identifier",
+      "name": "_ViewPropInliner",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    },
+    "_InlinedValue": {
+      "class": "Identifier",
+      "name": "_InlinedValue",
+      "moduleUrl": "asset:angular2/lib/src/transform/inliner_for_test/transformer.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
 }
