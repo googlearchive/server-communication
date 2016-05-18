@@ -7,15 +7,7 @@
         "5": false
       },
       {
-        "1": "package:http_in_memory_web_api/http_in_memory_web_api.dart",
-        "5": false
-      },
-      {
         "1": "package:http/browser_client.dart",
-        "5": false
-      },
-      {
-        "1": "package:server_communication/hero_data.dart",
         "5": false
       },
       {
@@ -25,19 +17,13 @@
       {
         "1": "hero_service.dart",
         "5": false
+      },
+      {
+        "1": "package:server_communication/hero_data.dart",
+        "5": false
       }
     ],
     "5": [
-      {
-        "1": "HttpClientInMemoryBackendServiceFactory",
-        "3": true,
-        "4": [
-          {
-            "1": "Injectable",
-            "4": false
-          }
-        ]
-      },
       {
         "1": "TohComponent",
         "7": [
@@ -54,28 +40,20 @@
         "4": "i0"
       },
       {
-        "1": "package:server_communication/hero_data.ngfactory.dart",
+        "1": "hero_list_component.ngfactory.dart",
         "4": "i1"
       },
       {
-        "1": "hero_list_component.ngfactory.dart",
+        "1": "hero_service.ngfactory.dart",
         "4": "i2"
       },
       {
-        "1": "hero_service.ngfactory.dart",
+        "1": "package:server_communication/hero_data.ngfactory.dart",
         "4": "i3"
       }
     ]
   },
   "type": {
-    "HttpClientInMemoryBackendServiceFactory": {
-      "class": "Factory",
-      "name": "HttpClientInMemoryBackendServiceFactory",
-      "prefix": null,
-      "moduleUrl": "asset:server_communication/lib/toh/toh_component.dart",
-      "value": null,
-      "diDeps": []
-    },
     "TohComponent": {
       "class": "Directive",
       "isComponent": true,
@@ -199,12 +177,11 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": {
-            "class": "Factory",
-            "name": "HttpClientInMemoryBackendServiceFactory",
+            "class": "Identifier",
+            "name": "HttpClientBackendServiceFactory",
+            "moduleUrl": "asset:server_communication/lib/hero_data.dart",
             "prefix": null,
-            "moduleUrl": "asset:server_communication/lib/toh/toh_component.dart",
-            "value": null,
-            "diDeps": []
+            "value": null
           },
           "multi": false,
           "deps": null

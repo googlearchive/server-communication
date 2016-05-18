@@ -84,8 +84,8 @@
       ],
       "template": {
         "encapsulation": 0,
-        "template": "      <h3>Heroes:</h3>\n      <ul>\n        <li *ngFor=\"let hero of heroes\">\n          {{hero.name}}\n        </li>\n      </ul>\n      New Hero:\n      <input #newHero />\n      <button (click)=\"addHero(newHero.value); newHero.value=''\">\n        Add Hero\n      </button>\n      <div class=\"error\" *ngIf=\"hasErrorMessage\">{{errorMessage}}</div>\n    ",
-        "templateUrl": "asset:server_communication/lib/toh/hero_list_component.dart",
+        "template": "<h3>Heroes:</h3>\n<ul>\n  <li *ngFor=\"let hero of heroes\">\n    {{hero.name}}\n  </li>\n</ul>\nNew hero name:\n<input #newHeroName />\n<button (click)=\"addHero(newHeroName.value); newHeroName.value=''\">\n  Add Hero\n</button>\n<div class=\"error\" *ngIf=\"errorMessage != null\">{{errorMessage}}</div>\n",
+        "templateUrl": "asset:server_communication/lib/toh/hero_list_component.html",
         "styles": [
           ".error {color:red;}"
         ],

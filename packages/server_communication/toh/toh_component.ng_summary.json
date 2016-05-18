@@ -7,15 +7,7 @@
         "5": false
       },
       {
-        "1": "package:http_in_memory_web_api/http_in_memory_web_api.dart",
-        "5": false
-      },
-      {
         "1": "package:http/browser_client.dart",
-        "5": false
-      },
-      {
-        "1": "package:server_communication/hero_data.dart",
         "5": false
       },
       {
@@ -25,19 +17,13 @@
       {
         "1": "hero_service.dart",
         "5": false
+      },
+      {
+        "1": "package:server_communication/hero_data.dart",
+        "5": false
       }
     ],
     "5": [
-      {
-        "1": "HttpClientInMemoryBackendServiceFactory",
-        "3": true,
-        "4": [
-          {
-            "1": "Injectable",
-            "4": false
-          }
-        ]
-      },
       {
         "1": "TohComponent",
         "7": [
@@ -50,14 +36,6 @@
     "6": "toh_component.dart"
   },
   "type": {
-    "HttpClientInMemoryBackendServiceFactory": {
-      "class": "Factory",
-      "name": "HttpClientInMemoryBackendServiceFactory",
-      "prefix": null,
-      "moduleUrl": "asset:server_communication/lib/toh/toh_component.dart",
-      "value": null,
-      "diDeps": []
-    },
     "TohComponent": {
       "class": "Directive",
       "isComponent": true,
@@ -113,7 +91,7 @@
           "useValue": null,
           "useFactory": {
             "class": "Factory",
-            "name": "HttpClientInMemoryBackendServiceFactory",
+            "name": "HttpClientBackendServiceFactory",
             "prefix": null,
             "moduleUrl": null,
             "value": null,

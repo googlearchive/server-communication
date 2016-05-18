@@ -11,6 +11,10 @@
         "5": false
       },
       {
+        "1": "hero.dart",
+        "5": false
+      },
+      {
         "1": "package:angular2/core.dart",
         "5": false
       },
@@ -19,7 +23,10 @@
         "5": false
       },
       {
-        "1": "hero.dart",
+        "1": "package:http/http.dart",
+        "2": [
+          "Response"
+        ],
         "5": false
       }
     ],
@@ -43,11 +50,11 @@
     "6": "hero_service.dart",
     "7": [
       {
-        "1": "package:angular2/core.ngfactory.dart",
+        "1": "hero.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "hero.ngfactory.dart",
+        "1": "package:angular2/core.ngfactory.dart",
         "4": "i1"
       }
     ]
