@@ -7,20 +7,7 @@ import 'hero_service.dart';
 
 @Component(
     selector: 'hero-list',
-    template: '''
-      <h3>Heroes:</h3>
-      <ul>
-        <li *ngFor="let hero of heroes">
-          {{hero.name}}
-        </li>
-      </ul>
-      New Hero:
-      <input #newHero />
-      <button (click)="addHero(newHero.value); newHero.value=''">
-        Add Hero
-      </button>
-      <div class="error" *ngIf="hasErrorMessage">{{errorMessage}}</div>
-    ''',
+    templateUrl: 'hero_list_component.html',
     styles: const ['.error {color:red;}'])
 class HeroListComponent implements OnInit {
   final HeroService _heroService;
@@ -29,11 +16,9 @@ class HeroListComponent implements OnInit {
 
   HeroListComponent(this._heroService);
 
-  bool get hasErrorMessage => errorMessage != null;
+  Future<Null> ngOnInit() => getHeroes();
 
-  Future ngOnInit() => getHeroes();
-
-  Future getHeroes() async {
+  Future<Null> getHeroes() async {
     try {
       heroes = await _heroService.getHeroes();
     } catch (e) {
@@ -41,7 +26,7 @@ class HeroListComponent implements OnInit {
     }
   }
 
-  Future addHero(String name) async {
+  Future<Null> addHero(String name) async {
     name = name.trim();
     if (name.isEmpty) return;
     try {
