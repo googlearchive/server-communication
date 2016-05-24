@@ -1,6 +1,13 @@
 {
   "ngDeps": null,
   "type": {
+    "_toInt": {
+      "class": "Identifier",
+      "name": "_toInt",
+      "moduleUrl": "asset:server_communication/lib/toh/hero.dart",
+      "prefix": null,
+      "value": null
+    },
     "Hero": {
       "class": "Identifier",
       "name": "Hero",

@@ -3,38 +3,42 @@
     "1": "",
     "3": [
       {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
         "1": "package:angular2/platform/browser_static.dart",
         "5": false
       },
       {
-        "1": "package:server_communication/toh/toh_component.dart",
+        "1": "package:http/browser_client.dart",
         "5": false
       },
       {
-        "1": "package:server_communication/wiki/wiki_component.dart",
+        "1": "package:server_communication/app_component.dart",
         "5": false
       },
       {
-        "1": "package:server_communication/wiki/wiki_smart_component.dart",
+        "1": "package:server_communication/hero_data.dart",
         "5": false
       }
     ],
     "6": "main.dart",
     "7": [
       {
-        "1": "package:angular2/platform/browser_static.ngfactory.dart",
+        "1": "package:angular2/core.ngfactory.dart",
         "4": "i0"
       },
       {
-        "1": "package:server_communication/toh/toh_component.ngfactory.dart",
+        "1": "package:angular2/platform/browser_static.ngfactory.dart",
         "4": "i1"
       },
       {
-        "1": "package:server_communication/wiki/wiki_component.ngfactory.dart",
+        "1": "package:server_communication/app_component.ngfactory.dart",
         "4": "i2"
       },
       {
-        "1": "package:server_communication/wiki/wiki_smart_component.ngfactory.dart",
+        "1": "package:server_communication/hero_data.ngfactory.dart",
         "4": "i3"
       }
     ]

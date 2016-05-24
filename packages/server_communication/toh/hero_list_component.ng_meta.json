@@ -97,16 +97,91 @@
         0
       ],
       "template": {
-        "encapsulation": 0,
-        "template": "<h3>Heroes:</h3>\n<ul>\n  <li *ngFor=\"let hero of heroes\">\n    {{hero.name}}\n  </li>\n</ul>\nNew hero name:\n<input #newHeroName />\n<button (click)=\"addHero(newHeroName.value); newHeroName.value=''\">\n  Add Hero\n</button>\n<div class=\"error\" *ngIf=\"errorMessage != null\">{{errorMessage}}</div>\n",
+        "encapsulation": 2,
+        "template": "<h1>Tour of Heroes</h1>\n<h3>Heroes:</h3>\n<ul>\n  <li *ngFor=\"let hero of heroes\">\n    {{hero.name}}\n  </li>\n</ul>\nNew hero name:\n<input #newHeroName />\n<button (click)=\"addHero(newHeroName.value); newHeroName.value=''\">\n  Add Hero\n</button>\n<div class=\"error\" *ngIf=\"errorMessage != null\">{{errorMessage}}</div>\n",
         "templateUrl": "asset:server_communication/lib/toh/hero_list_component.html",
-        "styles": [
-          ".error {color:red;}"
-        ],
+        "styles": [],
         "styleUrls": [],
         "ngContentSelectors": []
       },
-      "providers": [],
+      "providers": [
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Type",
+              "name": "HeroService",
+              "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+              "prefix": null,
+              "isHost": false,
+              "value": null,
+              "diDeps": [
+                {
+                  "token": {
+                    "value": null,
+                    "identifier": {
+                      "class": "Identifier",
+                      "name": "BrowserClient",
+                      "moduleUrl": "package:http/browser_client.dart",
+                      "prefix": null,
+                      "value": null
+                    },
+                    "identifierIsInstance": false
+                  },
+                  "query": null,
+                  "viewQuery": null,
+                  "value": null,
+                  "isAttribute": false,
+                  "isSelf": false,
+                  "isHost": false,
+                  "isSkipSelf": false,
+                  "isOptional": false,
+                  "isValue": false
+                }
+              ]
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "HeroService",
+            "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": [
+              {
+                "token": {
+                  "value": null,
+                  "identifier": {
+                    "class": "Identifier",
+                    "name": "BrowserClient",
+                    "moduleUrl": "package:http/browser_client.dart",
+                    "prefix": null,
+                    "value": null
+                  },
+                  "identifierIsInstance": false
+                },
+                "query": null,
+                "viewQuery": null,
+                "value": null,
+                "isAttribute": false,
+                "isSelf": false,
+                "isHost": false,
+                "isSkipSelf": false,
+                "isOptional": false,
+                "isValue": false
+              }
+            ]
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        }
+      ],
       "viewProviders": [],
       "queries": [],
       "viewQueries": []

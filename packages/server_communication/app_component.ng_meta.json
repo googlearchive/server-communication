@@ -1,0 +1,95 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/core.dart",
+        "5": false
+      },
+      {
+        "1": "toh/hero_list_component.dart",
+        "5": false
+      },
+      {
+        "1": "wiki/wiki_component.dart",
+        "5": false
+      },
+      {
+        "1": "wiki/wiki_smart_component.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "AppComponent",
+        "7": [
+          {
+            "2": "HeroListComponent"
+          },
+          {
+            "2": "WikiComponent"
+          },
+          {
+            "2": "WikiSmartComponent"
+          }
+        ]
+      }
+    ],
+    "6": "app_component.dart",
+    "7": [
+      {
+        "1": "package:angular2/core.ngfactory.dart",
+        "4": "i0"
+      },
+      {
+        "1": "toh/hero_list_component.ngfactory.dart",
+        "4": "i1"
+      },
+      {
+        "1": "wiki/wiki_component.ngfactory.dart",
+        "4": "i2"
+      },
+      {
+        "1": "wiki/wiki_smart_component.ngfactory.dart",
+        "4": "i3"
+      }
+    ]
+  },
+  "type": {
+    "AppComponent": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "my-app",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "AppComponent",
+        "moduleUrl": "asset:server_communication/lib/app_component.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
+      },
+      "changeDetection": 5,
+      "inputs": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 2,
+        "template": "      <hero-list></hero-list>\n      <my-wiki></my-wiki>\n      <my-wiki-smart></my-wiki-smart>\n    ",
+        "templateUrl": "asset:server_communication/lib/app_component.dart",
+        "styles": [],
+        "styleUrls": [],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

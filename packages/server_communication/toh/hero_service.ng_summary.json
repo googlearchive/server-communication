@@ -24,9 +24,6 @@
       },
       {
         "1": "package:http/http.dart",
-        "2": [
-          "Response"
-        ],
         "5": false
       }
     ],
