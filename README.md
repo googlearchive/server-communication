@@ -1,13 +1,10 @@
-**WARNING:** This example is preliminary and will probably change.
 
-------------------------------------------------------------------
-      
 
-server-communication
+HTTP client (server communication)
 ---------------
 
 Welcome to the example application used in angular.io/dart's
-[server-communication](//github.com/angular/angular.io/tree/master/public/docs/_examples/server-communication/dart) page.
+[HTTP client (server communication)](https://angular.io/docs/dart/latest/guide/server-communication.html) page.
 
 To run your own copy:
 

@@ -1,7 +1,7 @@
 import 'package:http/browser_client.dart';
 import 'package:http_in_memory_web_api/http_in_memory_web_api.dart';
 
-CreateDb createDb = () => {
+CreateDb _createDb = () => {
       'heroes': [
         {"id": "1", "name": "Windstorm"},
         {"id": "2", "name": "Bombasto"},
@@ -11,4 +11,4 @@ CreateDb createDb = () => {
     };
 
 BrowserClient HttpClientBackendServiceFactory() =>
-    new HttpClientInMemoryBackendService(createDb);
+    new HttpClientInMemoryBackendService(_createDb);

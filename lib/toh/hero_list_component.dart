@@ -8,7 +8,7 @@ import 'hero_service.dart';
 @Component(
     selector: 'hero-list',
     templateUrl: 'hero_list_component.html',
-    styles: const ['.error {color:red;}'])
+    providers: const [HeroService])
 class HeroListComponent implements OnInit {
   final HeroService _heroService;
   String errorMessage;

@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'hero.dart';
 import 'package:angular2/core.dart';
 import 'package:http/browser_client.dart';
-import 'package:http/http.dart' show Response;
+import 'package:http/http.dart';
 
 @Injectable()
 class HeroService {
-  final String _heroesUrl = 'app/heroes'; // URL to web API
+  static const _heroesUrl = 'app/heroes'; // URL to web API
   final BrowserClient _http;
 
   HeroService(this._http);
@@ -37,18 +37,19 @@ class HeroService {
 
   dynamic _extractData(Response res) {
     var body = JSON.decode(res.body);
-    // TODO: once fixed, https://github.com/adaojunior/http-in-memory-web-api/issues/1
-    // Drop the `?? body` term
+    // TODO: https://github.com/adaojunior/http-in-memory-web-api/issues/1
+    // Once #1 is fixed, drop the `?? body` term:
     return body['data'] ?? body;
   }
 
   Exception _handleError(dynamic e) {
     // In a real world app, we might use a remote logging infrastructure
+    // We'd also dig deeper into the error to get a better message
     print(e); // log to console instead
     return new Exception('Server error; cause: $e');
   }
 }
 
 /*
-  private _heroesUrl = 'heroes.json'; // URL to JSON file
+  static const _heroesUrl = 'heroes.json'; // URL to JSON file
 */
