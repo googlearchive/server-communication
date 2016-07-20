@@ -26,19 +26,19 @@
     "6": "main.dart",
     "7": [
       {
-        "1": "package:angular2/core.ngfactory.dart",
+        "1": "package:angular2/core.template.dart",
         "4": "i0"
       },
       {
-        "1": "package:angular2/platform/browser_static.ngfactory.dart",
+        "1": "package:angular2/platform/browser_static.template.dart",
         "4": "i1"
       },
       {
-        "1": "package:server_communication/app_component.ngfactory.dart",
+        "1": "package:server_communication/app_component.template.dart",
         "4": "i2"
       },
       {
-        "1": "package:server_communication/hero_data.ngfactory.dart",
+        "1": "package:server_communication/hero_data.template.dart",
         "4": "i3"
       }
     ]

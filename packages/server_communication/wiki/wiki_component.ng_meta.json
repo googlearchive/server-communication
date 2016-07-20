@@ -29,11 +29,11 @@
     "6": "wiki_component.dart",
     "7": [
       {
-        "1": "package:angular2/core.ngfactory.dart",
+        "1": "package:angular2/core.template.dart",
         "4": "i0"
       },
       {
-        "1": "wikipedia_service.ngfactory.dart",
+        "1": "wikipedia_service.template.dart",
         "4": "i1"
       }
     ]
@@ -119,6 +119,7 @@
           "useExisting": null,
           "useValue": null,
           "useFactory": null,
+          "useProperty": null,
           "multi": false,
           "deps": null
         }

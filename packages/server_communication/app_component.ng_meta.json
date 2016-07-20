@@ -38,19 +38,19 @@
     "6": "app_component.dart",
     "7": [
       {
-        "1": "package:angular2/core.ngfactory.dart",
+        "1": "package:angular2/core.template.dart",
         "4": "i0"
       },
       {
-        "1": "toh/hero_list_component.ngfactory.dart",
+        "1": "toh/hero_list_component.template.dart",
         "4": "i1"
       },
       {
-        "1": "wiki/wiki_component.ngfactory.dart",
+        "1": "wiki/wiki_component.template.dart",
         "4": "i2"
       },
       {
-        "1": "wiki/wiki_smart_component.ngfactory.dart",
+        "1": "wiki/wiki_smart_component.template.dart",
         "4": "i3"
       }
     ]
