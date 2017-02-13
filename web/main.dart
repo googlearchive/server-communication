@@ -10,13 +10,13 @@ void main() {
     // in-memory web api provider
     const Provider(BrowserClient,
         useFactory: HttpClientBackendServiceFactory, deps: const [])
-    // TODO: drop `deps` once fix lands for
-    // https://github.com/angular/angular/issues/5266
   ]);
 }
 /*
 
 void main() {
-  bootstrap(AppComponent, const [BrowserClient]);
+  bootstrap(AppComponent, [
+    provide(BrowserClient, useFactory: () => new BrowserClient(), deps: [])
+  ]);
 }
 */
