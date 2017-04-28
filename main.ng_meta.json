@@ -11,15 +11,15 @@
         "5": false
       },
       {
-        "1": "package:http/browser_client.dart",
-        "5": false
-      },
-      {
         "1": "package:server_communication/app_component.dart",
         "5": false
       },
       {
-        "1": "package:server_communication/hero_data.dart",
+        "1": "package:server_communication/toh/in_memory_data_service.dart",
+        "5": false
+      },
+      {
+        "1": "package:http/http.dart",
         "5": false
       }
     ],
@@ -38,7 +38,7 @@
         "4": "i2"
       },
       {
-        "1": "package:server_communication/hero_data.template.dart",
+        "1": "package:server_communication/toh/in_memory_data_service.template.dart",
         "4": "i3"
       }
     ]

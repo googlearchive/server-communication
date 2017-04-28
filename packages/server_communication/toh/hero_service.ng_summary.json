@@ -11,19 +11,15 @@
         "5": false
       },
       {
-        "1": "hero.dart",
-        "5": false
-      },
-      {
         "1": "package:angular2/core.dart",
         "5": false
       },
       {
-        "1": "package:http/browser_client.dart",
+        "1": "package:http/http.dart",
         "5": false
       },
       {
-        "1": "package:http/http.dart",
+        "1": "hero.dart",
         "5": false
       }
     ],
@@ -38,7 +34,7 @@
         ],
         "5": [
           {
-            "1": "BrowserClient",
+            "1": "Client",
             "4": "_http"
           }
         ]
@@ -60,7 +56,7 @@
             "value": null,
             "identifier": {
               "class": "Identifier",
-              "name": "BrowserClient",
+              "name": "Client",
               "moduleUrl": null,
               "prefix": null,
               "value": null

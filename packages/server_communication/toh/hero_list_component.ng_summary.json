@@ -82,10 +82,12 @@
         0
       ],
       "template": {
-        "encapsulation": 2,
-        "template": "<h1>Tour of Heroes</h1>\n<h3>Heroes:</h3>\n<ul>\n  <li *ngFor=\"let hero of heroes\">\n    {{hero.name}}\n  </li>\n</ul>\nNew hero name:\n<input #newHeroName />\n<button (click)=\"addHero(newHeroName.value); newHeroName.value=''\">\n  Add Hero\n</button>\n<div class=\"error\" *ngIf=\"errorMessage != null\">{{errorMessage}}</div>\n",
+        "encapsulation": 0,
+        "template": "<h1>Tour of Heroes</h1>\n<h3>Heroes:</h3>\n<ul>\n  <li *ngFor=\"let hero of heroes\">{{hero.name}}</li>\n</ul>\n\n<label>New hero name: <input #newHeroName /></label>\n<button (click)=\"addHero(newHeroName.value); newHeroName.value=''\">Add Hero</button>\n\n<p class=\"error\" *ngIf=\"errorMessage != null\">{{errorMessage}}</p>\n",
         "templateUrl": "asset:server_communication/lib/toh/hero_list_component.html",
-        "styles": [],
+        "styles": [
+          ".error {color:red;}"
+        ],
         "styleUrls": [],
         "ngContentSelectors": []
       },
