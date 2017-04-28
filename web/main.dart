@@ -1,15 +1,14 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/platform/browser.dart';
-import 'package:http/browser_client.dart';
 
 import 'package:server_communication/app_component.dart';
-import "package:server_communication/hero_data.dart";
+import 'package:server_communication/toh/in_memory_data_service.dart';
+import 'package:http/http.dart';
 
 void main() {
-  bootstrap(AppComponent, const [
+  bootstrap(AppComponent, [
     // in-memory web api provider
-    const Provider(BrowserClient,
-        useFactory: HttpClientBackendServiceFactory, deps: const [])
+    provide(Client, useClass: InMemoryDataService)
   ]);
 }
 /*

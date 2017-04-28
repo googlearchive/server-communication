@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
-import 'hero.dart';
+
 import 'package:angular2/core.dart';
-import 'package:http/browser_client.dart';
 import 'package:http/http.dart';
+
+import 'hero.dart';
 
 @Injectable()
 class HeroService {
-  static const _heroesUrl = 'app/heroes'; // URL to web API
-  final BrowserClient _http;
+  static final _headers = {'Content-Type': 'application/json'};
+  static const _heroesUrl = 'api/heroes'; // URL to web API
+  final Client _http;
 
   HeroService(this._http);
 
@@ -24,26 +26,20 @@ class HeroService {
     }
   }
 
-  Future<Hero> addHero(String name) async {
+  Future<Hero> create(String name) async {
     try {
       final response = await _http.post(_heroesUrl,
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.encode({'name': name}));
+          headers: _headers, body: JSON.encode({'name': name}));
       return new Hero.fromJson(_extractData(response));
     } catch (e) {
       throw _handleError(e);
     }
   }
 
-  dynamic _extractData(Response res) {
-    var body = JSON.decode(res.body);
-    return body['data'];
-  }
+  dynamic _extractData(Response resp) => JSON.decode(resp.body)['data'];
 
   Exception _handleError(dynamic e) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
-    print(e); // log to console instead
+    print(e); // for demo purposes only
     return new Exception('Server error; cause: $e');
   }
 }

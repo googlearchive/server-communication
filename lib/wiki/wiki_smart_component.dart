@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:stream_transformers/stream_transformers.dart';
 
@@ -20,7 +21,7 @@ class WikiSmartComponent {
   List items = [];
 
   WikiSmartComponent(this._wikipediaService) {
-    _searchTermStream
+    _onSearchTerm.stream
         .transform(new Debounce(new Duration(milliseconds: 300)))
         .distinct()
         .transform(new FlatMapLatest(
@@ -30,7 +31,7 @@ class WikiSmartComponent {
     });
   }
 
-  final EventEmitter _searchTermStream = new EventEmitter();
+  final _onSearchTerm = new StreamController<String>();
 
-  void search(String term) => _searchTermStream.add(term);
+  void search(String term) => _onSearchTerm.add(term);
 }
