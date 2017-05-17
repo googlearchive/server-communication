@@ -7,7 +7,7 @@
         "5": false
       },
       {
-        "1": "package:angular2/core.dart",
+        "1": "package:angular2/angular2.dart",
         "5": false
       },
       {
@@ -26,6 +26,11 @@
           {
             "1": "WikipediaService",
             "4": "_wikipediaService"
+          }
+        ],
+        "7": [
+          {
+            "2": "CORE_DIRECTIVES"
           }
         ]
       }
@@ -78,7 +83,7 @@
       "lifecycleHooks": [],
       "template": {
         "encapsulation": 2,
-        "template": "      <h1>Smarter Wikipedia Demo</h1>\n      <p><i>Fetches when typing stops</i></p>\n\n      <input #term (keyup)=\"search(term.value)\"/>\n      <ul>\n        <li *ngFor=\"let item of items\">{{item}}</li>\n      </ul>\n    ",
+        "template": "    <h1>Smarter Wikipedia Demo</h1>\n    <p><i>Fetches when typing stops</i></p>\n\n    <input #term (keyup)=\"search(term.value)\"/>\n    <ul>\n      <li *ngFor=\"let item of items\">{{item}}</li>\n    </ul>\n  ",
         "templateUrl": "asset:server_communication/lib/wiki/wiki_smart_component.dart",
         "styles": [],
         "styleUrls": [],
