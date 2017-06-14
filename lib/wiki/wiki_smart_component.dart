@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:angular2/angular2.dart';
-import 'package:stream_transformers/stream_transformers.dart';
+import 'package:stream_transform/stream_transform.dart';
 
 import 'wikipedia_service.dart';
 
@@ -24,10 +24,10 @@ class WikiSmartComponent {
 
   WikiSmartComponent(this._wikipediaService) {
     _onSearchTerm.stream
-        .transform(new Debounce(new Duration(milliseconds: 300)))
+        .transform(debounce(new Duration(milliseconds: 300)))
         .distinct()
-        .transform(new FlatMapLatest(
-            (term) => _wikipediaService.search(term).asStream()))
+        .transform(
+            switchMap((term) => _wikipediaService.search(term).asStream()))
         .forEach((data) {
       items = data;
     });
