@@ -7,15 +7,15 @@
         "5": false
       },
       {
-        "1": "toh/hero_list_component.dart",
+        "1": "src/toh/hero_list_component.dart",
         "5": false
       },
       {
-        "1": "wiki/wiki_component.dart",
+        "1": "src/wiki/wiki_component.dart",
         "5": false
       },
       {
-        "1": "wiki/wiki_smart_component.dart",
+        "1": "src/wiki/wiki_smart_component.dart",
         "5": false
       }
     ],

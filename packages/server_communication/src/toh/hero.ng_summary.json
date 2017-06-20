@@ -4,14 +4,14 @@
     "Hero": {
       "class": "Identifier",
       "name": "Hero",
-      "moduleUrl": "asset:server_communication/lib/toh/hero.dart",
+      "moduleUrl": "asset:server_communication/lib/src/toh/hero.dart",
       "prefix": null,
       "value": null
     },
     "_toInt": {
       "class": "Identifier",
       "name": "_toInt",
-      "moduleUrl": "asset:server_communication/lib/toh/hero.dart",
+      "moduleUrl": "asset:server_communication/lib/src/toh/hero.dart",
       "prefix": null,
       "value": null
     }

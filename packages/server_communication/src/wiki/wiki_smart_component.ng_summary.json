@@ -35,17 +35,7 @@
         ]
       }
     ],
-    "6": "wiki_smart_component.dart",
-    "7": [
-      {
-        "1": "package:angular2/angular2.template.dart",
-        "4": "i0"
-      },
-      {
-        "1": "wikipedia_service.template.dart",
-        "4": "i1"
-      }
-    ]
+    "6": "wiki_smart_component.dart"
   },
   "type": {
     "WikiSmartComponent": {
@@ -56,7 +46,7 @@
       "type": {
         "class": "Type",
         "name": "WikiSmartComponent",
-        "moduleUrl": "asset:server_communication/lib/wiki/wiki_smart_component.dart",
+        "moduleUrl": "asset:server_communication/lib/src/wiki/wiki_smart_component.dart",
         "prefix": null,
         "isHost": false,
         "value": null,
@@ -67,7 +57,7 @@
               "identifier": {
                 "class": "Identifier",
                 "name": "WikipediaService",
-                "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
+                "moduleUrl": null,
                 "prefix": null,
                 "value": null
               },
@@ -94,41 +84,18 @@
       "template": {
         "encapsulation": 2,
         "template": "    <h1>Smarter Wikipedia Demo</h1>\n    <p><i>Fetches when typing stops</i></p>\n\n    <input #term (keyup)=\"search(term.value)\"/>\n    <ul>\n      <li *ngFor=\"let item of items\">{{item}}</li>\n    </ul>\n  ",
-        "templateUrl": "asset:server_communication/lib/wiki/wiki_smart_component.dart",
+        "templateUrl": "asset:server_communication/lib/src/wiki/wiki_smart_component.dart",
         "styles": [],
         "styleUrls": [],
         "ngContentSelectors": []
       },
       "providers": [
         {
-          "class": "Provider",
-          "token": {
-            "value": null,
-            "identifier": {
-              "class": "Type",
-              "name": "WikipediaService",
-              "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
-              "prefix": null,
-              "isHost": false,
-              "value": null,
-              "diDeps": []
-            },
-            "identifierIsInstance": false
-          },
-          "useClass": {
-            "class": "Type",
-            "name": "WikipediaService",
-            "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
-            "prefix": null,
-            "isHost": false,
-            "value": null,
-            "diDeps": []
-          },
-          "useExisting": null,
-          "useValue": null,
-          "useFactory": null,
-          "multi": false,
-          "deps": null
+          "class": "Identifier",
+          "name": "WikipediaService",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
         }
       ],
       "viewProviders": [],

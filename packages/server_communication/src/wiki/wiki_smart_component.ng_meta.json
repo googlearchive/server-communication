@@ -11,13 +11,17 @@
         "5": false
       },
       {
+        "1": "package:stream_transform/stream_transform.dart",
+        "5": false
+      },
+      {
         "1": "wikipedia_service.dart",
         "5": false
       }
     ],
     "5": [
       {
-        "1": "WikiComponent",
+        "1": "WikiSmartComponent",
         "5": [
           {
             "1": "WikipediaService",
@@ -31,7 +35,7 @@
         ]
       }
     ],
-    "6": "wiki_component.dart",
+    "6": "wiki_smart_component.dart",
     "7": [
       {
         "1": "package:angular2/angular2.template.dart",
@@ -44,15 +48,15 @@
     ]
   },
   "type": {
-    "WikiComponent": {
+    "WikiSmartComponent": {
       "class": "Directive",
       "isComponent": true,
-      "selector": "my-wiki",
+      "selector": "my-wiki-smart",
       "exportAs": null,
       "type": {
         "class": "Type",
-        "name": "WikiComponent",
-        "moduleUrl": "asset:server_communication/lib/wiki/wiki_component.dart",
+        "name": "WikiSmartComponent",
+        "moduleUrl": "asset:server_communication/lib/src/wiki/wiki_smart_component.dart",
         "prefix": null,
         "isHost": false,
         "value": null,
@@ -63,7 +67,7 @@
               "identifier": {
                 "class": "Identifier",
                 "name": "WikipediaService",
-                "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
+                "moduleUrl": "asset:server_communication/lib/src/wiki/wikipedia_service.dart",
                 "prefix": null,
                 "value": null
               },
@@ -89,8 +93,8 @@
       "lifecycleHooks": [],
       "template": {
         "encapsulation": 2,
-        "template": "    <h1>Wikipedia Demo</h1>\n    <p><i>Fetches after each keystroke</i></p>\n    <input #term (keyup)=\"search(term.value)\"/>\n    <ul>\n      <li *ngFor=\"let item of items\">{{item}}</li>\n    </ul>\n  ",
-        "templateUrl": "asset:server_communication/lib/wiki/wiki_component.dart",
+        "template": "    <h1>Smarter Wikipedia Demo</h1>\n    <p><i>Fetches when typing stops</i></p>\n\n    <input #term (keyup)=\"search(term.value)\"/>\n    <ul>\n      <li *ngFor=\"let item of items\">{{item}}</li>\n    </ul>\n  ",
+        "templateUrl": "asset:server_communication/lib/src/wiki/wiki_smart_component.dart",
         "styles": [],
         "styleUrls": [],
         "ngContentSelectors": []
@@ -103,7 +107,7 @@
             "identifier": {
               "class": "Type",
               "name": "WikipediaService",
-              "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
+              "moduleUrl": "asset:server_communication/lib/src/wiki/wikipedia_service.dart",
               "prefix": null,
               "isHost": false,
               "value": null,
@@ -114,7 +118,7 @@
           "useClass": {
             "class": "Type",
             "name": "WikipediaService",
-            "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
+            "moduleUrl": "asset:server_communication/lib/src/wiki/wikipedia_service.dart",
             "prefix": null,
             "isHost": false,
             "value": null,

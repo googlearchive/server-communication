@@ -26,19 +26,13 @@
         ]
       }
     ],
-    "6": "wikipedia_service.dart",
-    "7": [
-      {
-        "1": "package:angular2/angular2.template.dart",
-        "4": "i0"
-      }
-    ]
+    "6": "wikipedia_service.dart"
   },
   "type": {
     "WikipediaService": {
       "class": "Type",
       "name": "WikipediaService",
-      "moduleUrl": "asset:server_communication/lib/wiki/wikipedia_service.dart",
+      "moduleUrl": "asset:server_communication/lib/src/wiki/wikipedia_service.dart",
       "prefix": null,
       "isHost": false,
       "value": null,

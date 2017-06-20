@@ -11,25 +11,18 @@
         "5": false
       },
       {
-        "1": "hero.dart",
-        "5": false
-      },
-      {
-        "1": "hero_service.dart",
+        "1": "wikipedia_service.dart",
         "5": false
       }
     ],
     "5": [
       {
-        "1": "HeroListComponent",
+        "1": "WikiComponent",
         "5": [
           {
-            "1": "HeroService",
-            "4": "_heroService"
+            "1": "WikipediaService",
+            "4": "_wikipediaService"
           }
-        ],
-        "6": [
-          "OnInit"
         ],
         "7": [
           {
@@ -38,18 +31,18 @@
         ]
       }
     ],
-    "6": "hero_list_component.dart"
+    "6": "wiki_component.dart"
   },
   "type": {
-    "HeroListComponent": {
+    "WikiComponent": {
       "class": "Directive",
       "isComponent": true,
-      "selector": "hero-list",
+      "selector": "my-wiki",
       "exportAs": null,
       "type": {
         "class": "Type",
-        "name": "HeroListComponent",
-        "moduleUrl": "asset:server_communication/lib/toh/hero_list_component.dart",
+        "name": "WikiComponent",
+        "moduleUrl": "asset:server_communication/lib/src/wiki/wiki_component.dart",
         "prefix": null,
         "isHost": false,
         "value": null,
@@ -59,7 +52,7 @@
               "value": null,
               "identifier": {
                 "class": "Identifier",
-                "name": "HeroService",
+                "name": "WikipediaService",
                 "moduleUrl": null,
                 "prefix": null,
                 "value": null
@@ -83,23 +76,19 @@
       "hostListeners": {},
       "hostProperties": {},
       "hostAttributes": {},
-      "lifecycleHooks": [
-        0
-      ],
+      "lifecycleHooks": [],
       "template": {
-        "encapsulation": 0,
-        "template": "<h1>Tour of Heroes</h1>\n<h3>Heroes:</h3>\n<ul>\n  <li *ngFor=\"let hero of heroes\">{{hero.name}}</li>\n</ul>\n\n<label>New hero name: <input #newHeroName /></label>\n<button (click)=\"addHero(newHeroName.value); newHeroName.value=''\">Add Hero</button>\n\n<p class=\"error\" *ngIf=\"errorMessage != null\">{{errorMessage}}</p>\n",
-        "templateUrl": "asset:server_communication/lib/toh/hero_list_component.html",
-        "styles": [
-          ".error {color:red;}"
-        ],
+        "encapsulation": 2,
+        "template": "    <h1>Wikipedia Demo</h1>\n    <p><i>Fetches after each keystroke</i></p>\n    <input #term (keyup)=\"search(term.value)\"/>\n    <ul>\n      <li *ngFor=\"let item of items\">{{item}}</li>\n    </ul>\n  ",
+        "templateUrl": "asset:server_communication/lib/src/wiki/wiki_component.dart",
+        "styles": [],
         "styleUrls": [],
         "ngContentSelectors": []
       },
       "providers": [
         {
           "class": "Identifier",
-          "name": "HeroService",
+          "name": "WikipediaService",
           "moduleUrl": null,
           "prefix": null,
           "value": null

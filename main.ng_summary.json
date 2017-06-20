@@ -15,7 +15,7 @@
         "5": false
       },
       {
-        "1": "package:server_communication/toh/in_memory_data_service.dart",
+        "1": "package:server_communication/in_memory_data_service.dart",
         "5": false
       },
       {

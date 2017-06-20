@@ -27,7 +27,7 @@
         "5": false
       },
       {
-        "1": "hero.dart",
+        "1": "src/toh/hero.dart",
         "5": false
       }
     ],
@@ -49,7 +49,7 @@
         "4": "i0"
       },
       {
-        "1": "hero.template.dart",
+        "1": "src/toh/hero.template.dart",
         "4": "i1"
       }
     ]
@@ -58,7 +58,7 @@
     "InMemoryDataService": {
       "class": "Type",
       "name": "InMemoryDataService",
-      "moduleUrl": "asset:server_communication/lib/toh/in_memory_data_service.dart",
+      "moduleUrl": "asset:server_communication/lib/in_memory_data_service.dart",
       "prefix": null,
       "isHost": false,
       "value": null,

@@ -63,7 +63,7 @@
       "type": {
         "class": "Type",
         "name": "HeroListComponent",
-        "moduleUrl": "asset:server_communication/lib/toh/hero_list_component.dart",
+        "moduleUrl": "asset:server_communication/lib/src/toh/hero_list_component.dart",
         "prefix": null,
         "isHost": false,
         "value": null,
@@ -74,7 +74,7 @@
               "identifier": {
                 "class": "Identifier",
                 "name": "HeroService",
-                "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+                "moduleUrl": "asset:server_communication/lib/src/toh/hero_service.dart",
                 "prefix": null,
                 "value": null
               },
@@ -103,7 +103,7 @@
       "template": {
         "encapsulation": 0,
         "template": "<h1>Tour of Heroes</h1>\n<h3>Heroes:</h3>\n<ul>\n  <li *ngFor=\"let hero of heroes\">{{hero.name}}</li>\n</ul>\n\n<label>New hero name: <input #newHeroName /></label>\n<button (click)=\"addHero(newHeroName.value); newHeroName.value=''\">Add Hero</button>\n\n<p class=\"error\" *ngIf=\"errorMessage != null\">{{errorMessage}}</p>\n",
-        "templateUrl": "asset:server_communication/lib/toh/hero_list_component.html",
+        "templateUrl": "asset:server_communication/lib/src/toh/hero_list_component.html",
         "styles": [
           ".error {color:red;}"
         ],
@@ -118,7 +118,7 @@
             "identifier": {
               "class": "Type",
               "name": "HeroService",
-              "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+              "moduleUrl": "asset:server_communication/lib/src/toh/hero_service.dart",
               "prefix": null,
               "isHost": false,
               "value": null,
@@ -150,7 +150,7 @@
           "useClass": {
             "class": "Type",
             "name": "HeroService",
-            "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+            "moduleUrl": "asset:server_communication/lib/src/toh/hero_service.dart",
             "prefix": null,
             "isHost": false,
             "value": null,

@@ -56,7 +56,7 @@
     "HeroService": {
       "class": "Type",
       "name": "HeroService",
-      "moduleUrl": "asset:server_communication/lib/toh/hero_service.dart",
+      "moduleUrl": "asset:server_communication/lib/src/toh/hero_service.dart",
       "prefix": null,
       "isHost": false,
       "value": null,
