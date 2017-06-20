@@ -2,7 +2,7 @@ import 'package:angular2/angular2.dart';
 import 'package:angular2/platform/browser.dart';
 
 import 'package:server_communication/app_component.dart';
-import 'package:server_communication/toh/in_memory_data_service.dart';
+import 'package:server_communication/in_memory_data_service.dart';
 import 'package:http/http.dart';
 
 void main() {
