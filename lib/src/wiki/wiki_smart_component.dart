@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import 'wikipedia_service.dart';

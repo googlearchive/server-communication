@@ -1,4 +1,4 @@
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 
 import 'src/toh/hero_list_component.dart';
 import 'src/wiki/wiki_component.dart';
