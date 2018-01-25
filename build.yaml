@@ -1,7 +1,0 @@
-targets:
-  server_communication:
-    builders:
-      build_web_compilers|entrypoint:
-        options:
-          compiler: dart2js
-  
