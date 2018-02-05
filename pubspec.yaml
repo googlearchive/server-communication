@@ -12,10 +12,9 @@ dependencies:
   stream_transform: ^0.0.5
 
 dev_dependencies:
-  browser: ^0.10.0
-  build_runner: ^0.7.0
-  build_test: ^0.9.4
-  build_web_compilers: ^0.2.0
+  build_runner: ^0.7.8
+  build_test: ^0.10.0
+  build_web_compilers: ^0.2.1
 
 dependency_overrides:
   analyzer: ^0.31.0-alpha.1
