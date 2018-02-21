@@ -12,7 +12,6 @@ import 'package:http/http.dart';
 import 'package:server_communication/app_component.dart';
 import 'main.template.dart' as ng;
 import 'package:server_communication/in_memory_data_service.dart';
-// Required for initReflector().
 import 'main.template.dart' as _ref0;
 import 'package:angular/angular.template.dart' as _ref1;
 import 'package:server_communication/app_component.template.dart' as _ref2;
@@ -24,6 +23,7 @@ void initReflector() {
     return;
   }
   _visited = true;
+
   _ref0.initReflector();
   _ref1.initReflector();
   _ref2.initReflector();

@@ -10,7 +10,6 @@ export 'wikipedia_service.dart';
 import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:jsonpadding/jsonpadding.dart';
-// Required for initReflector().
 import 'package:angular/src/di/reflector.dart' as _ngRef;
 import 'package:angular/angular.template.dart' as _ref0;
 
@@ -20,9 +19,7 @@ void initReflector() {
     return;
   }
   _visited = true;
+
+  _ngRef.registerFactory(WikipediaService, () => new WikipediaService());
   _ref0.initReflector();
-  _ngRef.registerFactory(
-    WikipediaService,
-    () => new WikipediaService(),
-  );
 }
