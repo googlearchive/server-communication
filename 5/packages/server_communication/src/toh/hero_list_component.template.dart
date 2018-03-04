@@ -1,7 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 // **************************************************************************
-// Generator: TemplateGenerator
+// Generator: Instance of 'Compiler'
 // **************************************************************************
 
 // ignore_for_file: cancel_subscriptions,constant_identifier_names,duplicate_import,non_constant_identifier_names,library_prefixes,UNUSED_IMPORT,UNUSED_SHOWN_NAME
@@ -38,12 +36,12 @@ class ViewHeroListComponent0 extends AppView<import1.HeroListComponent> {
   import2.Element _el_2;
   import2.UListElement _el_4;
   ViewContainer _appEl_5;
-  import4.NgFor _NgFor_5_7;
+  import4.NgFor _NgFor_5_9;
   import2.Element _el_6;
   import2.InputElement _el_8;
   import2.ButtonElement _el_9;
   ViewContainer _appEl_11;
-  NgIf _NgIf_11_7;
+  NgIf _NgIf_11_9;
   var _expr_0;
   static RenderComponentType _renderType;
   ViewHeroListComponent0(AppView<dynamic> parentView, num parentIndex) : super(import7.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
@@ -68,8 +66,8 @@ class ViewHeroListComponent0 extends AppView<import1.HeroListComponent> {
     var _anchor_5 = ngAnchor.clone(false);
     _el_4.append(_anchor_5);
     _appEl_5 = new ViewContainer(5, 4, this, _anchor_5);
-    TemplateRef _TemplateRef_5_6 = new TemplateRef(_appEl_5, viewFactory_HeroListComponent1);
-    _NgFor_5_7 = new import4.NgFor(_appEl_5, _TemplateRef_5_6);
+    TemplateRef _TemplateRef_5_8 = new TemplateRef(_appEl_5, viewFactory_HeroListComponent1);
+    _NgFor_5_9 = new import4.NgFor(_appEl_5, _TemplateRef_5_8);
     _el_6 = createAndAppend(doc, 'label', parentRenderNode);
     addShimE(_el_6);
     import2.Text _text_7 = new import2.Text('New hero name:');
@@ -83,8 +81,8 @@ class ViewHeroListComponent0 extends AppView<import1.HeroListComponent> {
     var _anchor_11 = ngAnchor.clone(false);
     parentRenderNode.append(_anchor_11);
     _appEl_11 = new ViewContainer(11, null, this, _anchor_11);
-    TemplateRef _TemplateRef_11_6 = new TemplateRef(_appEl_11, viewFactory_HeroListComponent2);
-    _NgIf_11_7 = new NgIf(_appEl_11, _TemplateRef_11_6);
+    TemplateRef _TemplateRef_11_8 = new TemplateRef(_appEl_11, viewFactory_HeroListComponent2);
+    _NgIf_11_9 = new NgIf(_appEl_11, _TemplateRef_11_8);
     _el_9.addEventListener('click', eventHandler1(_handle_click_9_0));
     init(const [], null);
     return null;
@@ -95,11 +93,11 @@ class ViewHeroListComponent0 extends AppView<import1.HeroListComponent> {
     final import1.HeroListComponent _ctx = ctx;
     final currVal_0 = _ctx.heroes;
     if (!identical(_expr_0, currVal_0)) {
-      _NgFor_5_7.ngForOf = currVal_0;
+      _NgFor_5_9.ngForOf = currVal_0;
       _expr_0 = currVal_0;
     }
-    _NgFor_5_7.ngDoCheck();
-    _NgIf_11_7.ngIf = (_ctx.errorMessage != null);
+    _NgFor_5_9.ngDoCheck();
+    _NgIf_11_9.ngIf = (_ctx.errorMessage != null);
     _appEl_5.detectChangesInNestedViews();
     _appEl_11.detectChangesInNestedViews();
   }
@@ -192,27 +190,24 @@ const List<dynamic> styles$HeroListComponentHost = const [];
 
 class _ViewHeroListComponentHost0 extends AppView<dynamic> {
   ViewHeroListComponent0 _compView_0;
-  import13.HeroService _HeroService_0_4;
-  import1.HeroListComponent _HeroListComponent_0_5;
+  import13.HeroService _HeroService_0_5;
+  import1.HeroListComponent _HeroListComponent_0_6;
   _ViewHeroListComponentHost0(AppView<dynamic> parentView, num parentIndex) : super(import7.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
   @override
   ComponentRef build() {
     _compView_0 = new ViewHeroListComponent0(this, 0);
     rootEl = _compView_0.rootEl;
-    _HeroService_0_4 = new import13.HeroService(this.injectorGet(import14.Client, viewData.parentIndex));
-    _HeroListComponent_0_5 = new import1.HeroListComponent(_HeroService_0_4);
-    _compView_0.create(_HeroListComponent_0_5, projectableNodes);
+    _HeroService_0_5 = new import13.HeroService(this.injectorGet(import14.Client, viewData.parentIndex));
+    _HeroListComponent_0_6 = new import1.HeroListComponent(_HeroService_0_5);
+    _compView_0.create(_HeroListComponent_0_6, projectableNodes);
     init0(rootEl);
-    return new ComponentRef<import1.HeroListComponent>(0, this, rootEl, _HeroListComponent_0_5);
+    return new ComponentRef<import1.HeroListComponent>(0, this, rootEl, _HeroListComponent_0_6);
   }
 
   @override
   dynamic injectorGetInternal(dynamic token, int nodeIndex, dynamic notFoundResult) {
     if ((identical(token, import13.HeroService) && (0 == nodeIndex))) {
-      return _HeroService_0_4;
-    }
-    if ((identical(token, import1.HeroListComponent) && (0 == nodeIndex))) {
-      return _HeroListComponent_0_5;
+      return _HeroService_0_5;
     }
     return notFoundResult;
   }
@@ -221,7 +216,7 @@ class _ViewHeroListComponentHost0 extends AppView<dynamic> {
   void detectChangesInternal() {
     bool firstCheck = (this.cdState == 0);
     if (firstCheck) {
-      _HeroListComponent_0_5.ngOnInit();
+      _HeroListComponent_0_6.ngOnInit();
     }
     _compView_0.detectChanges();
   }

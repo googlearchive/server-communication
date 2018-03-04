@@ -1,14 +1,11 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 // **************************************************************************
-// Generator: TemplateGenerator
+// Generator: Instance of 'Compiler'
 // **************************************************************************
 
 // ignore_for_file: cancel_subscriptions,constant_identifier_names,duplicate_import,non_constant_identifier_names,library_prefixes,UNUSED_IMPORT,UNUSED_SHOWN_NAME
-import 'hammer_common.dart';
-export 'hammer_common.dart';
-import "event_manager.dart" show EventManagerPlugin;
-import 'event_manager.template.dart' as _ref0;
+import 'runtime.dart';
+export 'runtime.dart';
+import 'runtime/optimizations.template.dart' as _ref0;
 
 var _visited = false;
 void initReflector() {

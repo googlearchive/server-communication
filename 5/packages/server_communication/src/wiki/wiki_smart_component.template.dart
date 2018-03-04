@@ -1,7 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 // **************************************************************************
-// Generator: TemplateGenerator
+// Generator: Instance of 'Compiler'
 // **************************************************************************
 
 // ignore_for_file: cancel_subscriptions,constant_identifier_names,duplicate_import,non_constant_identifier_names,library_prefixes,UNUSED_IMPORT,UNUSED_SHOWN_NAME
@@ -36,7 +34,7 @@ class ViewWikiSmartComponent0 extends AppView<import1.WikiSmartComponent> {
   import2.InputElement _el_5;
   import2.UListElement _el_6;
   ViewContainer _appEl_7;
-  import4.NgFor _NgFor_7_7;
+  import4.NgFor _NgFor_7_9;
   var _expr_0;
   static RenderComponentType _renderType;
   ViewWikiSmartComponent0(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
@@ -60,8 +58,8 @@ class ViewWikiSmartComponent0 extends AppView<import1.WikiSmartComponent> {
     var _anchor_7 = ngAnchor.clone(false);
     _el_6.append(_anchor_7);
     _appEl_7 = new ViewContainer(7, 6, this, _anchor_7);
-    TemplateRef _TemplateRef_7_6 = new TemplateRef(_appEl_7, viewFactory_WikiSmartComponent1);
-    _NgFor_7_7 = new import4.NgFor(_appEl_7, _TemplateRef_7_6);
+    TemplateRef _TemplateRef_7_8 = new TemplateRef(_appEl_7, viewFactory_WikiSmartComponent1);
+    _NgFor_7_9 = new import4.NgFor(_appEl_7, _TemplateRef_7_8);
     _el_5.addEventListener('keyup', eventHandler1(_handle_keyup_5_0));
     init(const [], null);
     return null;
@@ -72,10 +70,10 @@ class ViewWikiSmartComponent0 extends AppView<import1.WikiSmartComponent> {
     final import1.WikiSmartComponent _ctx = ctx;
     final currVal_0 = _ctx.items;
     if (!identical(_expr_0, currVal_0)) {
-      _NgFor_7_7.ngForOf = currVal_0;
+      _NgFor_7_9.ngForOf = currVal_0;
       _expr_0 = currVal_0;
     }
-    _NgFor_7_7.ngDoCheck();
+    _NgFor_7_9.ngDoCheck();
     _appEl_7.detectChangesInNestedViews();
   }
 
@@ -130,27 +128,24 @@ const List<dynamic> styles$WikiSmartComponentHost = const [];
 
 class _ViewWikiSmartComponentHost0 extends AppView<dynamic> {
   ViewWikiSmartComponent0 _compView_0;
-  import11.WikipediaService _WikipediaService_0_4;
-  import1.WikiSmartComponent _WikiSmartComponent_0_5;
+  import11.WikipediaService _WikipediaService_0_5;
+  import1.WikiSmartComponent _WikiSmartComponent_0_6;
   _ViewWikiSmartComponentHost0(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
   @override
   ComponentRef build() {
     _compView_0 = new ViewWikiSmartComponent0(this, 0);
     rootEl = _compView_0.rootEl;
-    _WikipediaService_0_4 = new import11.WikipediaService();
-    _WikiSmartComponent_0_5 = new import1.WikiSmartComponent(_WikipediaService_0_4);
-    _compView_0.create(_WikiSmartComponent_0_5, projectableNodes);
+    _WikipediaService_0_5 = new import11.WikipediaService();
+    _WikiSmartComponent_0_6 = new import1.WikiSmartComponent(_WikipediaService_0_5);
+    _compView_0.create(_WikiSmartComponent_0_6, projectableNodes);
     init0(rootEl);
-    return new ComponentRef<import1.WikiSmartComponent>(0, this, rootEl, _WikiSmartComponent_0_5);
+    return new ComponentRef<import1.WikiSmartComponent>(0, this, rootEl, _WikiSmartComponent_0_6);
   }
 
   @override
   dynamic injectorGetInternal(dynamic token, int nodeIndex, dynamic notFoundResult) {
     if ((identical(token, import11.WikipediaService) && (0 == nodeIndex))) {
-      return _WikipediaService_0_4;
-    }
-    if ((identical(token, import1.WikiSmartComponent) && (0 == nodeIndex))) {
-      return _WikiSmartComponent_0_5;
+      return _WikipediaService_0_5;
     }
     return notFoundResult;
   }
