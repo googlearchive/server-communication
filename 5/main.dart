@@ -13,7 +13,7 @@ void main() {
       AppComponent,
       [
         // in-memory web api provider
-        provide(Client, useClass: InMemoryDataService)
+        const ClassProvider(Client, useClass: InMemoryDataService),
       ],
       ng.initReflector);
 }
@@ -21,7 +21,7 @@ void main() {
 
 void main() {
   bootstrapStatic(AppComponent, [
-    provide(Client, useFactory: () => new BrowserClient(), deps: [])
+    const FactoryProvider(Client, () => new BrowserClient()),
   ],
   ng.initReflector);
 }

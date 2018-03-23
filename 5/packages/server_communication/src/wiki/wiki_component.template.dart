@@ -36,14 +36,15 @@ class ViewWikiComponent0 extends AppView<import1.WikiComponent> {
   import4.NgFor _NgFor_7_9;
   var _expr_0;
   static RenderComponentType _renderType;
-  ViewWikiComponent0(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  ViewWikiComponent0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     rootEl = import2.document.createElement('my-wiki');
     _renderType ??= import8.appViewUtils.createRenderType('', ViewEncapsulation.None, styles$WikiComponent);
     setupComponentType(_renderType);
   }
   @override
   ComponentRef<import1.WikiComponent> build() {
-    final import2.HtmlElement parentRenderNode = initViewRoot(rootEl);
+    final _rootEl = rootEl;
+    final import2.HtmlElement parentRenderNode = initViewRoot(_rootEl);
     var doc = import2.document;
     _el_0 = createAndAppend(doc, 'h1', parentRenderNode);
     import2.Text _text_1 = new import2.Text('Wikipedia Demo');
@@ -87,7 +88,7 @@ class ViewWikiComponent0 extends AppView<import1.WikiComponent> {
   }
 }
 
-AppView<import1.WikiComponent> viewFactory_WikiComponent0(AppView<dynamic> parentView, num parentIndex) {
+AppView<import1.WikiComponent> viewFactory_WikiComponent0(AppView<dynamic> parentView, int parentIndex) {
   return new ViewWikiComponent0(parentView, parentIndex);
 }
 
@@ -95,7 +96,7 @@ class _ViewWikiComponent1 extends AppView<import1.WikiComponent> {
   import2.Element _el_0;
   import2.Text _text_1;
   var _expr_0;
-  _ViewWikiComponent1(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.EMBEDDED, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  _ViewWikiComponent1(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.EMBEDDED, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     componentType = ViewWikiComponent0._renderType;
   }
   @override
@@ -119,7 +120,7 @@ class _ViewWikiComponent1 extends AppView<import1.WikiComponent> {
   }
 }
 
-AppView<import1.WikiComponent> viewFactory_WikiComponent1(AppView<dynamic> parentView, num parentIndex) {
+AppView<import1.WikiComponent> viewFactory_WikiComponent1(AppView<dynamic> parentView, int parentIndex) {
   return new _ViewWikiComponent1(parentView, parentIndex);
 }
 
@@ -129,7 +130,7 @@ class _ViewWikiComponentHost0 extends AppView<dynamic> {
   ViewWikiComponent0 _compView_0;
   import11.WikipediaService _WikipediaService_0_5;
   import1.WikiComponent _WikiComponent_0_6;
-  _ViewWikiComponentHost0(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
+  _ViewWikiComponentHost0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
   @override
   ComponentRef build() {
     _compView_0 = new ViewWikiComponent0(this, 0);
@@ -160,7 +161,7 @@ class _ViewWikiComponentHost0 extends AppView<dynamic> {
   }
 }
 
-AppView viewFactory_WikiComponentHost0(AppView<dynamic> parentView, num parentIndex) {
+AppView viewFactory_WikiComponentHost0(AppView<dynamic> parentView, int parentIndex) {
   return new _ViewWikiComponentHost0(parentView, parentIndex);
 }
 

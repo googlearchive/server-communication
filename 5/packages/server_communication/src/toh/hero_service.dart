@@ -14,7 +14,7 @@ class HeroService {
 
   HeroService(this._http);
 
-  Future<List<Hero>> getHeroes() async {
+  Future<List<Hero>> getAll() async {
     try {
       final response = await _http.get(_heroesUrl);
       final heroes = _extractData(response)
@@ -29,14 +29,14 @@ class HeroService {
   Future<Hero> create(String name) async {
     try {
       final response = await _http.post(_heroesUrl,
-          headers: _headers, body: JSON.encode({'name': name}));
+          headers: _headers, body: json.encode({'name': name}));
       return new Hero.fromJson(_extractData(response));
     } catch (e) {
       throw _handleError(e);
     }
   }
 
-  dynamic _extractData(Response resp) => JSON.decode(resp.body)['data'];
+  dynamic _extractData(Response resp) => json.decode(resp.body)['data'];
 
   Exception _handleError(dynamic e) {
     print(e); // for demo purposes only

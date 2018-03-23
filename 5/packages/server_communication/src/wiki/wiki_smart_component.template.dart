@@ -37,14 +37,15 @@ class ViewWikiSmartComponent0 extends AppView<import1.WikiSmartComponent> {
   import4.NgFor _NgFor_7_9;
   var _expr_0;
   static RenderComponentType _renderType;
-  ViewWikiSmartComponent0(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  ViewWikiSmartComponent0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     rootEl = import2.document.createElement('my-wiki-smart');
     _renderType ??= import8.appViewUtils.createRenderType('', ViewEncapsulation.None, styles$WikiSmartComponent);
     setupComponentType(_renderType);
   }
   @override
   ComponentRef<import1.WikiSmartComponent> build() {
-    final import2.HtmlElement parentRenderNode = initViewRoot(rootEl);
+    final _rootEl = rootEl;
+    final import2.HtmlElement parentRenderNode = initViewRoot(_rootEl);
     var doc = import2.document;
     _el_0 = createAndAppend(doc, 'h1', parentRenderNode);
     import2.Text _text_1 = new import2.Text('Smarter Wikipedia Demo');
@@ -88,7 +89,7 @@ class ViewWikiSmartComponent0 extends AppView<import1.WikiSmartComponent> {
   }
 }
 
-AppView<import1.WikiSmartComponent> viewFactory_WikiSmartComponent0(AppView<dynamic> parentView, num parentIndex) {
+AppView<import1.WikiSmartComponent> viewFactory_WikiSmartComponent0(AppView<dynamic> parentView, int parentIndex) {
   return new ViewWikiSmartComponent0(parentView, parentIndex);
 }
 
@@ -96,7 +97,7 @@ class _ViewWikiSmartComponent1 extends AppView<import1.WikiSmartComponent> {
   import2.Element _el_0;
   import2.Text _text_1;
   var _expr_0;
-  _ViewWikiSmartComponent1(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.EMBEDDED, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  _ViewWikiSmartComponent1(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.EMBEDDED, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     componentType = ViewWikiSmartComponent0._renderType;
   }
   @override
@@ -120,7 +121,7 @@ class _ViewWikiSmartComponent1 extends AppView<import1.WikiSmartComponent> {
   }
 }
 
-AppView<import1.WikiSmartComponent> viewFactory_WikiSmartComponent1(AppView<dynamic> parentView, num parentIndex) {
+AppView<import1.WikiSmartComponent> viewFactory_WikiSmartComponent1(AppView<dynamic> parentView, int parentIndex) {
   return new _ViewWikiSmartComponent1(parentView, parentIndex);
 }
 
@@ -130,7 +131,7 @@ class _ViewWikiSmartComponentHost0 extends AppView<dynamic> {
   ViewWikiSmartComponent0 _compView_0;
   import11.WikipediaService _WikipediaService_0_5;
   import1.WikiSmartComponent _WikiSmartComponent_0_6;
-  _ViewWikiSmartComponentHost0(AppView<dynamic> parentView, num parentIndex) : super(import6.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
+  _ViewWikiSmartComponentHost0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
   @override
   ComponentRef build() {
     _compView_0 = new ViewWikiSmartComponent0(this, 0);
@@ -161,7 +162,7 @@ class _ViewWikiSmartComponentHost0 extends AppView<dynamic> {
   }
 }
 
-AppView viewFactory_WikiSmartComponentHost0(AppView<dynamic> parentView, num parentIndex) {
+AppView viewFactory_WikiSmartComponentHost0(AppView<dynamic> parentView, int parentIndex) {
   return new _ViewWikiSmartComponentHost0(parentView, parentIndex);
 }
 
