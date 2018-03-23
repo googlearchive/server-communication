@@ -14,8 +14,8 @@ import 'wikipedia_service.dart';
       <li *ngFor="let item of items">{{item}}</li>
     </ul>
   ''',
-  directives: const [coreDirectives],
-  providers: const [WikipediaService],
+  directives: [coreDirectives],
+  providers: [WikipediaService],
 )
 class WikiComponent {
   final WikipediaService _wikipediaService;

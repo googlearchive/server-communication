@@ -8,9 +8,9 @@ import 'hero_service.dart';
 @Component(
   selector: 'hero-list',
   templateUrl: 'hero_list_component.html',
-  providers: const [HeroService],
-  styles: const ['.error {color:red;}'],
-  directives: const [coreDirectives],
+  providers: [HeroService],
+  styles: ['.error {color:red;}'],
+  directives: [coreDirectives],
 )
 class HeroListComponent implements OnInit {
   final HeroService _heroService;
@@ -19,19 +19,19 @@ class HeroListComponent implements OnInit {
 
   HeroListComponent(this._heroService);
 
-  Future<Null> ngOnInit() => getHeroes();
+  Future<void> ngOnInit() => _getHeroes();
 
-  Future<Null> getHeroes() async {
+  Future<void> _getHeroes() async {
     try {
-      heroes = await _heroService.getHeroes();
+      heroes = await _heroService.getAll();
     } catch (e) {
       errorMessage = e.toString();
     }
   }
 
-  Future<Null> addHero(String name) async {
+  Future<void> add(String name) async {
     name = name.trim();
-    if (name.isEmpty) return;
+    if (name.isEmpty) return null;
     try {
       heroes.add(await _heroService.create(name));
     } catch (e) {
