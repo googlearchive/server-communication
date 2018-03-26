@@ -413,7 +413,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.28.1"
+    version: "0.28.2"
   quiver_hashcode:
     dependency: transitive
     description:
@@ -569,4 +569,4 @@ packages:
     source: hosted
     version: "2.1.13"
 sdks:
-  dart: ">=2.0.0-dev.37 <=2.0.0-dev.40.0"
+  dart: ">=2.0.0-dev.37 <=2.0.0-dev.42.0"
