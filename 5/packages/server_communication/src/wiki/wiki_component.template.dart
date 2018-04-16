@@ -36,7 +36,7 @@ class ViewWikiComponent0 extends AppView<import1.WikiComponent> {
   import4.NgFor _NgFor_7_9;
   var _expr_0;
   static RenderComponentType _renderType;
-  ViewWikiComponent0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  ViewWikiComponent0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.component, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     rootEl = import2.document.createElement('my-wiki');
     _renderType ??= import8.appViewUtils.createRenderType('', ViewEncapsulation.None, styles$WikiComponent);
     setupComponentType(_renderType);
@@ -55,7 +55,7 @@ class ViewWikiComponent0 extends AppView<import1.WikiComponent> {
     _el_3.append(_text_4);
     _el_5 = createAndAppend(doc, 'input', parentRenderNode);
     _el_6 = createAndAppend(doc, 'ul', parentRenderNode);
-    var _anchor_7 = ngAnchor.clone(false);
+    final _anchor_7 = createViewContainerAnchor();
     _el_6.append(_anchor_7);
     _appEl_7 = new ViewContainer(7, 6, this, _anchor_7);
     TemplateRef _TemplateRef_7_8 = new TemplateRef(_appEl_7, viewFactory_WikiComponent1);
@@ -96,7 +96,7 @@ class _ViewWikiComponent1 extends AppView<import1.WikiComponent> {
   import2.Element _el_0;
   import2.Text _text_1;
   var _expr_0;
-  _ViewWikiComponent1(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.EMBEDDED, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  _ViewWikiComponent1(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.embedded, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     componentType = ViewWikiComponent0._renderType;
   }
   @override
@@ -130,7 +130,7 @@ class _ViewWikiComponentHost0 extends AppView<dynamic> {
   ViewWikiComponent0 _compView_0;
   import11.WikipediaService _WikipediaService_0_5;
   import1.WikiComponent _WikiComponent_0_6;
-  _ViewWikiComponentHost0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
+  _ViewWikiComponentHost0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.host, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
   @override
   ComponentRef build() {
     _compView_0 = new ViewWikiComponent0(this, 0);

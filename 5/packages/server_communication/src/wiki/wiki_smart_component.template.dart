@@ -37,7 +37,7 @@ class ViewWikiSmartComponent0 extends AppView<import1.WikiSmartComponent> {
   import4.NgFor _NgFor_7_9;
   var _expr_0;
   static RenderComponentType _renderType;
-  ViewWikiSmartComponent0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.COMPONENT, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  ViewWikiSmartComponent0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.component, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     rootEl = import2.document.createElement('my-wiki-smart');
     _renderType ??= import8.appViewUtils.createRenderType('', ViewEncapsulation.None, styles$WikiSmartComponent);
     setupComponentType(_renderType);
@@ -56,7 +56,7 @@ class ViewWikiSmartComponent0 extends AppView<import1.WikiSmartComponent> {
     _el_3.append(_text_4);
     _el_5 = createAndAppend(doc, 'input', parentRenderNode);
     _el_6 = createAndAppend(doc, 'ul', parentRenderNode);
-    var _anchor_7 = ngAnchor.clone(false);
+    final _anchor_7 = createViewContainerAnchor();
     _el_6.append(_anchor_7);
     _appEl_7 = new ViewContainer(7, 6, this, _anchor_7);
     TemplateRef _TemplateRef_7_8 = new TemplateRef(_appEl_7, viewFactory_WikiSmartComponent1);
@@ -97,7 +97,7 @@ class _ViewWikiSmartComponent1 extends AppView<import1.WikiSmartComponent> {
   import2.Element _el_0;
   import2.Text _text_1;
   var _expr_0;
-  _ViewWikiSmartComponent1(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.EMBEDDED, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
+  _ViewWikiSmartComponent1(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.embedded, {'\$implicit': null}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways) {
     componentType = ViewWikiSmartComponent0._renderType;
   }
   @override
@@ -131,7 +131,7 @@ class _ViewWikiSmartComponentHost0 extends AppView<dynamic> {
   ViewWikiSmartComponent0 _compView_0;
   import11.WikipediaService _WikipediaService_0_5;
   import1.WikiSmartComponent _WikiSmartComponent_0_6;
-  _ViewWikiSmartComponentHost0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.HOST, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
+  _ViewWikiSmartComponentHost0(AppView<dynamic> parentView, int parentIndex) : super(import6.ViewType.host, {}, parentView, parentIndex, ChangeDetectionStrategy.CheckAlways);
   @override
   ComponentRef build() {
     _compView_0 = new ViewWikiSmartComponent0(this, 0);
