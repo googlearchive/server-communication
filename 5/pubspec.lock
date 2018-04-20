@@ -105,7 +105,7 @@ packages:
       name: build_modules
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0+2"
+    version: "0.2.1"
   build_resolvers:
     dependency: transitive
     description:
@@ -133,7 +133,7 @@ packages:
       name: build_web_compilers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.6"
+    version: "0.3.7"
   built_collection:
     dependency: transitive
     description:
@@ -238,7 +238,7 @@ packages:
       name: graphs
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   html:
     dependency: transitive
     description:
@@ -329,7 +329,7 @@ packages:
       name: matcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.1+4"
+    version: "0.12.2"
   meta:
     dependency: transitive
     description:
@@ -525,7 +525,7 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.34"
+    version: "0.12.35"
   tuple:
     dependency: transitive
     description:
@@ -569,4 +569,4 @@ packages:
     source: hosted
     version: "2.1.13"
 sdks:
-  dart: ">=2.0.0-dev.46.0 <=2.0.0-dev.48.0"
+  dart: ">=2.0.0-dev.48 <=2.0.0-dev.49.0"
