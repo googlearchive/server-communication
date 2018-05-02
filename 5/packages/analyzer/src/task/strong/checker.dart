@@ -30,14 +30,7 @@ import 'ast_properties.dart';
 
 /// Given an [expression] and a corresponding [typeSystem] and [typeProvider],
 /// gets the known static type of the expression.
-///
-/// Normally when we ask for an expression's type, we get the type of the
-/// storage slot that would contain it. For function types, this is necessarily
-/// a "fuzzy arrow" that treats `dynamic` as bottom. However, if we're
-/// interested in the expression's own type, it can often be a "strict arrow"
-/// because we know it evaluates to a specific, concrete function, and we can
-/// treat "dynamic" as top for that case, which is more permissive.
-DartType getDefiniteType(
+DartType getExpressionType(
     Expression expression, TypeSystem typeSystem, TypeProvider typeProvider,
     {bool read: false}) {
   DartType type;
@@ -47,12 +40,6 @@ DartType getDefiniteType(
     type = expression.staticType;
   }
   type ??= DynamicTypeImpl.instance;
-  if (typeSystem is StrongTypeSystemImpl &&
-      type is FunctionType &&
-      hasStrictArrow(expression)) {
-    // Remove fuzzy arrow if possible.
-    return typeSystem.functionTypeToConcreteType(type);
-  }
   return type;
 }
 
@@ -83,45 +70,6 @@ DartType getReadType(Expression expression) {
     }
   }
   return expression.staticType;
-}
-
-bool hasStrictArrow(Expression expression) {
-  var element = _getKnownElement(expression);
-  return element is FunctionElement || element is MethodElement;
-}
-
-/// Given a generic class [element] find its covariant upper bound, using
-/// the type system [rules].
-///
-/// Unlike [TypeSystem.instantiateToBounds], this will change `dynamic` into
-/// `Object` to work around an issue with fuzzy arrows.
-InterfaceType _getCovariantUpperBound(TypeSystem rules, ClassElement element) {
-  var upperBound = rules.instantiateToBounds(element.type) as InterfaceType;
-  var typeArgs = upperBound.typeArguments;
-  // TODO(jmesserly): remove this. It is a workaround for fuzzy arrows.
-  // To prevent extra checks due to fuzzy arrows, we need to instantiate with
-  // `Object` rather than `dynamic`. Consider a case like:
-  //
-  //     class C<T> {
-  //       void forEach(f(T t)) {}
-  //     }
-  //
-  // If we try `(dynamic) ~> void <: (T) ~> void` with fuzzy arrows, we will
-  // treat `dynamic` as `bottom` and get `(bottom) -> void <: (T) -> void`
-  // which indicates that a check is required on the parameter `f`. This check
-  // is not sufficient when `T` is `dynamic`, however, because calling a
-  // function with a fuzzy arrow type is not safe and requires a dynamic call.
-  // See: https://github.com/dart-lang/sdk/issues/29295
-  //
-  // For all other values of T, the check is unnecessary: it is sound to pass
-  // a function that accepts any Object.
-  if (typeArgs.any((t) => t.isDynamic)) {
-    var newTypeArgs = typeArgs
-        .map((t) => t.isDynamic ? rules.typeProvider.objectType : t)
-        .toList();
-    upperBound = element.type.instantiate(newTypeArgs);
-  }
-  return upperBound;
 }
 
 DartType _elementType(Element e) {
@@ -268,7 +216,7 @@ class CodeChecker extends RecursiveAstVisitor {
     }
   }
 
-  DartType getType(TypeAnnotation type) {
+  DartType getAnnotatedType(TypeAnnotation type) {
     return type?.type ?? DynamicTypeImpl.instance;
   }
 
@@ -290,7 +238,7 @@ class CodeChecker extends RecursiveAstVisitor {
     TokenType operatorType = operator.type;
     if (operatorType == TokenType.EQ ||
         operatorType == TokenType.QUESTION_QUESTION_EQ) {
-      DartType staticType = _getDefiniteType(node.leftHandSide);
+      DartType staticType = _getExpressionType(node.leftHandSide);
       checkAssignment(node.rightHandSide, staticType);
     } else if (operatorType == TokenType.AMPERSAND_AMPERSAND_EQ ||
         operatorType == TokenType.BAR_BAR_EQ) {
@@ -455,7 +403,7 @@ class CodeChecker extends RecursiveAstVisitor {
       var sequenceInterface = node.awaitKeyword != null
           ? typeProvider.streamType
           : typeProvider.iterableType;
-      var iterableType = _getDefiniteType(node.iterable);
+      var iterableType = _getExpressionType(node.iterable);
       var elementType =
           rules.mostSpecificTypeArgument(iterableType, sequenceInterface);
 
@@ -477,7 +425,7 @@ class CodeChecker extends RecursiveAstVisitor {
       if (elementType != null) {
         // Insert a cast from the sequence's element type to the loop variable's
         // if needed.
-        _checkImplicitCast(loopVariable, _getDefiniteType(loopVariable),
+        _checkImplicitCast(loopVariable, _getExpressionType(loopVariable),
             from: elementType, isDeclarationCast: true);
       }
     }
@@ -767,8 +715,8 @@ class CodeChecker extends RecursiveAstVisitor {
       assert(functionType.optionalParameterTypes.isEmpty);
 
       // Refine the return type.
-      var rhsType = _getDefiniteType(expr.rightHandSide);
-      var lhsType = _getDefiniteType(expr.leftHandSide);
+      var rhsType = _getExpressionType(expr.rightHandSide);
+      var lhsType = _getExpressionType(expr.leftHandSide);
       var returnType = rules.refineBinaryExpressionType(
           lhsType, op, rhsType, functionType.returnType);
 
@@ -807,9 +755,7 @@ class CodeChecker extends RecursiveAstVisitor {
   /// [to] or is already a subtype of it, does nothing.
   void _checkImplicitCast(Expression expr, DartType to,
       {DartType from, bool opAssign: false, bool isDeclarationCast: false}) {
-    from ??= _getDefiniteType(expr);
-
-    _hintOnFuzzyArrows(expr, to, from);
+    from ??= _getExpressionType(expr);
 
     if (_needsImplicitCast(expr, to,
             from: from, isDeclarationCast: isDeclarationCast) ==
@@ -846,7 +792,7 @@ class CodeChecker extends RecursiveAstVisitor {
   }
 
   void _checkRuntimeTypeCheck(AstNode node, TypeAnnotation annotation) {
-    var type = getType(annotation);
+    var type = getAnnotatedType(annotation);
     if (!rules.isGroundType(type)) {
       _recordMessage(node, StrongModeCode.NON_GROUND_TYPE_CHECK_INFO, [type]);
     }
@@ -869,7 +815,7 @@ class CodeChecker extends RecursiveAstVisitor {
         // Refine the return type.
         var functionType = element.type;
         var rhsType = typeProvider.intType;
-        var lhsType = _getDefiniteType(operand);
+        var lhsType = _getExpressionType(operand);
         var returnType = rules.refineBinaryExpressionType(
             lhsType, TokenType.PLUS, rhsType, functionType.returnType);
 
@@ -888,8 +834,8 @@ class CodeChecker extends RecursiveAstVisitor {
     }
   }
 
-  DartType _getDefiniteType(Expression expr) =>
-      getDefiniteType(expr, rules, typeProvider);
+  DartType _getExpressionType(Expression expr) =>
+      getExpressionType(expr, rules, typeProvider);
 
   /// If we're calling into [member] through the [target], we may need to
   /// insert a caller side check for soundness on the result of the expression
@@ -1091,7 +1037,7 @@ class CodeChecker extends RecursiveAstVisitor {
     if (type is FunctionType) {
       return type;
     } else if (type is InterfaceType) {
-      return rules.getCallMethodDefiniteType(type);
+      return rules.getCallMethodType(type);
     }
     return null;
   }
@@ -1099,60 +1045,74 @@ class CodeChecker extends RecursiveAstVisitor {
   /// Returns `true` if the expression is a dynamic function call or method
   /// invocation.
   bool _isDynamicCall(InvocationExpression call, FunctionType ft) {
-    // TODO(leafp): This will currently return true if t is Function
-    // This is probably the most correct thing to do for now, since
-    // this code is also used by the back end.  Maybe revisit at some
-    // point?
-    if (ft == null) return true;
-    // Dynamic as the parameter type is treated as bottom.  A function with
-    // a dynamic parameter type requires a dynamic call in general.
-    // However, as an optimization, if we have an original definition, we know
-    // dynamic is reified as Object - in this case a regular call is fine.
-    if (hasStrictArrow(call.function)) {
-      return false;
-    }
-    return rules.anyParameterType(ft, (pt) => pt.isDynamic);
+    return ft == null;
   }
 
-  void _hintOnFuzzyArrows(Expression expr, DartType to, DartType from) {
-    // If it is a subtype with fuzzy arrows on,
-    // check to see if it still is with them off.
-    if (rules.isSubtypeOf(from, to)) {
-      // Remove fuzzy arrows
-      var cFrom = rules.typeToConcreteType(from);
-      var cTo = rules.typeToConcreteType(to);
-      // If still true, no warning needed
-      if (rules.isSubtypeOf(cFrom, cTo)) return;
-      _recordMessage(expr, StrongModeCode.USES_DYNAMIC_AS_BOTTOM, [from, to]);
+  /// Given an expression [expr] of type [fromType], returns true if an implicit
+  /// downcast is required, false if it is not, or null if the types are
+  /// unrelated.
+  bool _checkFunctionTypeCasts(
+      Expression expr, FunctionType to, DartType fromType) {
+    bool callTearoff = false;
+    FunctionType from;
+    if (fromType is FunctionType) {
+      from = fromType;
+    } else if (fromType is InterfaceType) {
+      from = rules.getCallMethodType(fromType);
+      callTearoff = true;
     }
+    if (from == null) {
+      return null; // unrelated
+    }
+
+    if (rules.isSubtypeOf(from, to)) {
+      // Sound subtype.
+      // However we may still need cast if we have a call tearoff.
+      return callTearoff;
+    }
+
+    if (rules.isSubtypeOf(to, from)) {
+      // Assignable, but needs cast.
+      return true;
+    }
+
+    return null;
   }
 
   /// Returns true if we need an implicit cast of [expr] from [from] type to
   /// [to] type, returns false if no cast is needed, and returns null if the
   /// types are statically incompatible, or the types are compatible but don't
-  /// allow implicit cast (ie, void, which is one form of Top which oill not
+  /// allow implicit cast (ie, void, which is one form of Top which will not
   /// downcast implicitly).
   ///
   /// If [from] is omitted, uses the static type of [expr]
   bool _needsImplicitCast(Expression expr, DartType to,
       {DartType from, bool isDeclarationCast: false}) {
-    from ??= _getDefiniteType(expr);
+    from ??= _getExpressionType(expr);
 
     if (!_checkNonNullAssignment(expr, to, from)) return false;
 
     // Void is considered Top, but may only be *explicitly* cast.
     if (from.isVoid) return null;
 
+    if (to is FunctionType) {
+      bool needsCast = _checkFunctionTypeCasts(expr, to, from);
+      if (needsCast != null) return needsCast;
+    }
+
     // fromT <: toT, no coercion needed.
-    if (rules.isSubtypeOf(from, to)) return false;
+    if (rules.isSubtypeOf(from, to)) {
+      return false;
+    }
 
     // Down cast or legal sideways cast, coercion needed.
-    if (rules.isAssignableTo(from, to, isDeclarationCast: isDeclarationCast))
+    if (rules.isAssignableTo(from, to, isDeclarationCast: isDeclarationCast)) {
       return true;
+    }
 
     // Special case for FutureOr to handle returned values from async functions.
     // In this case, we're more permissive than assignability.
-    if (to.element == typeProvider.futureOrType.element) {
+    if (to.isDartAsyncFutureOr) {
       var to1 = (to as InterfaceType).typeArguments[0];
       var to2 = typeProvider.futureType.instantiate([to1]);
       return _needsImplicitCast(expr, to1, from: from) == true ||
@@ -1173,12 +1133,31 @@ class CodeChecker extends RecursiveAstVisitor {
     if (target != null) setIsDynamicInvoke(target, true);
   }
 
+  void _markImplicitCast(Expression expr, DartType to, {bool opAssign: false}) {
+    if (opAssign) {
+      setImplicitOperationCast(expr, to);
+    } else {
+      setImplicitCast(expr, to);
+    }
+    _hasImplicitCasts = true;
+  }
+
   /// Records an implicit cast for the [expr] from [from] to [to].
   ///
   /// This will emit the appropriate error/warning/hint message as well as mark
   /// the AST node.
   void _recordImplicitCast(Expression expr, DartType to,
       {DartType from, bool opAssign: false}) {
+    // If this is an implicit tearoff, we need to mark the cast, but we don't
+    // want to warn if it's a legal subtype.
+    if (from is InterfaceType && rules.acceptsFunctionType(to)) {
+      var type = rules.getCallMethodType(from);
+      if (type != null && rules.isSubtypeOf(type, to)) {
+        _markImplicitCast(expr, to, opAssign: opAssign);
+        return;
+      }
+    }
+
     // Inference "casts":
     if (expr is Literal) {
       // fromT should be an exact type - this will almost certainly fail at
@@ -1254,12 +1233,7 @@ class CodeChecker extends RecursiveAstVisitor {
           : StrongModeCode.DOWN_CAST_IMPLICIT;
     }
     _recordMessage(expr, errorCode, [from, to]);
-    if (opAssign) {
-      setImplicitOperationCast(expr, to);
-    } else {
-      setImplicitCast(expr, to);
-    }
-    _hasImplicitCasts = true;
+    _markImplicitCast(expr, to, opAssign: opAssign);
   }
 
   void _recordMessage(AstNode node, ErrorCode errorCode, List arguments) {
@@ -1459,7 +1433,8 @@ class _OverrideChecker {
     if (members.isEmpty) return covariantChecks;
 
     for (var iface in covariantInterfaces) {
-      var unsafeSupertype = _getCovariantUpperBound(rules, iface);
+      var unsafeSupertype =
+          rules.instantiateToBounds(iface.type) as InterfaceType;
       for (var m in members) {
         _findCovariantChecksForMember(m, unsafeSupertype, covariantChecks);
       }

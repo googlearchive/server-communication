@@ -29,10 +29,7 @@ import 'package:analyzer/src/generated/parser.dart' show ParserErrorCode;
 import 'package:analyzer/src/generated/resolver.dart';
 import 'package:analyzer/src/generated/sdk.dart' show DartSdk, SdkLibrary;
 import 'package:analyzer/src/generated/source.dart';
-import 'package:analyzer/src/generated/utilities_dart.dart';
 import 'package:analyzer/src/task/dart.dart';
-import 'package:analyzer/src/task/strong/checker.dart' as checker
-    show hasStrictArrow;
 
 /**
  * A visitor used to traverse an AST structure looking for additional errors and
@@ -297,11 +294,20 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
 
   final _UninstantiatedBoundChecker _uninstantiatedBoundChecker;
 
+  /// Setting this flag to `true` disables the check for conflicting generics.
+  /// This is used when running with the old task model to work around
+  /// dartbug.com/32421.
+  ///
+  /// TODO(paulberry): remove this flag once dartbug.com/32421 is properly
+  /// fixed.
+  final bool disableConflictingGenericsCheck;
+
   /**
    * Initialize a newly created error verifier.
    */
   ErrorVerifier(ErrorReporter errorReporter, this._currentLibrary,
-      this._typeProvider, this._inheritanceManager, this.enableSuperMixins)
+      this._typeProvider, this._inheritanceManager, this.enableSuperMixins,
+      {this.disableConflictingGenericsCheck: false})
       : _errorReporter = errorReporter,
         _uninstantiatedBoundChecker =
             new _UninstantiatedBoundChecker(errorReporter) {
@@ -1331,6 +1337,9 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
 
       if (_options.strongMode) {
         _checkForMixinWithConflictingPrivateMember(withClause, superclass);
+        if (!disableConflictingGenericsCheck) {
+          _checkForConflictingGenerics(node);
+        }
       }
     }
   }
@@ -1946,8 +1955,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
         AstNode parameterLocationToSelect = null;
         for (int i = 0; i < parameters.length; i++) {
           ParameterElement parameter = parameters[i];
-          if (parameter.parameterKind == ParameterKind.NAMED &&
-              overriddenName == parameter.name) {
+          if (parameter.isNamed && overriddenName == parameter.name) {
             parameterToSelect = parameter;
             parameterLocationToSelect = parameterLocations[i];
             break;
@@ -1980,13 +1988,13 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
     List<ParameterElement> overriddenPEs = baseElement.parameters;
     for (int i = 0; i < parameters.length; i++) {
       ParameterElement parameter = parameters[i];
-      if (parameter.parameterKind.isOptional) {
+      if (parameter.isOptional) {
         formalParameters.add(parameterLocations[i]);
         parameterElts.add(parameter as ParameterElementImpl);
       }
     }
     for (ParameterElement parameterElt in overriddenPEs) {
-      if (parameterElt.parameterKind.isOptional) {
+      if (parameterElt.isOptional) {
         if (parameterElt is ParameterElementImpl) {
           overriddenParameterElts.add(parameterElt);
         }
@@ -1997,7 +2005,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
     // overridden optional parameter elements.
     //
     if (parameterElts.length > 0) {
-      if (parameterElts[0].parameterKind == ParameterKind.NAMED) {
+      if (parameterElts[0].isNamed) {
         // Named parameters, consider the names when matching the parameterElts
         // to the overriddenParameterElts
         for (int i = 0; i < parameterElts.length; i++) {
@@ -2313,7 +2321,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
       if (_inGenerator) {
         return;
       } else if (_inAsync) {
-        if (expectedReturnType.isDynamic) {
+        if (expectedReturnType.isDynamic || expectedReturnType.isVoid) {
           return;
         }
         if (expectedReturnType is InterfaceType &&
@@ -2321,6 +2329,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
           DartType futureArgument = expectedReturnType.typeArguments[0];
           if (futureArgument.isDynamic ||
               futureArgument.isDartCoreNull ||
+              futureArgument.isVoid ||
               futureArgument.isObject) {
             return;
           }
@@ -2817,6 +2826,34 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
             [name]);
       }
     }
+  }
+
+  void _checkForConflictingGenerics(NamedCompilationUnitMember node) {
+    var visitedClasses = <ClassElement>[];
+    var interfaces = <ClassElement, InterfaceType>{};
+    void visit(InterfaceType type) {
+      if (type == null) return;
+      var element = type.element;
+      if (visitedClasses.contains(element)) return;
+      visitedClasses.add(element);
+      if (element.typeParameters.isNotEmpty) {
+        var oldType = interfaces[element];
+        if (oldType == null) {
+          interfaces[element] = type;
+        } else if (oldType != type) {
+          _errorReporter.reportErrorForNode(
+              CompileTimeErrorCode.CONFLICTING_GENERIC_INTERFACES,
+              node,
+              [_enclosingClass.name, oldType, type]);
+        }
+      }
+      visit(type.superclass);
+      type.mixins.forEach(visit);
+      type.interfaces.forEach(visit);
+      visitedClasses.removeLast();
+    }
+
+    visit(_enclosingClass.type);
   }
 
   /**
@@ -4414,7 +4451,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
         ? getStaticType(lhs)
         : leftVariableElement.type;
 
-    if (_checkForUseOfVoidResult(rhs)) {
+    if (!leftType.isVoid && _checkForUseOfVoidResult(rhs)) {
       return;
     }
 
@@ -4765,7 +4802,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
 
   void _checkForMissingJSLibAnnotation(Annotation node) {
     if (resolutionMap.elementAnnotationForAnnotation(node)?.isJS ?? false) {
-      if (_currentLibrary.isJS != true) {
+      if (_currentLibrary.hasJS != true) {
         _errorReporter.reportErrorForNode(
             HintCode.MISSING_JS_LIB_ANNOTATION, node);
       }
@@ -5310,7 +5347,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
 
     NodeList<FormalParameter> formalParameters = parameterList.parameters;
     for (FormalParameter formalParameter in formalParameters) {
-      if (formalParameter.kind.isOptional) {
+      if (formalParameter.isOptional) {
         _errorReporter.reportErrorForNode(
             CompileTimeErrorCode.OPTIONAL_PARAMETER_IN_OPERATOR,
             formalParameter);
@@ -5339,7 +5376,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
    */
   void _checkForPrivateOptionalParameter(FormalParameter parameter) {
     // should be named parameter
-    if (parameter.kind != ParameterKind.NAMED) {
+    if (!parameter.isNamed) {
       return;
     }
     // name should start with '_'
@@ -5953,6 +5990,31 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
         [enclosingElement.name]);
   }
 
+  /**
+   * Check for situations where the result of a method or function is used, when
+   * it returns 'void'. Or, in rare cases, when other types of expressions are
+   * void, such as identifiers.
+   *
+   * See [StaticWarningCode.USE_OF_VOID_RESULT].
+   */
+  bool _checkForUseOfVoidResult(Expression expression) {
+    if (expression == null ||
+        !identical(expression.staticType, VoidTypeImpl.instance)) {
+      return false;
+    }
+
+    if (expression is MethodInvocation) {
+      SimpleIdentifier methodName = expression.methodName;
+      _errorReporter.reportErrorForNode(
+          StaticWarningCode.USE_OF_VOID_RESULT, methodName, []);
+    } else {
+      _errorReporter.reportErrorForNode(
+          StaticWarningCode.USE_OF_VOID_RESULT, expression, []);
+    }
+
+    return true;
+  }
+
   void _checkForValidField(FieldFormalParameter parameter) {
     AstNode parent2 = parameter.parent?.parent;
     if (parent2 is! ConstructorDeclaration &&
@@ -6088,8 +6150,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
     }
 
     NodeList<FormalParameter> parameters = parameterList.parameters;
-    if (parameters.length != 1 ||
-        parameters[0].kind != ParameterKind.REQUIRED) {
+    if (parameters.length != 1 || !parameters[0].isRequired) {
       _errorReporter.reportErrorForNode(
           CompileTimeErrorCode.WRONG_NUMBER_OF_PARAMETERS_FOR_SETTER,
           setterName);
@@ -6151,11 +6212,12 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
    * See [StaticWarningCode.FUNCTION_WITHOUT_CALL].
    */
   void _checkImplementsFunctionWithoutCall(AstNode className) {
-    ClassElement classElement = _enclosingClass;
-    if (classElement == null) {
+    if (_options.strongMode) {
+      // `implements Function` is ignored in strong mode/Dart 2.
       return;
     }
-    if (classElement.isAbstract) {
+    ClassElement classElement = _enclosingClass;
+    if (classElement == null || classElement.isAbstract) {
       return;
     }
     if (!_typeSystem.isSubtypeOf(
@@ -6208,6 +6270,7 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
       NamedCompilationUnitMember node, WithClause withClause) {
     if (withClause == null) return;
     if (!_options.enableSuperMixins) return;
+    if (!_options.strongMode) return;
     ClassElement classElement = node.element;
     var type = classElement.type;
     var supertype = classElement.supertype;
@@ -6215,13 +6278,33 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
     ClassElementImpl.collectAllSupertypes(
         supertypesForMixinInference, supertype, type);
     for (var typeName in withClause.mixinTypes) {
-      if (typeName.typeArguments != null) continue;
       var mixinElement = typeName.name.staticElement;
       if (mixinElement is ClassElement) {
-        var mixinSupertypeConstraint = mixinElement.supertype;
-        if (mixinSupertypeConstraint.element.typeParameters.isNotEmpty) {
-          _findInterfaceTypeForMixin(
-              typeName, mixinSupertypeConstraint, supertypesForMixinInference);
+        if (typeName.typeArguments == null) {
+          var mixinSupertypeConstraints =
+              _typeSystem.gatherMixinSupertypeConstraints(mixinElement);
+          if (mixinSupertypeConstraints.isNotEmpty) {
+            var matchingInterfaceTypes = _findInterfaceTypesForConstraints(
+                typeName,
+                mixinSupertypeConstraints,
+                supertypesForMixinInference);
+            if (matchingInterfaceTypes != null) {
+              // Try to pattern match matchingInterfaceType against
+              // mixinSupertypeConstraint to find the correct set of type
+              // parameters to apply to the mixin.
+              var matchedType = _typeSystem.matchSupertypeConstraints(
+                  mixinElement,
+                  mixinSupertypeConstraints,
+                  matchingInterfaceTypes);
+              if (matchedType == null) {
+                _errorReporter.reportErrorForToken(
+                    CompileTimeErrorCode
+                        .MIXIN_INFERENCE_NO_POSSIBLE_SUBSTITUTION,
+                    typeName.name.beginToken,
+                    [typeName]);
+              }
+            }
+          }
         }
         ClassElementImpl.collectAllSupertypes(
             supertypesForMixinInference, mixinElement.type, type);
@@ -6294,31 +6377,6 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
     }
   }
 
-  /**
-   * Check for situations where the result of a method or function is used, when
-   * it returns 'void'. Or, in rare cases, when other types of expressions are
-   * void, such as identifiers.
-   *
-   * See [StaticWarningCode.USE_OF_VOID_RESULT].
-   */
-  bool _checkForUseOfVoidResult(Expression expression) {
-    if (expression == null ||
-        !identical(expression.staticType, VoidTypeImpl.instance)) {
-      return false;
-    }
-
-    if (expression is MethodInvocation) {
-      SimpleIdentifier methodName = expression.methodName;
-      _errorReporter.reportErrorForNode(
-          StaticWarningCode.USE_OF_VOID_RESULT, methodName, []);
-    } else {
-      _errorReporter.reportErrorForNode(
-          StaticWarningCode.USE_OF_VOID_RESULT, expression, []);
-    }
-
-    return true;
-  }
-
   DartType _computeReturnTypeForMethod(Expression returnExpression) {
     // This method should never be called for generators, since generators are
     // never allowed to contain return statements with expressions.
@@ -6341,16 +6399,11 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
   bool _expressionIsAssignableAtType(Expression expression,
       DartType actualStaticType, DartType expectedStaticType,
       {isDeclarationCast: false}) {
-    bool concrete = _options.strongMode && checker.hasStrictArrow(expression);
-    if (concrete && actualStaticType is FunctionType) {
-      actualStaticType =
-          _typeSystem.functionTypeToConcreteType(actualStaticType);
-    }
     return _typeSystem.isAssignableTo(actualStaticType, expectedStaticType,
         isDeclarationCast: isDeclarationCast);
   }
 
-  void _findInterfaceTypeForMixin(TypeName mixin,
+  InterfaceType _findInterfaceTypeForMixin(TypeName mixin,
       InterfaceType supertypeConstraint, List<InterfaceType> interfaceTypes) {
     var element = supertypeConstraint.element;
     InterfaceType foundInterfaceType;
@@ -6374,6 +6427,25 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
           mixin.name.beginToken,
           [mixin, supertypeConstraint]);
     }
+    return foundInterfaceType;
+  }
+
+  List<InterfaceType> _findInterfaceTypesForConstraints(
+      TypeName mixin,
+      List<InterfaceType> supertypeConstraints,
+      List<InterfaceType> interfaceTypes) {
+    var result = <InterfaceType>[];
+    for (var constraint in supertypeConstraints) {
+      var interfaceType =
+          _findInterfaceTypeForMixin(mixin, constraint, interfaceTypes);
+      if (interfaceType == null) {
+        // No matching interface type found, so inference fails.  The error has
+        // already been reported.
+        return null;
+      }
+      result.add(interfaceType);
+    }
+    return result;
   }
 
   MethodElement _findOverriddenMemberThatMustCallSuper(MethodDeclaration node) {
@@ -6802,10 +6874,6 @@ class ErrorVerifier extends RecursiveAstVisitor<Object> {
           FunctionType requiredMemberFT =
               inheritanceManager.substituteTypeArgumentsInMemberFromInheritance(
                   requiredMemberType, memberName, enclosingType);
-          foundConcreteFT =
-              typeSystem.functionTypeToConcreteType(foundConcreteFT);
-          requiredMemberFT =
-              typeSystem.functionTypeToConcreteType(requiredMemberFT);
 
           // Strong mode does override checking for types in CodeChecker, so
           // we can skip it here. Doing it here leads to unnecessary duplicate
@@ -7078,7 +7146,7 @@ class RequiredConstantsComputer extends RecursiveAstVisitor {
       DartType type, ArgumentList argumentList, AstNode node) {
     if (type is FunctionType) {
       for (ParameterElement parameter in type.parameters) {
-        if (parameter.parameterKind == ParameterKind.NAMED) {
+        if (parameter.isNamed) {
           ElementAnnotationImpl annotation = _getRequiredAnnotation(parameter);
           if (annotation != null) {
             String parameterName = parameter.name;
@@ -7210,19 +7278,10 @@ class _UninstantiatedBoundChecker extends RecursiveAstVisitor {
       return;
     }
 
-    var element = node.type.element;
-    if (element is TypeParameterizedElement &&
-        element.typeParameters.any((p) => p.bound != null)) {
+    final type = node.type;
+    if (type is TypeImpl && type.hasTypeParameterReferenceInBound) {
       _errorReporter.reportErrorForNode(
-          StrongModeCode.NOT_INSTANTIATED_BOUND, node, [node.type]);
-    }
-
-    var enclosingElement = element?.enclosingElement;
-    if (element is GenericFunctionTypeElement &&
-        enclosingElement is GenericTypeAliasElement &&
-        enclosingElement.typeParameters.any((p) => p.bound != null)) {
-      _errorReporter.reportErrorForNode(
-          StrongModeCode.NOT_INSTANTIATED_BOUND, node, [node.type]);
+          StrongModeCode.NOT_INSTANTIATED_BOUND, node, [type]);
     }
   }
 }

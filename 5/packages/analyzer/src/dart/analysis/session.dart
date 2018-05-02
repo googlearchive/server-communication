@@ -32,6 +32,11 @@ class AnalysisSessionImpl implements AnalysisSession {
   TypeSystem _typeSystem;
 
   /**
+   * The cache of libraries for URIs.
+   */
+  final Map<String, LibraryElement> _uriToLibraryCache = {};
+
+  /**
    * Initialize a newly created analysis session.
    */
   AnalysisSessionImpl(this._driver);
@@ -70,15 +75,25 @@ class AnalysisSessionImpl implements AnalysisSession {
   }
 
   @override
-  Future<LibraryElement> getLibraryByUri(String uri) {
+  Future<LibraryElement> getLibraryByUri(String uri) async {
     _checkConsistency();
-    return _driver.getLibraryByUri(uri);
+    var libraryElement = _uriToLibraryCache[uri];
+    if (libraryElement == null) {
+      libraryElement = await _driver.getLibraryByUri(uri);
+      _uriToLibraryCache[uri] = libraryElement;
+    }
+    return libraryElement;
   }
 
   @override
-  Future<ParseResult> getParsedAst(String path) {
+  Future<ParseResult> getParsedAst(String path) async {
+    return getParsedAstSync(path);
+  }
+
+  @override
+  ParseResult getParsedAstSync(String path) {
     _checkConsistency();
-    return _driver.parseFile(path);
+    return _driver.parseFileSync(path);
   }
 
   @override

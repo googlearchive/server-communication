@@ -5,7 +5,7 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:analyzer/context/declared_variables.dart';
+import 'package:analyzer/dart/analysis/declared_variables.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/dart/element/element.dart';
@@ -34,6 +34,8 @@ import 'package:analyzer/src/generated/resolver.dart';
 import 'package:analyzer/src/generated/source.dart';
 import 'package:analyzer/src/generated/utilities_dart.dart';
 import 'package:analyzer/src/kernel/resynthesize.dart';
+import 'package:analyzer/src/lint/linter.dart';
+import 'package:analyzer/src/lint/linter_visitor.dart';
 import 'package:analyzer/src/services/lint.dart';
 import 'package:analyzer/src/task/dart.dart';
 import 'package:analyzer/src/task/strong/checker.dart';
@@ -353,22 +355,34 @@ class LibraryAnalyzer {
 
     ErrorReporter errorReporter = _getErrorReporter(file);
 
-    List<AstVisitor> visitors = <AstVisitor>[];
+    var nodeRegistry = new NodeLintRegistry(_analysisOptions.enableTiming);
+    var visitors = <AstVisitor>[];
     for (Linter linter in _analysisOptions.lintRules) {
-      AstVisitor visitor = linter.getVisitor();
-      if (visitor != null) {
-        linter.reporter = errorReporter;
-        if (_analysisOptions.enableTiming) {
-          visitor = new TimedAstVisitor(visitor, lintRegistry.getTimer(linter));
+      linter.reporter = errorReporter;
+      if (linter is NodeLintRule) {
+        (linter as NodeLintRule).registerNodeProcessors(nodeRegistry);
+      } else {
+        AstVisitor visitor = linter.getVisitor();
+        if (visitor != null) {
+          if (_analysisOptions.enableTiming) {
+            var timer = lintRegistry.getTimer(linter);
+            visitor = new TimedAstVisitor(visitor, timer);
+          }
+          visitors.add(visitor);
         }
-        visitors.add(visitor);
       }
     }
 
-    AstVisitor visitor = new ExceptionHandlingDelegatingAstVisitor(
-        visitors, ExceptionHandlingDelegatingAstVisitor.logException);
+    // Run lints that handle specific node types.
+    unit.accept(new LinterVisitor(
+        nodeRegistry, ExceptionHandlingDelegatingAstVisitor.logException));
 
-    unit.accept(visitor);
+    // Run visitor based lints.
+    if (visitors.isNotEmpty) {
+      AstVisitor visitor = new ExceptionHandlingDelegatingAstVisitor(
+          visitors, ExceptionHandlingDelegatingAstVisitor.logException);
+      unit.accept(visitor);
+    }
   }
 
   void _computePendingMissingRequiredParameters(
@@ -534,7 +548,6 @@ class LibraryAnalyzer {
 
     ErrorReporter libraryErrorReporter = _getErrorReporter(_library);
     LibraryIdentifier libraryNameNode = null;
-    bool hasPartDirective = false;
     var seenPartSources = new Set<Source>();
     var directivesToResolve = <Directive>[];
     int partIndex = 0;
@@ -571,7 +584,6 @@ class LibraryAnalyzer {
           }
         }
       } else if (directive is PartDirective) {
-        hasPartDirective = true;
         StringLiteral partUri = directive.uri;
 
         FileState partFile = _library.partedFiles[partIndex];
@@ -632,12 +644,8 @@ class LibraryAnalyzer {
       }
     }
 
-    if (hasPartDirective &&
-        libraryNameNode == null &&
-        !_context.analysisOptions.enableUriInPartOf) {
-      libraryErrorReporter.reportErrorForOffset(
-          ResolverErrorCode.MISSING_LIBRARY_DIRECTIVE_WITH_PART, 0, 0);
-    }
+    // TODO(brianwilkerson) Report the error
+    // ResolverErrorCode.MISSING_LIBRARY_DIRECTIVE_WITH_PART
 
     //
     // Resolve the relevant directives to the library element.
@@ -673,10 +681,15 @@ class LibraryAnalyzer {
     new DeclarationResolver(enableKernelDriver: _enableKernelDriver)
         .resolve(unit, unitElement);
 
+    if (_libraryElement.context.analysisOptions.previewDart2) {
+      unit.accept(new AstRewriteVisitor(_libraryElement, source, _typeProvider,
+          AnalysisErrorListener.NULL_LISTENER));
+    }
+
     // TODO(scheglov) remove EnumMemberBuilder class
 
     new TypeParameterBoundsResolver(
-            _typeProvider, _libraryElement, source, errorListener)
+            _context.typeSystem, _libraryElement, source, errorListener)
         .resolveTypeBounds(unit);
 
     unit.accept(new TypeResolverVisitor(
@@ -721,6 +734,11 @@ class LibraryAnalyzer {
     CompilationUnitElement unitElement = unit.element;
     new DeclarationResolver(enableKernelDriver: true, applyKernelTypes: true)
         .resolve(unit, unitElement);
+
+    if (_libraryElement.context.analysisOptions.previewDart2) {
+      unit.accept(new AstRewriteVisitor(_libraryElement, file.source,
+          _typeProvider, AnalysisErrorListener.NULL_LISTENER));
+    }
 
     for (var declaration in unit.declarations) {
       if (declaration is ClassDeclaration) {

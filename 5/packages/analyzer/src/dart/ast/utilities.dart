@@ -17,7 +17,6 @@ import 'package:analyzer/src/dart/ast/token.dart';
 import 'package:analyzer/src/generated/engine.dart' show AnalysisEngine;
 import 'package:analyzer/src/generated/java_core.dart';
 import 'package:analyzer/src/generated/utilities_collection.dart' show TokenMap;
-import 'package:analyzer/src/generated/utilities_dart.dart';
 import 'package:meta/meta.dart';
 
 /**
@@ -349,6 +348,7 @@ class AstCloner implements AstVisitor<AstNode> {
   @override
   DefaultFormalParameter visitDefaultFormalParameter(
           DefaultFormalParameter node) =>
+      // ignore: deprecated_member_use
       astFactory.defaultFormalParameter(cloneNode(node.parameter), node.kind,
           cloneToken(node.separator), cloneNode(node.defaultValue));
 
@@ -1393,6 +1393,7 @@ class AstComparator implements AstVisitor<bool> {
   bool visitDefaultFormalParameter(DefaultFormalParameter node) {
     DefaultFormalParameter other = _other as DefaultFormalParameter;
     return isEqualNodes(node.parameter, other.parameter) &&
+        // ignore: deprecated_member_use
         node.kind == other.kind &&
         isEqualTokens(node.separator, other.separator) &&
         isEqualNodes(node.defaultValue, other.defaultValue);
@@ -1666,6 +1667,7 @@ class AstComparator implements AstVisitor<bool> {
         _isEqualNodeLists(node.metadata, other.metadata) &&
         isEqualTokens(node.keyword, other.keyword) &&
         isEqualNodes(node.uri, other.uri) &&
+        _isEqualNodeLists(node.configurations, other.configurations) &&
         isEqualTokens(node.deferredKeyword, other.deferredKeyword) &&
         isEqualTokens(node.asKeyword, other.asKeyword) &&
         isEqualNodes(node.prefix, other.prefix) &&
@@ -1790,7 +1792,7 @@ class AstComparator implements AstVisitor<bool> {
         isEqualTokens(node.modifierKeyword, other.modifierKeyword) &&
         isEqualNodes(node.returnType, other.returnType) &&
         isEqualTokens(node.propertyKeyword, other.propertyKeyword) &&
-        isEqualTokens(node.propertyKeyword, other.propertyKeyword) &&
+        isEqualTokens(node.operatorKeyword, other.operatorKeyword) &&
         isEqualNodes(node.name, other.name) &&
         isEqualNodes(node.parameters, other.parameters) &&
         isEqualNodes(node.body, other.body);
@@ -2766,8 +2768,8 @@ class ExceptionHandlingDelegatingAstVisitor<T> extends DelegatingAstVisitor<T> {
    * A function that can be used with instances of this class to log and then
    * ignore any exceptions that are thrown by any of the delegates.
    */
-  static void logException(AstNode node, AstVisitor visitor, dynamic exception,
-      StackTrace stackTrace) {
+  static void logException(
+      AstNode node, Object visitor, dynamic exception, StackTrace stackTrace) {
     StringBuffer buffer = new StringBuffer();
     buffer.write('Exception while using a ${visitor.runtimeType} to visit a ');
     AstNode currentNode = node;
@@ -5719,6 +5721,7 @@ class ResolutionCopier implements AstVisitor<bool> {
     DefaultFormalParameter toNode = this._toNode as DefaultFormalParameter;
     return _and(
         _isEqualNodes(node.parameter, toNode.parameter),
+        // ignore: deprecated_member_use
         node.kind == toNode.kind,
         _isEqualTokens(node.separator, toNode.separator),
         _isEqualNodes(node.defaultValue, toNode.defaultValue));
@@ -7443,7 +7446,7 @@ class ToSourceVisitor implements AstVisitor<Object> {
         _writer.print(", ");
       }
       if (groupEnd == null && parameter is DefaultFormalParameter) {
-        if (parameter.kind == ParameterKind.NAMED) {
+        if (parameter.isNamed) {
           groupEnd = "}";
           _writer.print('{');
         } else {
@@ -8413,11 +8416,11 @@ class ToSourceVisitor2 implements AstVisitor<Object> {
 
   @override
   Object visitBinaryExpression(BinaryExpression node) {
-    safelyVisitNode(node.leftOperand);
+    _writeOperand(node, node.leftOperand);
     sink.write(' ');
     sink.write(node.operator.lexeme);
     sink.write(' ');
-    safelyVisitNode(node.rightOperand);
+    _writeOperand(node, node.rightOperand);
     return null;
   }
 
@@ -8758,7 +8761,7 @@ class ToSourceVisitor2 implements AstVisitor<Object> {
         sink.write(", ");
       }
       if (groupEnd == null && parameter is DefaultFormalParameter) {
-        if (parameter.kind == ParameterKind.NAMED) {
+        if (parameter.isNamed) {
           groupEnd = "}";
           sink.write('{');
         } else {
@@ -9123,7 +9126,7 @@ class ToSourceVisitor2 implements AstVisitor<Object> {
 
   @override
   Object visitPostfixExpression(PostfixExpression node) {
-    safelyVisitNode(node.operand);
+    _writeOperand(node, node.operand);
     sink.write(node.operator.lexeme);
     return null;
   }
@@ -9139,7 +9142,7 @@ class ToSourceVisitor2 implements AstVisitor<Object> {
   @override
   Object visitPrefixExpression(PrefixExpression node) {
     sink.write(node.operator.lexeme);
-    safelyVisitNode(node.operand);
+    _writeOperand(node, node.operand);
     return null;
   }
 
@@ -9394,5 +9397,18 @@ class ToSourceVisitor2 implements AstVisitor<Object> {
     safelyVisitNode(node.expression);
     sink.write(";");
     return null;
+  }
+
+  void _writeOperand(Expression node, Expression operand) {
+    if (operand != null) {
+      bool needsParenthesis = operand.precedence < node.precedence;
+      if (needsParenthesis) {
+        sink.write('(');
+      }
+      operand.accept(this);
+      if (needsParenthesis) {
+        sink.write(')');
+      }
+    }
   }
 }

@@ -15,7 +15,7 @@ import 'package:kernel/ast.dart'
 
 import 'package:kernel/type_algebra.dart' show substitute;
 
-import '../fasta_codes.dart' show templateCyclicTypedef;
+import '../fasta_codes.dart' show noLength, templateCyclicTypedef;
 
 import 'kernel_builder.dart'
     show
@@ -58,8 +58,8 @@ class KernelFunctionTypeAliasBuilder
   DartType buildThisType(LibraryBuilder library) {
     if (thisType != null) {
       if (const InvalidType() == thisType) {
-        library.addCompileTimeError(
-            templateCyclicTypedef.withArguments(name), charOffset, fileUri);
+        library.addCompileTimeError(templateCyclicTypedef.withArguments(name),
+            charOffset, noLength, fileUri);
         return const DynamicType();
       }
       return thisType;
@@ -96,6 +96,9 @@ class KernelFunctionTypeAliasBuilder
     }
     return substitute(result, substitution);
   }
+
+  @override
+  int get typeVariablesCount => typeVariables?.length ?? 0;
 
   @override
   DartType buildType(

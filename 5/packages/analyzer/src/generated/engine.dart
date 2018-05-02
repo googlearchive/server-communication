@@ -2,8 +2,6 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-library analyzer.src.generated.engine;
-
 import 'dart:async';
 import 'dart:collection';
 import 'dart:typed_data';
@@ -14,7 +12,6 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/error/error.dart';
 import 'package:analyzer/exception/exception.dart';
 import 'package:analyzer/instrumentation/instrumentation.dart';
-import 'package:analyzer/plugin/resolver_provider.dart';
 import 'package:analyzer/source/error_processor.dart';
 import 'package:analyzer/src/cancelable_future.dart';
 import 'package:analyzer/src/context/builder.dart' show EmbedderYamlLocator;
@@ -26,15 +23,16 @@ import 'package:analyzer/src/generated/resolver.dart';
 import 'package:analyzer/src/generated/source.dart';
 import 'package:analyzer/src/generated/utilities_general.dart';
 import 'package:analyzer/src/plugin/engine_plugin.dart';
+import 'package:analyzer/src/plugin/resolver_provider.dart';
 import 'package:analyzer/src/services/lint.dart';
+import 'package:analyzer/src/task/api/dart.dart';
+import 'package:analyzer/src/task/api/model.dart';
 import 'package:analyzer/src/task/dart.dart';
 import 'package:analyzer/src/task/general.dart';
 import 'package:analyzer/src/task/html.dart';
 import 'package:analyzer/src/task/manager.dart';
 import 'package:analyzer/src/task/options.dart';
 import 'package:analyzer/src/task/yaml.dart';
-import 'package:analyzer/task/dart.dart';
-import 'package:analyzer/task/model.dart';
 import 'package:front_end/src/base/api_signature.dart';
 import 'package:front_end/src/base/timestamped_data.dart';
 import 'package:front_end/src/fasta/scanner/token.dart';
@@ -1223,12 +1221,6 @@ abstract class AnalysisOptions {
   bool get enableLazyAssignmentOperators;
 
   /**
-   * Return `true` to strictly follow the specification when generating
-   * warnings on "call" methods (fixes dartbug.com/21938).
-   */
-  bool get enableStrictCallChecks;
-
-  /**
    * Return `true` if mixins are allowed to inherit from types other than
    * Object, and are allowed to reference `super`.
    */
@@ -1242,6 +1234,7 @@ abstract class AnalysisOptions {
   /**
    * Return `true` to enable the use of URIs in part-of directives.
    */
+  @deprecated
   bool get enableUriInPartOf;
 
   /**
@@ -1408,9 +1401,6 @@ class AnalysisOptionsImpl implements AnalysisOptions {
   bool enableLazyAssignmentOperators = false;
 
   @override
-  bool enableStrictCallChecks = false;
-
-  @override
   bool enableSuperMixins = false;
 
   @override
@@ -1426,9 +1416,6 @@ class AnalysisOptionsImpl implements AnalysisOptions {
    * A list of exclude patterns used to exclude some sources from analysis.
    */
   List<String> _excludePatterns;
-
-  @override
-  bool enableUriInPartOf = true;
 
   @override
   bool generateImplicitErrors = true;
@@ -1453,8 +1440,7 @@ class AnalysisOptionsImpl implements AnalysisOptions {
   @override
   bool preserveComments = true;
 
-  @override
-  bool strongMode = false;
+  bool _strongMode = true;
 
   /**
    * A flag indicating whether strong-mode inference hints should be
@@ -1471,7 +1457,7 @@ class AnalysisOptionsImpl implements AnalysisOptions {
   bool useFastaParser = false;
 
   @override
-  bool previewDart2 = false;
+  bool previewDart2 = true;
 
   @override
   bool disableCacheFlushing = false;
@@ -1516,7 +1502,6 @@ class AnalysisOptionsImpl implements AnalysisOptions {
     analyzeFunctionBodiesPredicate = options.analyzeFunctionBodiesPredicate;
     dart2jsHint = options.dart2jsHint;
     enabledPluginNames = options.enabledPluginNames;
-    enableStrictCallChecks = options.enableStrictCallChecks;
     enableLazyAssignmentOperators = options.enableLazyAssignmentOperators;
     enableSuperMixins = options.enableSuperMixins;
     enableTiming = options.enableTiming;
@@ -1616,6 +1601,13 @@ class AnalysisOptionsImpl implements AnalysisOptions {
   @deprecated
   void set enableInitializingFormalAccess(bool enable) {}
 
+  @deprecated
+  @override
+  bool get enableUriInPartOf => true;
+
+  @deprecated
+  void set enableUriInPartOf(bool enable) {}
+
   @override
   List<ErrorProcessor> get errorProcessors =>
       _errorProcessors ??= const <ErrorProcessor>[];
@@ -1658,9 +1650,7 @@ class AnalysisOptionsImpl implements AnalysisOptions {
       // Append boolean flags.
       buffer.addBool(declarationCasts);
       buffer.addBool(enableLazyAssignmentOperators);
-      buffer.addBool(enableStrictCallChecks);
       buffer.addBool(enableSuperMixins);
-      buffer.addBool(enableUriInPartOf);
       buffer.addBool(implicitCasts);
       buffer.addBool(implicitDynamic);
       buffer.addBool(strongMode);
@@ -1693,16 +1683,21 @@ class AnalysisOptionsImpl implements AnalysisOptions {
   }
 
   @override
+  bool get strongMode => _strongMode || previewDart2;
+
+  void set strongMode(bool value) {
+    _strongMode = value;
+  }
+
+  @override
   void resetToDefaults() {
     declarationCasts = true;
     dart2jsHint = false;
     disableCacheFlushing = false;
     enabledPluginNames = const <String>[];
     enableLazyAssignmentOperators = false;
-    enableStrictCallChecks = false;
     enableSuperMixins = false;
     enableTiming = false;
-    enableUriInPartOf = true;
     _errorProcessors = null;
     _excludePatterns = null;
     generateImplicitErrors = true;
@@ -1724,7 +1719,6 @@ class AnalysisOptionsImpl implements AnalysisOptions {
   @override
   void setCrossContextOptionsFrom(AnalysisOptions options) {
     enableLazyAssignmentOperators = options.enableLazyAssignmentOperators;
-    enableStrictCallChecks = options.enableStrictCallChecks;
     enableSuperMixins = options.enableSuperMixins;
     strongMode = options.strongMode;
     if (options is AnalysisOptionsImpl) {

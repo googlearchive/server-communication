@@ -64,7 +64,7 @@
 ///
 library kernel.ast;
 
-import 'dart:convert' show UTF8;
+import 'dart:convert' show utf8;
 
 import 'visitor.dart';
 export 'visitor.dart';
@@ -153,7 +153,7 @@ abstract class TreeNode extends Node {
     parent = null;
   }
 
-  Program get enclosingProgram => parent?.enclosingProgram;
+  Component get enclosingComponent => parent?.enclosingComponent;
 
   /// Returns the best known source location of the given AST node, or `null` if
   /// the node is orphaned.
@@ -188,7 +188,7 @@ abstract class NamedNode extends TreeNode {
 }
 
 abstract class FileUriNode extends TreeNode {
-  /// The uri of the source file this node was loaded from.
+  /// The URI of the source file this node was loaded from.
   Uri get fileUri;
 }
 
@@ -275,7 +275,7 @@ class Library extends NamedNode implements Comparable<Library>, FileUriNode {
   /// If the URI has the `app` scheme, it is relative to the application root.
   Uri importUri;
 
-  /// The uri of the source file this library was loaded from.
+  /// The URI of the source file this library was loaded from.
   Uri fileUri;
 
   /// If true, the library is part of another build unit and its contents
@@ -409,6 +409,7 @@ class Library extends NamedNode implements Comparable<Library>, FileUriNode {
   accept(TreeVisitor v) => v.visitLibrary(this);
 
   visitChildren(Visitor v) {
+    visitList(annotations, v);
     visitList(dependencies, v);
     visitList(parts, v);
     visitList(typedefs, v);
@@ -418,6 +419,7 @@ class Library extends NamedNode implements Comparable<Library>, FileUriNode {
   }
 
   transformChildren(Transformer v) {
+    transformList(annotations, v, this);
     transformList(dependencies, v, this);
     transformList(parts, v, this);
     transformList(typedefs, v, this);
@@ -436,7 +438,7 @@ class Library extends NamedNode implements Comparable<Library>, FileUriNode {
   String toString() => debugLibraryName(this);
 
   Location _getLocationInEnclosingFile(int offset) {
-    return _getLocationInProgram(enclosingProgram, fileUri, offset);
+    return _getLocationInComponent(enclosingComponent, fileUri, offset);
   }
 }
 
@@ -523,14 +525,11 @@ class LibraryDependency extends TreeNode {
 ///     part <url>;
 ///
 /// optionally with metadata.
-class LibraryPart extends TreeNode implements FileUriNode {
+class LibraryPart extends TreeNode {
   final List<Expression> annotations;
-  final Uri fileUri;
+  final String partUri;
 
-  LibraryPart(List<Expression> annotations, Uri fileUri)
-      : this.byReference(annotations, fileUri);
-
-  LibraryPart.byReference(this.annotations, this.fileUri) {
+  LibraryPart(this.annotations, this.partUri) {
     setParents(annotations, this);
   }
 
@@ -575,7 +574,7 @@ class Combinator extends TreeNode {
 
 /// Declaration of a type alias.
 class Typedef extends NamedNode implements FileUriNode {
-  /// The uri of the source file that contains the declaration of this typedef.
+  /// The URI of the source file that contains the declaration of this typedef.
   Uri fileUri;
   List<Expression> annotations = const <Expression>[];
   String name;
@@ -717,7 +716,7 @@ class Class extends NamedNode implements FileUriNode {
   /// All X&Y classes are marked as synthetic.
   bool isSyntheticMixinImplementation;
 
-  /// The uri of the source file this class was loaded from.
+  /// The URI of the source file this class was loaded from.
   Uri fileUri;
 
   final List<TypeParameter> typeParameters;
@@ -929,7 +928,7 @@ class Class extends NamedNode implements FileUriNode {
   }
 
   Location _getLocationInEnclosingFile(int offset) {
-    return _getLocationInProgram(enclosingProgram, fileUri, offset);
+    return _getLocationInComponent(enclosingComponent, fileUri, offset);
   }
 }
 
@@ -938,7 +937,7 @@ class Class extends NamedNode implements FileUriNode {
 // ------------------------------------------------------------------------
 
 @coq
-abstract class Member extends NamedNode {
+abstract class Member extends NamedNode implements FileUriNode {
   /// End offset in the source file it comes from. Valid values are from 0 and
   /// up, or -1 ([TreeNode.noOffset]) if the file end offset is not available
   /// (this is the default if none is specifically set).
@@ -952,6 +951,9 @@ abstract class Member extends NamedNode {
   List<Expression> annotations = const <Expression>[];
 
   Name name;
+
+  /// The URI of the source file this member was loaded from.
+  Uri fileUri;
 
   /// Flags summarizing the kinds of AST nodes contained in this member, for
   /// speeding up transformations that only affect certain types of nodes.
@@ -970,7 +972,7 @@ abstract class Member extends NamedNode {
   // TODO(asgerf): It might be worthwhile to put this on classes as well.
   int transformerFlags = 0;
 
-  Member(this.name, Reference reference) : super(reference);
+  Member(this.name, this.fileUri, Reference reference) : super(reference);
 
   Class get enclosingClass => parent is Class ? parent : null;
   Library get enclosingLibrary => parent is Class ? parent.parent : parent;
@@ -1034,14 +1036,11 @@ abstract class Member extends NamedNode {
 ///
 /// The implied getter and setter for the field are not represented explicitly,
 /// but can be made explicit if needed.
-class Field extends Member implements FileUriNode {
+class Field extends Member {
   DartType type; // Not null. Defaults to DynamicType.
   int flags = 0;
   int flags2 = 0;
   Expression initializer; // May be null.
-
-  /// The uri of the source file this field was loaded from.
-  Uri fileUri;
 
   Field(Name name,
       {this.type: const DynamicType(),
@@ -1053,9 +1052,9 @@ class Field extends Member implements FileUriNode {
       bool hasImplicitGetter,
       bool hasImplicitSetter,
       int transformerFlags: 0,
-      this.fileUri,
+      Uri fileUri,
       Reference reference})
-      : super(name, reference) {
+      : super(name, fileUri, reference) {
     assert(type != null);
     initializer?.parent = this;
     this.isCovariant = isCovariant;
@@ -1172,7 +1171,7 @@ class Field extends Member implements FileUriNode {
   void set isGenericContravariant(bool value) {
     flags2 = value
         ? (flags2 | Flag2GenericContravariant)
-        : (flags & ~Flag2GenericContravariant);
+        : (flags2 & ~Flag2GenericContravariant);
   }
 
   /// True if the field is neither final nor const.
@@ -1210,7 +1209,7 @@ class Field extends Member implements FileUriNode {
   DartType get setterType => isMutable ? type : const BottomType();
 
   Location _getLocationInEnclosingFile(int offset) {
-    return _getLocationInProgram(enclosingProgram, fileUri, offset);
+    return _getLocationInComponent(enclosingComponent, fileUri, offset);
   }
 }
 
@@ -1222,13 +1221,10 @@ class Field extends Member implements FileUriNode {
 /// invocation should be matched with the type parameters declared in the class.
 ///
 /// For unnamed constructors, the name is an empty string (in a [Name]).
-class Constructor extends Member implements FileUriNode {
+class Constructor extends Member {
   int flags = 0;
   FunctionNode function;
   List<Initializer> initializers;
-
-  /// The uri of the source file this field was loaded from.
-  Uri fileUri;
 
   Constructor(this.function,
       {Name name,
@@ -1237,10 +1233,10 @@ class Constructor extends Member implements FileUriNode {
       bool isSynthetic: false,
       List<Initializer> initializers,
       int transformerFlags: 0,
-      this.fileUri,
+      Uri fileUri,
       Reference reference})
       : this.initializers = initializers ?? <Initializer>[],
-        super(name, reference) {
+        super(name, fileUri, reference) {
     function?.parent = this;
     setParents(this.initializers, this);
     this.isConst = isConst;
@@ -1301,7 +1297,7 @@ class Constructor extends Member implements FileUriNode {
   DartType get setterType => const BottomType();
 
   Location _getLocationInEnclosingFile(int offset) {
-    return _getLocationInProgram(enclosingProgram, fileUri, offset);
+    return _getLocationInComponent(enclosingComponent, fileUri, offset);
   }
 }
 
@@ -1326,11 +1322,8 @@ class Constructor extends Member implements FileUriNode {
 ///
 /// Redirecting factory constructors can be unnamed.  In this case, the name is
 /// an empty string (in a [Name]).
-class RedirectingFactoryConstructor extends Member implements FileUriNode {
+class RedirectingFactoryConstructor extends Member {
   int flags = 0;
-
-  /// The uri of the source file this field was loaded from.
-  Uri fileUri;
 
   /// [RedirectingFactoryConstructor]s may redirect to constructors or factories
   /// of instantiated generic types, that is, generic types with supplied type
@@ -1367,7 +1360,7 @@ class RedirectingFactoryConstructor extends Member implements FileUriNode {
       List<VariableDeclaration> positionalParameters,
       List<VariableDeclaration> namedParameters,
       int requiredParameterCount,
-      this.fileUri,
+      Uri fileUri,
       Reference reference})
       : this.typeArguments = typeArguments ?? <DartType>[],
         this.typeParameters = typeParameters ?? <TypeParameter>[],
@@ -1376,7 +1369,7 @@ class RedirectingFactoryConstructor extends Member implements FileUriNode {
         this.namedParameters = namedParameters ?? <VariableDeclaration>[],
         this.requiredParameterCount =
             requiredParameterCount ?? positionalParameters?.length ?? 0,
-        super(name, reference) {
+        super(name, fileUri, reference) {
     setParents(this.typeParameters, this);
     setParents(this.positionalParameters, this);
     setParents(this.namedParameters, this);
@@ -1434,7 +1427,7 @@ class RedirectingFactoryConstructor extends Member implements FileUriNode {
   DartType get setterType => const BottomType();
 
   Location _getLocationInEnclosingFile(int offset) {
-    return _getLocationInProgram(enclosingProgram, fileUri, offset);
+    return _getLocationInComponent(enclosingComponent, fileUri, offset);
   }
 }
 
@@ -1454,9 +1447,10 @@ class RedirectingFactoryConstructor extends Member implements FileUriNode {
 /// For operators, this is the token for the operator, e.g. `+` or `==`,
 /// except for the unary minus operator, whose name is `unary-`.
 @coq
-class Procedure extends Member implements FileUriNode {
+class Procedure extends Member {
   ProcedureKind kind;
   int flags = 0;
+  int flags2 = 0;
   // function is null if and only if abstract, external.
   FunctionNode function;
 
@@ -1482,9 +1476,6 @@ class Procedure extends Member implements FileUriNode {
   void setTransformerFlagsWithoutLazyLoading(int newValue) {
     super.transformerFlags = newValue;
   }
-
-  /// The uri of the source file this procedure was loaded from.
-  Uri fileUri;
 
   Reference forwardingStubSuperTargetReference;
   Reference forwardingStubInterfaceTargetReference;
@@ -1524,11 +1515,11 @@ class Procedure extends Member implements FileUriNode {
       bool isForwardingStub: false,
       bool isForwardingSemiStub: false,
       int transformerFlags: 0,
-      this.fileUri,
+      Uri fileUri,
       Reference reference,
       this.forwardingStubSuperTargetReference,
       this.forwardingStubInterfaceTargetReference})
-      : super(name, reference) {
+      : super(name, fileUri, reference) {
     function?.parent = this;
     this.isAbstract = isAbstract;
     this.isStatic = isStatic;
@@ -1546,6 +1537,9 @@ class Procedure extends Member implements FileUriNode {
   static const int FlagForwardingStub = 1 << 4;
   static const int FlagGenericContravariant = 1 << 5;
   static const int FlagForwardingSemiStub = 1 << 6;
+  // TODO(29841): Remove this flag after the issue is resolved.
+  static const int FlagRedirectingFactoryConstructor = 1 << 7;
+  static const int Flag2NoSuchMethodForwarder = 1 << 0;
 
   bool get isStatic => flags & FlagStatic != 0;
   bool get isAbstract => flags & FlagAbstract != 0;
@@ -1577,10 +1571,18 @@ class Procedure extends Member implements FileUriNode {
   /// stub, it was present in the original source as an abstract method.
   bool get isForwardingSemiStub => flags & FlagForwardingSemiStub != 0;
 
+  // Indicates if this [Procedure] represents a redirecting factory constructor
+  // and doesn't have a runnable body.
+  bool get isRedirectingFactoryConstructor {
+    return flags & FlagRedirectingFactoryConstructor != 0;
+  }
+
   /// If set, this flag indicates that this function was not present in the
   /// source, and it exists solely for the purpose of type checking arguments
   /// and forwarding to [forwardingStubSuperTarget].
   bool get isSyntheticForwarder => isForwardingStub && !isForwardingSemiStub;
+
+  bool get isNoSuchMethodForwarder => flags2 & Flag2NoSuchMethodForwarder != 0;
 
   void set isStatic(bool value) {
     flags = value ? (flags | FlagStatic) : (flags & ~FlagStatic);
@@ -1613,6 +1615,19 @@ class Procedure extends Member implements FileUriNode {
     flags = value
         ? (flags | FlagForwardingSemiStub)
         : (flags & ~FlagForwardingSemiStub);
+  }
+
+  void set isRedirectingFactoryConstructor(bool value) {
+    flags = value
+        ? (flags | FlagRedirectingFactoryConstructor)
+        : (flags & ~FlagRedirectingFactoryConstructor);
+  }
+
+  void set isNoSuchMethodForwarder(bool value) {
+    assert(isAbstract);
+    flags2 = value
+        ? (flags2 | Flag2NoSuchMethodForwarder)
+        : (flags2 & ~Flag2NoSuchMethodForwarder);
   }
 
   bool get isInstanceMember => !isStatic;
@@ -1666,7 +1681,7 @@ class Procedure extends Member implements FileUriNode {
   }
 
   Location _getLocationInEnclosingFile(int offset) {
-    return _getLocationInProgram(enclosingProgram, fileUri, offset);
+    return _getLocationInComponent(enclosingComponent, fileUri, offset);
   }
 }
 
@@ -2172,7 +2187,6 @@ class PropertyGet extends Expression {
   Expression receiver;
   @coq
   Name name;
-  int flags = 0;
 
   @nocoq
   Reference interfaceTargetReference;
@@ -2183,19 +2197,6 @@ class PropertyGet extends Expression {
   PropertyGet.byReference(
       this.receiver, this.name, this.interfaceTargetReference) {
     receiver?.parent = this;
-    this.dispatchCategory = DispatchCategory.dynamicDispatch;
-  }
-
-  // Must match serialized bit positions
-  static const int ShiftDispatchCategory = 0;
-  static const int FlagDispatchCategory = 3 << ShiftDispatchCategory;
-
-  DispatchCategory get dispatchCategory => DispatchCategory
-      .values[(flags & FlagDispatchCategory) >> ShiftDispatchCategory];
-
-  void set dispatchCategory(DispatchCategory value) {
-    flags = (flags & ~FlagDispatchCategory) |
-        (value.index << ShiftDispatchCategory);
   }
 
   Member get interfaceTarget => interfaceTargetReference?.asMember;
@@ -2248,7 +2249,6 @@ class PropertySet extends Expression {
   Expression receiver;
   Name name;
   Expression value;
-  int flags = 0;
 
   Reference interfaceTargetReference;
 
@@ -2261,19 +2261,6 @@ class PropertySet extends Expression {
       this.receiver, this.name, this.value, this.interfaceTargetReference) {
     receiver?.parent = this;
     value?.parent = this;
-    this.dispatchCategory = DispatchCategory.dynamicDispatch;
-  }
-
-  // Must match serialized bit positions.
-  static const int ShiftDispatchCategory = 0;
-  static const int FlagDispatchCategory = 3 << ShiftDispatchCategory;
-
-  DispatchCategory get dispatchCategory => DispatchCategory
-      .values[(flags & FlagDispatchCategory) >> ShiftDispatchCategory];
-
-  void set dispatchCategory(DispatchCategory value) {
-    flags = (flags & ~FlagDispatchCategory) |
-        (value.index << ShiftDispatchCategory);
   }
 
   Member get interfaceTarget => interfaceTargetReference?.asMember;
@@ -2309,26 +2296,12 @@ class PropertySet extends Expression {
 class DirectPropertyGet extends Expression {
   Expression receiver;
   Reference targetReference;
-  int flags = 0;
 
   DirectPropertyGet(Expression receiver, Member target)
       : this.byReference(receiver, getMemberReference(target));
 
   DirectPropertyGet.byReference(this.receiver, this.targetReference) {
     receiver?.parent = this;
-    this.dispatchCategory = DispatchCategory.dynamicDispatch;
-  }
-
-  // Must match serialized bit positions
-  static const int ShiftDispatchCategory = 0;
-  static const int FlagDispatchCategory = 3 << ShiftDispatchCategory;
-
-  DispatchCategory get dispatchCategory => DispatchCategory
-      .values[(flags & FlagDispatchCategory) >> ShiftDispatchCategory];
-
-  void set dispatchCategory(DispatchCategory value) {
-    flags = (flags & ~FlagDispatchCategory) |
-        (value.index << ShiftDispatchCategory);
   }
 
   Member get target => targetReference?.asMember;
@@ -2368,7 +2341,6 @@ class DirectPropertySet extends Expression {
   Expression receiver;
   Reference targetReference;
   Expression value;
-  int flags = 0;
 
   DirectPropertySet(Expression receiver, Member target, Expression value)
       : this.byReference(receiver, getMemberReference(target), value);
@@ -2377,18 +2349,6 @@ class DirectPropertySet extends Expression {
       this.receiver, this.targetReference, this.value) {
     receiver?.parent = this;
     value?.parent = this;
-  }
-
-  // Must match serialized bit positions
-  static const int ShiftDispatchCategory = 0;
-  static const int FlagDispatchCategory = 3 << ShiftDispatchCategory;
-
-  DispatchCategory get dispatchCategory => DispatchCategory
-      .values[(flags & FlagDispatchCategory) >> ShiftDispatchCategory];
-
-  void set dispatchCategory(DispatchCategory value) {
-    flags = (flags & ~FlagDispatchCategory) |
-        (value.index << ShiftDispatchCategory);
   }
 
   Member get target => targetReference?.asMember;
@@ -2425,7 +2385,6 @@ class DirectMethodInvocation extends InvocationExpression {
   Expression receiver;
   Reference targetReference;
   Arguments arguments;
-  int flags = 0;
 
   DirectMethodInvocation(
       Expression receiver, Procedure target, Arguments arguments)
@@ -2435,19 +2394,6 @@ class DirectMethodInvocation extends InvocationExpression {
       this.receiver, this.targetReference, this.arguments) {
     receiver?.parent = this;
     arguments?.parent = this;
-    this.dispatchCategory = DispatchCategory.dynamicDispatch;
-  }
-
-  // Must match serialized bit positions
-  static const int ShiftDispatchCategory = 0;
-  static const int FlagDispatchCategory = 3 << ShiftDispatchCategory;
-
-  DispatchCategory get dispatchCategory => DispatchCategory
-      .values[(flags & FlagDispatchCategory) >> ShiftDispatchCategory];
-
-  void set dispatchCategory(DispatchCategory value) {
-    flags = (flags & ~FlagDispatchCategory) |
-        (value.index << ShiftDispatchCategory);
   }
 
   Procedure get target => targetReference?.asProcedure;
@@ -2502,8 +2448,6 @@ class SuperPropertyGet extends Expression {
   Name name;
 
   Reference interfaceTargetReference;
-
-  DispatchCategory get dispatchCategory => DispatchCategory.viaThis;
 
   SuperPropertyGet(Name name, [Member interfaceTarget])
       : this.byReference(name, getMemberReference(interfaceTarget));
@@ -2727,7 +2671,6 @@ class MethodInvocation extends InvocationExpression {
   Expression receiver;
   Name name;
   Arguments arguments;
-  int flags = 0;
 
   Reference interfaceTargetReference;
 
@@ -2740,19 +2683,6 @@ class MethodInvocation extends InvocationExpression {
       this.receiver, this.name, this.arguments, this.interfaceTargetReference) {
     receiver?.parent = this;
     arguments?.parent = this;
-    this.dispatchCategory = DispatchCategory.dynamicDispatch;
-  }
-
-  // Must match serialized bit positions
-  static const int ShiftDispatchCategory = 0;
-  static const int FlagDispatchCategory = 3 << ShiftDispatchCategory;
-
-  DispatchCategory get dispatchCategory => DispatchCategory
-      .values[(flags & FlagDispatchCategory) >> ShiftDispatchCategory];
-
-  void set dispatchCategory(DispatchCategory value) {
-    flags = (flags & ~FlagDispatchCategory) |
-        (value.index << ShiftDispatchCategory);
   }
 
   Member get interfaceTarget => interfaceTargetReference?.asMember;
@@ -2828,7 +2758,6 @@ class MethodInvocation extends InvocationExpression {
 class SuperMethodInvocation extends InvocationExpression {
   Name name;
   Arguments arguments;
-  DispatchCategory get dispatchCategory => DispatchCategory.viaThis;
 
   Reference interfaceTargetReference;
 
@@ -3723,9 +3652,23 @@ class VectorCopy extends Expression {
   }
 }
 
-/// Expression of the form `MakeClosure(f, c, t)` where `f` is a name of a
-/// closed top-level function, `c` is a Vector representing closure context, and
-/// `t` is the type of the resulting closure.
+/// Expression of the form `MakeClosure<T>(f, c, t)` where `f` is a name of a
+/// closed top-level function, `c` is a Vector representing closure context, `t`
+/// is the type of the resulting closure and `T` is a vector of type arguments
+/// to be passed to `f`.
+///
+/// Note these restrictions on its usage:
+///
+///   1. `f` must reference a statically-resolved top-level function.
+///
+///   2. The length of `T` must be less than or equal to the number of type
+///      parameters on `f`.
+///
+///   3. It is disallowed to use `MakeClosure` on the same function twice with
+///      different numbers of type arguments.
+///
+///   4. The type arguments `T` must be guaranteed to satisfy the bounds of the
+///      corresponding type parameters on `f`.
 class ClosureCreation extends Expression {
   Reference topLevelFunctionReference;
   Expression contextVector;
@@ -3809,9 +3752,12 @@ class Block extends Statement {
   final List<Statement> statements;
 
   Block(this.statements) {
+    // Ensure statements is mutable.
+    assert((statements
+          ..add(null)
+          ..removeLast()) !=
+        null);
     setParents(statements, this);
-    statements.add(null);
-    statements.removeLast();
   }
 
   accept(StatementVisitor v) => v.visitBlock(this);
@@ -3823,6 +3769,40 @@ class Block extends Statement {
 
   transformChildren(Transformer v) {
     transformList(statements, v, this);
+  }
+
+  void addStatement(Statement node) {
+    statements.add(node);
+    node.parent = this;
+  }
+}
+
+/// A block that is only executed when asserts are enabled.
+///
+/// Sometimes arbitrary statements must be guarded by whether asserts are
+/// enabled.  For example, when a subexpression of an assert in async code is
+/// linearized and named, it can produce such a block of statements.
+class AssertBlock extends Statement {
+  final List<Statement> statements;
+
+  AssertBlock(this.statements) {
+    // Ensure statements is mutable.
+    assert((statements
+          ..add(null)
+          ..removeLast()) !=
+        null);
+    setParents(statements, this);
+  }
+
+  accept(StatementVisitor v) => v.visitAssertBlock(this);
+  accept1(StatementVisitor1 v, arg) => v.visitAssertBlock(this, arg);
+
+  transformChildren(Transformer v) {
+    transformList(statements, v, this);
+  }
+
+  visitChildren(Visitor v) {
+    visitList(statements, v);
   }
 
   void addStatement(Statement node) {
@@ -4354,96 +4334,6 @@ class YieldStatement extends Statement {
   }
 }
 
-/// Categorization of a call site indicating its effect on type guarantees.
-enum DispatchCategory {
-  /// This call site binds to its callee through a specific interface.
-  ///
-  /// The front end guarantees that the target of the call exists, has the
-  /// correct arity, and accepts all of the supplied named parameters.  Further,
-  /// it guarantees that the number of type parameters supplied matches the
-  /// number of type parameters expected by the target of the call.
-  ///
-  /// Due to parameter covariance, it is not necessarily guaranteed that the
-  /// actual values of parameters will match the declared types of those
-  /// parameters in the method actually being called.  A runtime type check is
-  /// required for any parameter meeting one of the following conditions:
-  ///
-  /// - The parameter in the interface target is tagged with
-  ///   `isGenericCovariantInterface`, and the corresponding parameter in the
-  ///   method actually being called is tagged with `isGenericCovariantImpl`.
-  ///
-  /// - The parameter in the method actually being called is tagged with
-  ///   `isCovariant`.
-  ///
-  /// Note: type parameters of generic methods require similar checks; the
-  /// flags `isGenericCovariantInterface` and `isGenericCovariantImpl` are found
-  /// in [TypeParameter], and the implementation must check that the actual
-  /// type is a subtype of the type parameter bound declared in the actual
-  /// method being called.  For type parameter checks, there is no `isCovariant`
-  /// tag.
-  ///
-  /// Note: if the interface target or the method actually being called is a
-  /// field, then the tags `isGenericCovariantInterface`,
-  /// `isGenericCovariantImpl`, and `isCovariant` are found in [Field].
-  interface,
-
-  /// This call site binds to its callee via a call on `this`.
-  ///
-  /// Similar to [interface], however the target of the call is a method on
-  /// `this` or `super`, therefore all of the class's type parameters are known
-  /// to match exactly.
-  ///
-  /// Due to parameter covariance, it is not necessarily guaranteed that the
-  /// actual values of parameters will match the declared types of those
-  /// parameters in the method actually being called.  A runtime type check is
-  /// required for any parameter meeting one of the following condition:
-  ///
-  /// - The parameter in the method actually being called is tagged with
-  ///   `isCovariant`.
-  ///
-  /// Note: type parameters of generic methods do not require a check when the
-  /// call is via `this`.
-  ///
-  /// Note: if the interface target or the method actually being called is a
-  /// field, then the tag `isCovariant` is found in [Field].
-  viaThis,
-
-  /// This call site is an invocation of a function object (formed either by a
-  /// tear off or a function literal).
-  ///
-  /// Similar to [interface], however the interface target of the call is not
-  /// known.
-  ///
-  /// Due to parameter covariance, it is not necessarily guaranteed that the
-  /// actual values of parameters will match the declared types of those
-  /// parameters in the method actually being called.  A runtime type check is
-  /// required for any parameter meeting one of the following conditions:
-  ///
-  /// - The parameter in the method actually being called is tagged with
-  ///   `isGenericCovariantImpl`.
-  ///
-  /// - The parameter in the method actually being called is tagged with
-  ///   `isCovariant`.
-  ///
-  /// Note: type parameters of generic methods require similar checks; the
-  /// flag `isGenericCovariantImpl` is found in [TypeParameter], and the
-  /// implementation must check that the actual type is a subtype of the type
-  /// parameter bound declared in the actual method being called.  For type
-  /// parameter checks, there is no `isCovariant` tag.
-  ///
-  /// Note: if the interface target or the method actually being called is a
-  /// field, then the tags `isGenericCovariantImpl` and `isCovariant` are found
-  /// in [Field].
-  closure,
-
-  /// The call site is dynamic.
-  ///
-  /// The front end makes no guarantees that the target of the call will accept
-  /// the actual runtime types of the parameters, nor that the target of the
-  /// call even exists.  Everything must be checked at runtime.
-  dynamicDispatch,
-}
-
 /// Declaration of a local variable.
 ///
 /// This may occur as a statement, but is also used in several non-statement
@@ -4881,7 +4771,7 @@ class InterfaceType extends DartType {
 ///
 /// * Access to Vectors is untyped.
 ///
-/// * Vectors can be used by various transformations of Kernel programs.
+/// * Vectors can be used by various transformations of Kernel components.
 /// Currently they are used by Closure Conversion to represent closure contexts.
 class VectorType extends DartType {
   const VectorType();
@@ -5167,6 +5057,13 @@ class TypeParameter extends TreeNode {
   /// be set to the root class for type parameters without an explicit bound.
   DartType bound;
 
+  /// The default value of the type variable. It is used to provide the
+  /// corresponding missing type argument in type annotations and as the
+  /// fall-back type value in type inference at compile time. At run time,
+  /// [defaultType] is used by the backends in place of the missing type
+  /// argument of a dynamic invocation of a generic function.
+  DartType defaultType;
+
   TypeParameter([this.name, this.bound]);
 
   // Must match serialized bit positions.
@@ -5222,6 +5119,8 @@ class TypeParameter extends TreeNode {
   /// Returns a possibly synthesized name for this type parameter, consistent
   /// with the names used across all [toString] calls.
   String toString() => debugQualifiedTypeParameterName(this);
+
+  bool get isFunctionTypeTypeParameter => parent == null;
 }
 
 class Supertype extends Node {
@@ -5489,6 +5388,34 @@ class InstanceConstant extends Constant {
   }
 }
 
+class PartialInstantiationConstant extends Constant {
+  final TearOffConstant tearOffConstant;
+  final List<DartType> types;
+
+  PartialInstantiationConstant(this.tearOffConstant, this.types);
+
+  visitChildren(Visitor v) {
+    tearOffConstant.acceptReference(v);
+    visitList(types, v);
+  }
+
+  accept(ConstantVisitor v) => v.visitPartialInstantiationConstant(this);
+  acceptReference(Visitor v) =>
+      v.visitPartialInstantiationConstantReference(this);
+
+  String toString() {
+    return '${runtimeType}(${tearOffConstant.procedure}<${types.join(', ')}>)';
+  }
+
+  int get hashCode => tearOffConstant.hashCode ^ listHashCode(types);
+
+  bool operator ==(Object other) {
+    return other is PartialInstantiationConstant &&
+        other.tearOffConstant == tearOffConstant &&
+        listEquals(other.types, types);
+  }
+}
+
 class TearOffConstant extends Constant {
   final Reference procedureReference;
 
@@ -5541,17 +5468,17 @@ class TypeLiteralConstant extends Constant {
 }
 
 // ------------------------------------------------------------------------
-//                                PROGRAM
+//                                COMPONENT
 // ------------------------------------------------------------------------
 
-/// A way to bundle up all the libraries in a program.
-class Program extends TreeNode {
+/// A way to bundle up libraries in a component.
+class Component extends TreeNode {
   final CanonicalName root;
 
   final List<Library> libraries;
 
-  /// Map from a source file uri to a line-starts table and source code.
-  /// Given a source file uri and a offset in that file one can translate
+  /// Map from a source file URI to a line-starts table and source code.
+  /// Given a source file URI and a offset in that file one can translate
   /// it to a line:column position in that file.
   final Map<Uri, Source> uriToSource;
 
@@ -5563,7 +5490,7 @@ class Program extends TreeNode {
   /// Reference to the main method in one of the libraries.
   Reference mainMethodName;
 
-  Program(
+  Component(
       {CanonicalName nameRoot,
       List<Library> libraries,
       Map<Uri, Source> uriToSource})
@@ -5572,7 +5499,7 @@ class Program extends TreeNode {
         uriToSource = uriToSource ?? <Uri, Source>{} {
     if (libraries != null) {
       for (int i = 0; i < libraries.length; ++i) {
-        // The libraries are owned by this program, and so are their canonical
+        // The libraries are owned by this component, and so are their canonical
         // names if they exist.
         Library library = libraries[i];
         library.parent = this;
@@ -5601,7 +5528,7 @@ class Program extends TreeNode {
     mainMethodName = getMemberReference(main);
   }
 
-  accept(TreeVisitor v) => v.visitProgram(this);
+  accept(TreeVisitor v) => v.visitComponent(this);
 
   visitChildren(Visitor v) {
     visitList(libraries, v);
@@ -5612,7 +5539,7 @@ class Program extends TreeNode {
     transformList(libraries, v, this);
   }
 
-  Program get enclosingProgram => this;
+  Component get enclosingComponent => this;
 
   /// Translates an offset to line and column numbers in the given file.
   Location getLocation(Uri file, int offset) {
@@ -5800,7 +5727,7 @@ class Source {
     RangeError.checkValueInInterval(line, 1, lineStarts.length, 'line');
     if (source == null) return null;
 
-    cachedText ??= UTF8.decode(source, allowMalformed: true);
+    cachedText ??= utf8.decode(source, allowMalformed: true);
     // -1 as line numbers start at 1.
     int index = line - 1;
     if (index + 1 == lineStarts.length) {
@@ -5935,9 +5862,9 @@ CanonicalName getCanonicalNameOfTypedef(Typedef typedef_) {
 /// static analysis and runtime behavior of the library are unaffected.
 const informative = null;
 
-Location _getLocationInProgram(Program program, Uri fileUri, int offset) {
-  if (program != null) {
-    return program.getLocation(fileUri, offset);
+Location _getLocationInComponent(Component component, Uri fileUri, int offset) {
+  if (component != null) {
+    return component.getLocation(fileUri, offset);
   } else {
     return new Location(fileUri, TreeNode.noOffset, TreeNode.noOffset);
   }

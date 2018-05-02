@@ -4,7 +4,7 @@
 
 import 'dart:collection';
 
-import 'package:analyzer/context/declared_variables.dart';
+import 'package:analyzer/dart/analysis/declared_variables.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/standard_ast_factory.dart';
 import 'package:analyzer/dart/ast/token.dart';
@@ -26,7 +26,6 @@ import 'package:analyzer/src/generated/resolver.dart' show TypeProvider;
 import 'package:analyzer/src/generated/type_system.dart'
     show TypeSystem, TypeSystemImpl;
 import 'package:analyzer/src/generated/utilities_collection.dart';
-import 'package:analyzer/src/generated/utilities_dart.dart' show ParameterKind;
 import 'package:analyzer/src/task/dart.dart';
 
 /**
@@ -622,7 +621,7 @@ class ConstantEvaluationEngine {
       }
       DartObjectImpl argumentValue = null;
       AstNode errorTarget = null;
-      if (baseParameter.parameterKind == ParameterKind.NAMED) {
+      if (baseParameter.isNamed) {
         argumentValue = namedArgumentValues[baseParameter.name];
         errorTarget = namedArgumentNodes[baseParameter.name];
       } else if (i < argumentCount) {
@@ -1634,6 +1633,7 @@ class ConstantVisitor extends UnifyingAstVisitor<DartObjectImpl> {
         element is PropertyAccessorElement ? element.variable : element;
     if (variableElement is VariableElementImpl) {
       evaluationEngine.validator.beforeGetEvaluationResult(variableElement);
+      variableElement.computeConstantValue();
       EvaluationResultImpl value = variableElement.evaluationResult;
       if (variableElement.isConst && value != null) {
         return value.value;

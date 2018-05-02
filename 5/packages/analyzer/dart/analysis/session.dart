@@ -59,6 +59,12 @@ abstract class AnalysisSession {
   Future<ParseResult> getParsedAst(String path);
 
   /**
+   * Return information about the results of parsing the file with the given
+   * absolute, normalized [path].
+   */
+  ParseResult getParsedAstSync(String path);
+
+  /**
    * Return a future that will complete with information about the results of
    * resolving the file with the given absolute, normalized [path].
    */
@@ -105,10 +111,7 @@ abstract class AnalysisSession {
  * might be inconsistent with any previously returned results.
  */
 class InconsistentAnalysisException extends AnalysisException {
-  /**
-   * Initialize a newly created exception to have the given [message] and
-   * [cause].
-   */
-  InconsistentAnalysisException([String message, CaughtException cause])
-      : super(message, cause);
+  InconsistentAnalysisException()
+      : super('Requested result might be inconsistent with previously '
+            'returned results');
 }

@@ -17,6 +17,8 @@ export 'kernel_function_type_builder.dart' show KernelFunctionTypeBuilder;
 export 'kernel_function_type_alias_builder.dart'
     show KernelFunctionTypeAliasBuilder;
 
+export 'kernel_prefix_builder.dart' show KernelPrefixBuilder;
+
 export 'kernel_named_type_builder.dart' show KernelNamedTypeBuilder;
 
 export 'kernel_library_builder.dart' show KernelLibraryBuilder;
@@ -28,6 +30,7 @@ export 'kernel_procedure_builder.dart'
     show
         KernelConstructorBuilder,
         KernelFunctionBuilder,
+        KernelRedirectingFactoryBuilder,
         KernelProcedureBuilder;
 
 export 'kernel_type_builder.dart' show KernelTypeBuilder;
@@ -39,6 +42,8 @@ export '../builder/builder.dart';
 export 'kernel_variable_builder.dart' show KernelVariableBuilder;
 
 export 'kernel_invalid_type_builder.dart' show KernelInvalidTypeBuilder;
+
+export 'load_library_builder.dart' show LoadLibraryBuilder;
 
 import 'package:kernel/ast.dart'
     show

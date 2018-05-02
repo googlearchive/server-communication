@@ -16,6 +16,8 @@ import 'util/relativize.dart' as util show relativizeUri;
 
 part 'fasta_codes_generated.dart';
 
+const int noLength = 1;
+
 class Code<T> {
   final String name;
 
@@ -44,8 +46,12 @@ class Message {
 
   const Message(this.code, {this.message, this.tip, this.arguments});
 
-  LocatedMessage withLocation(Uri uri, int charOffset) {
-    return new LocatedMessage(uri, charOffset, this);
+  LocatedMessage withLocation(Uri uri, int charOffset, int length) {
+    return new LocatedMessage(uri, charOffset, length, this);
+  }
+
+  LocatedMessage withoutLocation() {
+    return new LocatedMessage(null, -1, noLength, this);
   }
 }
 
@@ -69,8 +75,13 @@ class MessageCode extends Code<Null> implements Message {
 
   Code get code => this;
 
-  LocatedMessage withLocation(Uri uri, int charOffset) {
-    return new LocatedMessage(uri, charOffset, this);
+  @override
+  LocatedMessage withLocation(Uri uri, int charOffset, int length) {
+    return new LocatedMessage(uri, charOffset, length, this);
+  }
+
+  LocatedMessage withoutLocation() {
+    return new LocatedMessage(null, -1, noLength, this);
   }
 }
 
@@ -89,9 +100,12 @@ class LocatedMessage implements Comparable<LocatedMessage> {
 
   final int charOffset;
 
+  final int length;
+
   final Message messageObject;
 
-  const LocatedMessage(this.uri, this.charOffset, this.messageObject);
+  const LocatedMessage(
+      this.uri, this.charOffset, this.length, this.messageObject);
 
   Code get code => messageObject.code;
 
@@ -108,6 +122,31 @@ class LocatedMessage implements Comparable<LocatedMessage> {
     if (result != 0) return result;
     return message.compareTo(message);
   }
+
+  FormattedMessage withFormatting(String formatted, int line, int column) {
+    return new FormattedMessage(this, formatted, line, column);
+  }
+}
+
+class FormattedMessage {
+  final LocatedMessage locatedMessage;
+
+  final String formatted;
+
+  final int line;
+
+  final int column;
+
+  const FormattedMessage(
+      this.locatedMessage, this.formatted, this.line, this.column);
+
+  Code get code => locatedMessage.code;
+
+  String get message => locatedMessage.message;
+
+  String get tip => locatedMessage.tip;
+
+  Map<String, dynamic> get arguments => locatedMessage.arguments;
 }
 
 String relativizeUri(Uri uri) {
