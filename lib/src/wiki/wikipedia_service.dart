@@ -5,7 +5,7 @@ import 'package:jsonpadding/jsonpadding.dart';
 
 @Injectable()
 class WikipediaService {
-  Future<List<String>> search(String term) async {
+  Future<List> search(String term) async {
     Uri uri = new Uri(
         scheme: 'http',
         host: 'en.wikipedia.org',
