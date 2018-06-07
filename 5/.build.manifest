@@ -24,8 +24,6 @@ packages/$sdk/dev_compiler/web/dart_stack_trace_mapper.js
 packages/$sdk/dev_compiler/web/ddc_web_compiler.js
 packages/analyzer/src/summary/format.fbs
 packages/angular/src/di/README.md
-packages/browser/dart.js
-packages/browser/interop.js
 packages/build_modules/src/analysis_options.default.yaml
 packages/build_runner/src/server/graph_viz.html
 packages/build_runner/src/server/graph_viz.js
