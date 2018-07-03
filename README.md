@@ -1,10 +1,10 @@
 ## HTTP Client (Server Communication)
 
 Welcome to the example app used in the
-[HTTP Client (Server Communication)](https://webdev-dartlang-org-dev.firebaseapp.com/angular/guide/server-communication) page
-of [Dart for the web](https://webdev-dartlang-org-dev.firebaseapp.com).
+[HTTP Client (Server Communication)](https://webdev.dartlang.org/angular/guide/server-communication) page
+of [Dart for the web](https://webdev.dartlang.org).
 
-You can run a [hosted copy](https://webdev-dartlang-org-dev.firebaseapp.com/examples/server-communication) of this
+You can run a [hosted copy](https://webdev.dartlang.org/examples/server-communication) of this
 sample. Or run your own copy:
 
 1. Create a local copy of this repo (use the "Clone or download" button above).
