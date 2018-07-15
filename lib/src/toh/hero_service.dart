@@ -6,7 +6,6 @@ import 'package:http/http.dart';
 
 import 'hero.dart';
 
-@Injectable()
 class HeroService {
   static final _headers = {'Content-Type': 'application/json'};
   static const _heroesUrl = 'api/heroes'; // URL to web API
