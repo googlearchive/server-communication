@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:angular/angular.dart';
 import 'package:http/http.dart';
 
 import 'hero.dart';
