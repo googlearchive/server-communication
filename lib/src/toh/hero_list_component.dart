@@ -19,7 +19,8 @@ class HeroListComponent implements OnInit {
 
   HeroListComponent(this._heroService);
 
-  Future<void> ngOnInit() => _getHeroes();
+  @override
+  void ngOnInit() => _getHeroes();
 
   Future<void> _getHeroes() async {
     try {
